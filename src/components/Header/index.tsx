@@ -110,7 +110,10 @@ export default function Header() {
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile Settings</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer rounded-lg py-2.5 font-medium text-gray-600 focus:text-gray-900">
+                  <DropdownMenuItem
+                    className="cursor-pointer rounded-lg py-2.5 font-medium text-gray-600 focus:text-gray-900"
+                    onClick={() => open([{ modalId: "modal", openId: "messages" }])}
+                  >
                     <Mail className="mr-2 h-4 w-4" />
                     <span>Message's</span>
                   </DropdownMenuItem>

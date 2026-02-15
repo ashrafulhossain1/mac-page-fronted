@@ -1,0 +1,20 @@
+import { useState, useEffect } from "react"
+
+export function useMediaQuery(query: string) {
+    const [value, setValue] = useState(() => matchMedia(query).matches)
+
+    useEffect(() => {
+        function onChange(event: MediaQueryListEvent) {
+            setValue(event.matches)
+        }
+
+        const result = matchMedia(query)
+        result.addEventListener("change", onChange)
+        // The initial value is set by the useState initializer,
+        // so no synchronous setValue call is needed here.
+
+        return () => result.removeEventListener("change", onChange)
+    }, [query])
+
+    return value
+}

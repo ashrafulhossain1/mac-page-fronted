@@ -21,7 +21,7 @@ function SearchCard() {
   };
 
   return (
-    <div className="absolute -bottom-20 left-0 right-0 z-500 flex justify-center px-4 pb-10">
+    <div className="absolute -bottom-20 left-0 right-0 z-30 flex justify-center px-4 pb-10">
       <div className="bg-[#eff1f3] backdrop-blur-sm p-8 rounded-[32px] w-full max-w-[1050px] shadow-2xl">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4 ml-1">
           Find Your Perfect Room

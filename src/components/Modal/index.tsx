@@ -1,6 +1,8 @@
 import useModal from "./useModal";
 import Authentication from "@/pages/Auth/Authentication";
 import ProfileForm from "@/pages/Profile/ProfileForm";
+import ResponsiveModal from "./ResponsiveModal";
+import MessagesList from "@/pages/Messages/MessagesList";
 
 export default function Modals() {
   const { Modal } = useModal();
@@ -25,6 +27,15 @@ export default function Modals() {
       >
         <ProfileForm />
       </Modal>
+
+      {/* Messages Modal */}
+      <ResponsiveModal
+        modalId="modal"
+        openId="messages"
+        className="sm:max-w-[800px] p-0"
+      >
+        <MessagesList />
+      </ResponsiveModal>
     </>
   );
 }
