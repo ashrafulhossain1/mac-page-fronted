@@ -1,6 +1,6 @@
 
 import bannerImg from "@/assets/home/banner-browse.jpg";
-import SearchCard from "../Home/_components/SearchCard";
+import SearchCard from "../../Home/_components/SearchCard";
 
 export default function Hero() {
     return (

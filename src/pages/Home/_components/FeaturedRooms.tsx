@@ -55,6 +55,7 @@ function FeaturedRooms() {
                 {rooms.map((room) => (
                     <RoomCard
                         key={room.id}
+                        id={room.id}
                         image={room.image}
                         title={room.title}
                         price={room.price}
