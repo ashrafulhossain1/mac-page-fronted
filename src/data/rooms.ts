@@ -1,0 +1,115 @@
+
+import room1 from "@/assets/home/room-1.png";
+import room2 from "@/assets/home/room-2.png";
+import room3 from "@/assets/home/room-3.png";
+
+export const rooms = [
+    {
+        id: 1,
+        image: room1,
+        title: "Sunny room near Trinity College",
+        price: "€250/week",
+        location: "Dublin 2",
+        description: "A cozy room in a quiet residential area. 10 mins walk to city center. Includes high-speed WiFi and a study desk.",
+        rating: 4.9,
+        reviews: 54,
+        type: "Private Room",
+        amenities: ["Wifi", "Furnished", "Study Desk"]
+    },
+    {
+        id: 2,
+        image: room2,
+        title: "Spacious Ensuite in City Centre",
+        price: "€300/week",
+        location: "Dublin 1",
+        description: "Modern student accommodation with private bathroom. Shared kitchen and living area. Close to transport links.",
+        rating: 4.8,
+        reviews: 32,
+        type: "Ensuite",
+        amenities: ["Wifi", "Private Bathroom", "Shared Kitchen"]
+    },
+    {
+        id: 3,
+        image: room3,
+        title: "Studio Apartment near UCD",
+        price: "€350/week",
+        location: "Dublin 4",
+        description: "Fully furnished studio with kitchenette. Perfect for postgraduate students. Gym access included.",
+        rating: 5.0,
+        reviews: 12,
+        type: "Studio",
+        amenities: ["Wifi", "Kitchenette", "Gym"]
+    },
+    {
+        id: 4,
+        image: room1,
+        title: "Cozy Single Room in Rathmines",
+        price: "€220/week",
+        location: "Dublin 6",
+        description: " Charming single room in a shared house. Close to shops, cafes, and bus routes to the city center.",
+        rating: 4.7,
+        reviews: 28,
+        type: "Single Room",
+        amenities: ["Wifi", "Shared Bathroom", "Kitchen Access"]
+    },
+    {
+        id: 5,
+        image: room2,
+        title: "Modern Shared Room in Smithfield",
+        price: "€180/week",
+        location: "Dublin 7",
+        description: "Twin room in a modern apartment complex. Great social atmosphere and close to the Luas.",
+        rating: 4.6,
+        reviews: 45,
+        type: "Shared Room",
+        amenities: ["Wifi", "shared Bathroom", "Gym"]
+    },
+    {
+        id: 6,
+        image: room3,
+        title: "Premium Ensuite near DCU",
+        price: "€280/week",
+        location: "Dublin 9",
+        description: "High-spec ensuite room in student halls. All bills included. 5 mins walk to campus.",
+        rating: 4.9,
+        reviews: 18,
+        type: "Ensuite",
+        amenities: ["Wifi", "Private Bathroom", "Bills Included"]
+    },
+    {
+        id: 7,
+        image: room1,
+        title: "Quiet Room in Phibsborough",
+        price: "€240/week",
+        location: "Dublin 7",
+        description: "Peaceful room in a Victorian house. Ideal for focused study. Garden access.",
+        rating: 4.8,
+        reviews: 22,
+        type: "Private Room",
+        amenities: ["Wifi", "Garden", "Study Desk"]
+    },
+    {
+        id: 8,
+        image: room2,
+        title: "City Centre Apartment Share",
+        price: "€260/week",
+        location: "Dublin 2",
+        description: "Double room in a central apartment. Walking distance to everything. Balcony with city views.",
+        rating: 4.7,
+        reviews: 36,
+        type: "Private Room",
+        amenities: ["Wifi", "Balcony", "Central Heating"]
+    },
+    {
+        id: 9,
+        image: room3,
+        title: "Large Studio in Ballsbridge",
+        price: "€380/week",
+        location: "Dublin 4",
+        description: "Luxury studio apartment in a prestigious area. Concierge service and rooftop terrace.",
+        rating: 5.0,
+        reviews: 8,
+        type: "Studio",
+        amenities: ["Wifi", "Concierge", "Rooftop Terrace"]
+    }
+];
