@@ -54,7 +54,7 @@ export default function BookingModal() {
     const finalDays = pricePerWeek > 0 ? days : 15;
 
     return (
-        <div className="flex flex-col h-full bg-white rounded-t-[10px] sm:rounded-[20px] overflow-hidden">
+        <div className="flex flex-col h-full bg-white rounded-t-[10px] sm:rounded-[20px] ">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
                 <h2 className="text-[26px] font-bold text-gray-900">Complete Your Booking</h2>

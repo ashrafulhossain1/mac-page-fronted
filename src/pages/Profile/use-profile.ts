@@ -17,12 +17,12 @@ export type ProfileFormValues = z.infer<typeof formSchema>;
 
 export default function useProfile() {
     const user = useMemo(() => ({
-        firstName: "Mr",
-        lastName: "Smith",
+        firstName: "",
+        lastName: "",
         avatar: "/profile.jpg",
-        phone: "0172********",
-        university: "Oxford University",
-        bio: "My name is Mr Smith, I am a student."
+        phone: "",
+        university: "",
+        bio: ""
     }), []);
 
     // Mock loading states
