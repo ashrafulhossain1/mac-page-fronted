@@ -10,12 +10,14 @@ import { Separator } from "@/components/ui/separator";
 import { CalendarDays } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import useModal from "@/components/Modal/useModal";
 
 interface BookingCardProps {
     pricePerWeek: number;
 }
 
 export default function BookingCard({ pricePerWeek }: BookingCardProps) {
+    const { open } = useModal();
     const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
     const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
     const [checkInOpen, setCheckInOpen] = useState(false);
@@ -53,6 +55,13 @@ export default function BookingCard({ pricePerWeek }: BookingCardProps) {
             total,
         };
         console.log("Booking Data:", bookingData);
+
+        open([
+            { modalId: "modal", openId: "booking" },
+            { modalId: "checkIn", openId: checkIn ? format(checkIn, "dd/MM/yyyy") : "" },
+            { modalId: "checkOut", openId: checkOut ? format(checkOut, "dd/MM/yyyy") : "" },
+            { modalId: "pricePerWeek", openId: pricePerWeek.toString() },
+        ]);
     };
 
 

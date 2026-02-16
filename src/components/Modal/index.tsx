@@ -3,6 +3,7 @@ import Authentication from "@/pages/Auth/Authentication";
 import ProfileForm from "@/pages/Profile/ProfileForm";
 import ResponsiveModal from "./ResponsiveModal";
 import MessagesList from "@/pages/Messages/MessagesList";
+import BookingModal from "@/pages/RoomDetails/_components/BookingModal";
 
 export default function Modals() {
   const { Modal } = useModal();
@@ -35,6 +36,15 @@ export default function Modals() {
         className="sm:max-w-[800px] p-0"
       >
         <MessagesList />
+      </ResponsiveModal>
+
+      {/* Booking Modal */}
+      <ResponsiveModal
+        modalId="modal"
+        openId="booking"
+        className="sm:max-w-[600px] p-0"
+      >
+        <BookingModal />
       </ResponsiveModal>
     </>
   );

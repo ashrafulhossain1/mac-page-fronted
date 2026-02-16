@@ -1,22 +1,37 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { useMessages, type Conversation } from "./use-messages";
+import { useMessages } from "./use-messages";
 import { X } from "lucide-react";
 import useModal from "@/components/Modal/useModal";
 import ChatView from "./ChatView";
-import { useState } from "react";
+import { useSearchParams } from "react-router";
 
 export default function MessagesList() {
     const { conversations } = useMessages();
     const { close } = useModal();
-    const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const openChatId = searchParams.get("chatId");
+    const selectedConversation = openChatId
+        ? conversations.find(c => c.id === openChatId)
+        : null;
+
+    const handleSelectChat = (id: string) => {
+        searchParams.set("chatId", id);
+        setSearchParams(searchParams);
+    };
+
+    const handleBack = () => {
+        searchParams.delete("chatId");
+        setSearchParams(searchParams);
+    };
 
     if (selectedConversation) {
         return (
             <ChatView
                 key={selectedConversation.id}
                 conversation={selectedConversation}
-                onBack={() => setSelectedConversation(null)}
+                onBack={handleBack}
             />
         );
     }
@@ -44,7 +59,7 @@ export default function MessagesList() {
                 {conversations.map((chat) => (
                     <div
                         key={chat.id}
-                        onClick={() => setSelectedConversation(chat)}
+                        onClick={() => handleSelectChat(chat.id)}
                         className="flex items-center gap-4 p-4 transition-colors hover:bg-gray-50 cursor-pointer"
                     >
                         {/* Avatar with Status */}
