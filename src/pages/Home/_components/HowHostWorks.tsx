@@ -38,8 +38,11 @@ const steps: Step[] = [
 
 const HowHostWorks = () => {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-white py-20 px-6" id="how-it-works">
       <div className="max-w-7xl mx-auto">
+        <h2 className="text-[48px] font-semibold leading-[48px] mb-10  text-center text-black">
+          How it works?
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((item, idx) => (
             <div

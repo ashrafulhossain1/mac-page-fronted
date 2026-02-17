@@ -51,7 +51,7 @@ export default function Header() {
       ? { name: "Dashboard", path: "/dashboard" }
       : { name: "Browse", path: "/browse" },
     { name: "Our Story", path: "/our-story" },
-    { name: "How it works", path: "/how-it-works" },
+    { name: "How it works", path: "/#how-it-works" },
     { name: "Support", path: "/support" },
   ];
 
@@ -124,16 +124,16 @@ export default function Header() {
           >
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-0 rotate-90 scale-50"
-                  : "opacity-100 rotate-0 scale-100"
+                ? "opacity-0 rotate-90 scale-50"
+                : "opacity-100 rotate-0 scale-100"
                 }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-100 rotate-0 scale-100"
-                  : "opacity-0 -rotate-90 scale-50"
+                ? "opacity-100 rotate-0 scale-100"
+                : "opacity-0 -rotate-90 scale-50"
                 }`}
             >
               <X className="h-6 w-6 text-gray-800" />
@@ -145,8 +145,8 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${mobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setMobileMenuOpen(false)}
       />

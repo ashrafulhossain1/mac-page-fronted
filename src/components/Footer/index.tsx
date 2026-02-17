@@ -39,14 +39,14 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/blog" className="hover:text-white transition">
                   Host Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/blog" className="hover:text-white transition">
                   Guest Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
