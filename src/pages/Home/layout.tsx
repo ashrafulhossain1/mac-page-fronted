@@ -8,10 +8,10 @@ export default function HomeLayout() {
   return (
     <div>
       <ScrollToTop />
-      <Header></Header>
+      <Header />
       <Modals />
 
-      <Outlet></Outlet>
+      <Outlet />
       <Footer />
     </div>
   );

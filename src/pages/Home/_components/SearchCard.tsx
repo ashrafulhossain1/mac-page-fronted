@@ -21,7 +21,7 @@ function SearchCard() {
   };
 
   return (
-    <div className="absolute -bottom-20 left-0 right-0 z-500 flex justify-center px-4 pb-10">
+    <div className="absolute -bottom-50 md:-bottom-20 left-0 right-0 z-30 flex justify-center px-4 pb-10">
       <div className="bg-[#eff1f3] backdrop-blur-sm p-8 rounded-[32px] w-full max-w-[1050px] shadow-2xl">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4 ml-1">
           Find Your Perfect Room
@@ -31,22 +31,30 @@ function SearchCard() {
           {/* Max Price Input */}
           <Input
             type="number"
+            min={0}
             placeholder="Max price"
             className="h-12 bg-white border-0 rounded-xl text-lg px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
             value={searchParams.maxPrice}
             onChange={(e) =>
-              setSearchParams((prev) => ({ ...prev, maxPrice: e.target.value }))
+              setSearchParams((prev) => ({
+                ...prev,
+                maxPrice: e.target.value,
+              }))
             }
           />
 
           {/* Min Price Input */}
           <Input
             type="number"
+            min={0}
             placeholder="Min price"
             className="h-12 bg-white border-0 rounded-xl text-lg px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
             value={searchParams.minPrice}
             onChange={(e) =>
-              setSearchParams((prev) => ({ ...prev, minPrice: e.target.value }))
+              setSearchParams((prev) => ({
+                ...prev,
+                minPrice: e.target.value,
+              }))
             }
           />
 

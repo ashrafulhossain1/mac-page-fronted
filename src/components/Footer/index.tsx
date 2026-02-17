@@ -1,5 +1,7 @@
 import React from "react";
 import { Instagram, Facebook, Twitter, ArrowRight } from "lucide-react";
+import RoleToggle from "./RoleToggle";
+import { Link } from "react-router";
 
 const Footer: React.FC = () => {
   return (
@@ -22,19 +24,19 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-4 text-gray-300">
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/browse" className="hover:text-white transition">
                   Browse
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/browse" className="hover:text-white transition">
                   List Room
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <Link to="/our-story" className="hover:text-white transition">
                   Our Story
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition">
@@ -97,13 +99,14 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>hello@warmwelcome.ie</p>
           <div className="flex gap-8 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition">
+            <Link to="/term-condition" className="hover:text-white transition">
               Terms & conditions
-            </a>
-            <a href="#" className="hover:text-white transition">
+            </Link>
+            <Link to="/privacy-policy" className="hover:text-white transition">
               Privacy Policy
-            </a>
+            </Link>
           </div>
+          <RoleToggle />
         </div>
       </div>
     </footer>

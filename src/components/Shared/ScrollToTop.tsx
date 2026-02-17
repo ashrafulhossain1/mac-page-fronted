@@ -9,7 +9,7 @@ const ScrollToTop: FC = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "auto", // "instant" is not standard, "auto" or "smooth" is recommended
+      behavior: "smooth",
     });
   }, [pathname]);
 

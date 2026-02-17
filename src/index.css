@@ -3,11 +3,14 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-@plugin "daisyui";
 
 :root {
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Roboto", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
