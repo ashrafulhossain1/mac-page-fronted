@@ -41,27 +41,52 @@ const roomSchema = z.object({
   houseRules: z.array(z.object({ value: z.string() })).min(1, "Add at least one rule"),
 });
 
+import { useParams } from "react-router";
+import { listings } from "@/data/dashboard";
+import { useEffect } from "react";
+
 type RoomFormValues = z.infer<typeof roomSchema>;
 
 const EditRoom = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const listing = listings.find((l) => l.id === Number(id));
 
   const form = useForm<RoomFormValues>({
     resolver: zodResolver(roomSchema),
     defaultValues: {
-      title: "Shared Room with busy space",
+      title: listing?.title || "Shared Room with busy space",
       type: "Single",
       size: "45",
       minStay: "1 month",
-      price: "€485",
+      price: listing ? `€${listing.price}` : "€485",
       about: "A comfortable single room perfect for students, located in the heart of the city. Close to universities, public transport, and all amenities. The room is fully furnished with a comfortable bed, study desk, and wardrobe. Shared kitchen and bathroom facilities are modern and well-maintained.",
-      locationName: "Dublin 2, Ireland",
+      locationName: listing?.location || "Dublin 2, Ireland",
       locationMap: "https://maps.app.goo.gl/hNepxT7u5ygA2rL68A",
       aboutLocation: "It's a stunning location with great access to Limerick’s city centre. The area has great walks and a beautiful garden. Jetland Shopping Centre with a cinema and Dunnes is just 15 mins walk, we are only 25 mins by bus to the city centre so this location will suit many of the students and professionals.",
       amenities: [{ value: "WiFi" }],
       houseRules: [{ value: "No smoking" }],
     },
   });
+
+  // Reset form if listing changes (e.g. if navigating between rooms)
+  useEffect(() => {
+    if (listing) {
+      form.reset({
+        title: listing.title,
+        type: "Single",
+        size: "45",
+        minStay: "1 month",
+        price: `€${listing.price}`,
+        about: "A comfortable single room perfect for students, located in the heart of the city. Close to universities, public transport, and all amenities. The room is fully furnished with a comfortable bed, study desk, and wardrobe. Shared kitchen and bathroom facilities are modern and well-maintained.",
+        locationName: listing.location,
+        locationMap: "https://maps.app.goo.gl/hNepxT7u5ygA2rL68A",
+        aboutLocation: "It's a stunning location with great access to Limerick’s city centre. The area has great walks and a beautiful garden. Jetland Shopping Centre with a cinema and Dunnes is just 15 mins walk, we are only 25 mins by bus to the city centre so this location will suit many of the students and professionals.",
+        amenities: [{ value: "WiFi" }],
+        houseRules: [{ value: "No smoking" }],
+      });
+    }
+  }, [listing, form]);
 
   const {
     fields: amenityFields,
@@ -82,7 +107,15 @@ const EditRoom = () => {
   });
 
   const onSubmit = (data: RoomFormValues) => {
-    console.log("Updated data:", data);
+    // In a real app, you would make an API call here to update the room
+    console.log("Saving room data for ID:", id, data);
+
+    // Simulate API delay
+
+    setTimeout(() => {
+      // Navigate back to listing management
+      navigate(-1);
+    }, 1000);
   };
 
   return (
