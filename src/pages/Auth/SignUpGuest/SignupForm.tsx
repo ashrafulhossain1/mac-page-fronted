@@ -19,11 +19,11 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Camera, X, CalendarIcon } from "lucide-react";
+import { Camera,  CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useRef, useState } from "react";
 import useSignUp from "./use-sign-up";
-import useModal from "@/components/Modal/useModal";
+// import useModal from "@/components/Modal/useModal";
 
 const nationalities = [
   "Bangladeshi",
@@ -51,7 +51,7 @@ const nationalities = [
 ];
 
 export default function SignUpForm() {
-  const { close } = useModal();
+  // const { close } = useModal();
   const { form, onSubmit } = useSignUp();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);

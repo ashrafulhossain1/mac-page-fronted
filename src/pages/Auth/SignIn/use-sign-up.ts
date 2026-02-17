@@ -34,7 +34,7 @@ export default function useSignUp() {
         // Simulate loading
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        // Close modal after successful sign up
+        // Close modal after successful si  gn up
         close(["modal", "tab"]);
     }
 

@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 import HomeWrapper from "./_components/HomeWrapper";
 import HostWrapper from "./_components/HostWrapper";
 
-const host = false;
-
 export default function Home() {
-  return <div>{host ? <HostWrapper /> : <HomeWrapper />}</div>;
+  const role = useSelector((state: RootState) => state.userRole.role);
+
+  return <div>{role === "host" ? <HostWrapper /> : <HomeWrapper />}</div>;
 }

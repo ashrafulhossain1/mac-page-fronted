@@ -1,5 +1,6 @@
 import React from "react";
 import { Instagram, Facebook, Twitter, ArrowRight } from "lucide-react";
+import RoleToggle from "./RoleToggle";
 
 const Footer: React.FC = () => {
   return (
@@ -104,6 +105,7 @@ const Footer: React.FC = () => {
               Privacy Policy
             </a>
           </div>
+          <RoleToggle />
         </div>
       </div>
     </footer>

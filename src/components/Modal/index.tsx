@@ -14,7 +14,7 @@ export default function Modals() {
       <Modal
         modalId="modal"
         openId="authentication"
-        closeModals={["tab"]}
+        closeModals={["tab" , "authType" , "modal"]}
         className="max-w-md"
       >
         <Authentication />

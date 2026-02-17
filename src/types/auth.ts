@@ -1,5 +1,5 @@
 export type TAuthDataType = {
-  authType: "guest" | "host";
+  authType: "guest" | "host" | string;
 
   guestData?: {
     fullName: string;
