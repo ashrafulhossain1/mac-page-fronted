@@ -81,7 +81,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "edit-room/:id",
-        element: <EditRoom />,
+        element: <EditRoom />, 
       },
     ],
   },

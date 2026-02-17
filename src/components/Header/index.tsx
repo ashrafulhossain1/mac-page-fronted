@@ -11,8 +11,8 @@ const host = true;
 
 export default function Header() {
   const { open } = useModal();
-  const isUser = true; // Toggle this to switch between guest and user view
-  const isHost = false;
+  const isUser = false; // Toggle this to switch between guest and user view
+  const isHost = true;
 
   const openModal = () => {
     open([
