@@ -11,14 +11,15 @@ const ManageRooms = () => {
 
       <div className="grid gap-6">
         {listings.map((listing) => (
-          <Link 
-            key={listing.id} 
+          <Link
+            key={listing.id}
             to="/dashboard/edit-room/1"
-            className="transition-all duration-200 hover:scale-[1.01] cursor-pointer block"
+            className="block group"
           >
-            <ListingItem 
-              {...listing} 
-              showActions={false} 
+            <ListingItem
+              {...listing}
+              showActions={false}
+              className="transition-all duration-300 group-hover:border-[#09DE7B] group-hover:bg-[rgba(9,222,123,0.06)] group-hover:shadow-[4px_4px_8px_0_rgba(9,222,123,0.25)]"
             />
           </Link>
         ))}

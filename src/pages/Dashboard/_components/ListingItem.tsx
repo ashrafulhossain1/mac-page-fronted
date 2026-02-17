@@ -18,9 +18,10 @@ const ListingItem = ({
   status,
   image,
   showActions = true,
-}: ListingItemProps) => {
+  className,
+}: ListingItemProps & { className?: string }) => {
   return (
-    <div className="bg-white p-4 rounded-[20px] border border-gray-200 relative flex flex-col md:flex-row gap-6">
+    <div className={`bg-white p-4 rounded-[20px] border border-gray-200 relative flex flex-col md:flex-row gap-6 ${className}`}>
       {/* Image */}
       <div className="w-full md:w-[240px] h-[148px] rounded-[14px] overflow-hidden shrink-0">
         <img src={image} alt={title} className="w-full h-full object-cover" />
