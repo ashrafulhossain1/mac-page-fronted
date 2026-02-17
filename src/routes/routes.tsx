@@ -2,10 +2,11 @@ import Home from "@/pages/Home";
 import HomeLayout from "@/pages/Home/layout";
 import Browse from "@/pages/Browse";
 import RoomDetails from "@/pages/RoomDetails";
-import MacBookAir from "@/pages/MacBookAir";
-import MacBookPro from "@/pages/MacBookPro";
-import Accessories from "@/pages/Accessories";
+import OurStory from "@/pages/OurStory";
+import HowItWorks from "@/pages/HowItWorks";
 import Support from "@/pages/Support";
+import TermsConditions from "@/pages/TermsConditions";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Dashboard from "@/pages/Dashboard";
 import AddRoom from "@/pages/Dashboard/AddRoom";
 import MyAllListings from "@/pages/Dashboard/MyAllListings";
@@ -34,20 +35,24 @@ export const routes = createBrowserRouter([
         element: <RoomDetails />,
       },
       {
-        path: "macbook-air",
-        element: <MacBookAir />,
+        path: "our-story",
+        element: <OurStory />,
       },
       {
-        path: "macbook-pro",
-        element: <MacBookPro />,
-      },
-      {
-        path: "accessories",
-        element: <Accessories />,
+        path: "how-it-works",
+        element: <HowItWorks />,
       },
       {
         path: "support",
         element: <Support />,
+      },
+      {
+        path: "term-condition",
+        element: <TermsConditions />,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />,
       },
     ],
   },
@@ -81,7 +86,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "edit-room/:id",
-        element: <EditRoom />, 
+        element: <EditRoom />,
       },
     ],
   },

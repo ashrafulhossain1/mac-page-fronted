@@ -34,13 +34,13 @@ const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <Link to={`/browse/${id}`} className="block">
-      <Card className="max-w-[416px] overflow-hidden rounded-3xl p-4 group hover:shadow-xl transition-all duration-100 border">
+      <Card className="max-w-[416px] overflow-hidden rounded-[32px] p-4 group hover:shadow-xl transition-all duration-100 border">
         {/* Image Section */}
         <CardHeader className="p-0 relative overflow-hidden">
           <img
             src={image}
             alt={title}
-            className="h-[270px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-[270px] w-full object-cover transition-transform duration-500 group-hover:scale-103 rounded-[16px]"
           />
           <Badge className="absolute top-4 right-4 bg-white text-black hover:bg-white rounded-full px-3 py-1 font-semibold text-xs shadow-sm">
             {price}

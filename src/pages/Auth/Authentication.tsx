@@ -3,16 +3,16 @@ import { DialogClose } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import SignInForm from "./SignIn/SignInForm";
 import SignUpForm from "./SignUpGuest/SignupForm";
-import {  useState } from "react";
+import { useState } from "react";
 import type { TAuthDataType } from "@/types/auth";
 
 export default function Authentication() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab") || "login";
   const authType = searchParams.get("authType") || "guest";
-  const [step , setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(1);
   const [authData, setAuthData] = useState<TAuthDataType | null>({
-    authType: authType, 
+    authType: authType,
     guestData: {
       fullName: "",
       university: "",
@@ -46,7 +46,7 @@ export default function Authentication() {
     },
   });
 
- 
+  console.log(setStep, setAuthData);
 
 
   return (

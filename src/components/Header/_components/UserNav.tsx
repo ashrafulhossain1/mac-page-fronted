@@ -1,6 +1,3 @@
-
-
-
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,16 +8,23 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
     ChevronDown,
+    LayoutDashboard,
     LogOut,
     Mail,
     User,
 } from "lucide-react";
 import useModal from "@/components/Modal/useModal";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
+import { Link } from "react-router";
+
 function UserNav() {
     const { open } = useModal();
-    return (
+    const role = useSelector((state: RootState) => state.userRole.role);
+    const isHost = role === "host";
 
-        < DropdownMenu >
+    return (
+        <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <div className="flex items-center gap-2 cursor-pointer outline-none">
                     <Avatar className="h-10 w-10 border border-gray-200">
@@ -31,7 +35,9 @@ function UserNav() {
                         <p className="text-sm font-bold text-gray-900 leading-none">
                             Mr James
                         </p>
-                        <p className="text-xs text-gray-500 mt-1">Guest Account</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                            {isHost ? "Host Account" : "Guest Account"}
+                        </p>
                     </div>
                     <ChevronDown className="h-4 w-4 text-gray-500" />
                 </div>
@@ -51,13 +57,21 @@ function UserNav() {
                     <Mail className="mr-2 h-4 w-4" />
                     <span>Message's</span>
                 </DropdownMenuItem>
+                {isHost && (
+                    <DropdownMenuItem asChild className="cursor-pointer rounded-lg py-2.5 font-medium text-gray-600 focus:text-gray-900">
+                        <Link to="/dashboard">
+                            <LayoutDashboard className="mr-2 h-4 w-4" />
+                            <span>Dashboard</span>
+                        </Link>
+                    </DropdownMenuItem>
+                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer rounded-lg py-2.5 font-medium text-red-500 focus:text-red-600 focus:bg-red-50">
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Sign Out</span>
                 </DropdownMenuItem>
             </DropdownMenuContent>
-        </DropdownMenu >
+        </DropdownMenu>
     )
 }
 

@@ -88,11 +88,10 @@ const FAQ: React.FC = () => {
               </button>
 
               <div
-                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${
-                  openIndex === index
+                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index
                     ? "pb-8 max-h-40 opacity-100"
                     : "max-h-0 opacity-0"
-                }`}
+                  }`}
               >
                 <p className="text-gray-600 leading-relaxed text-base md:text-lg">
                   {faq.answer}

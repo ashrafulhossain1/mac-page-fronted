@@ -10,13 +10,13 @@ const HomeWrapper = () => {
   return (
     <>
       <div>
-          <Hero />
-          <Partners />
-          <FeaturedRooms></FeaturedRooms>
-          <WhyWarmWelcome></WhyWarmWelcome>
-          <FAQ></FAQ>
-          <HowToWorks></HowToWorks>
-          <GuestsSay></GuestsSay>
+        <Hero />
+        <Partners />
+        <FeaturedRooms></FeaturedRooms>
+        <WhyWarmWelcome></WhyWarmWelcome>
+        <FAQ></FAQ>
+        <HowToWorks></HowToWorks>
+        <GuestsSay></GuestsSay>
       </div>
     </>
   );

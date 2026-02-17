@@ -49,9 +49,9 @@ export default function Header() {
     { name: "Home", path: "/" },
     isHost
       ? { name: "Dashboard", path: "/dashboard" }
-      : { name: "Browse", path: "/Browse" },
-    { name: "Our Story", path: "/macbook-air" },
-    { name: "How it works", path: "/macbook-pro" },
+      : { name: "Browse", path: "/browse" },
+    { name: "Our Story", path: "/our-story" },
+    { name: "How it works", path: "/how-it-works" },
     { name: "Support", path: "/support" },
   ];
 
@@ -124,16 +124,16 @@ export default function Header() {
           >
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-0 rotate-90 scale-50"
-                : "opacity-100 rotate-0 scale-100"
+                  ? "opacity-0 rotate-90 scale-50"
+                  : "opacity-100 rotate-0 scale-100"
                 }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-100 rotate-0 scale-100"
-                : "opacity-0 -rotate-90 scale-50"
+                  ? "opacity-100 rotate-0 scale-100"
+                  : "opacity-0 -rotate-90 scale-50"
                 }`}
             >
               <X className="h-6 w-6 text-gray-800" />
