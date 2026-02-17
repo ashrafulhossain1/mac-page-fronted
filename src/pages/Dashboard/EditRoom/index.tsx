@@ -21,10 +21,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useNavigate } from "react-router";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import room1 from "@/assets/home/room-1.png";
 import room2 from "@/assets/home/room-2.png";
 import room3 from "@/assets/home/room-3.png";
+import BookingStatusWidget from "./_components/BookingStatusWidget";
 
 const roomSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
@@ -89,7 +90,7 @@ const EditRoom = () => {
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-10">
         <div>
-          <h1 className="text-[26px] font-bold text-gray-900 mb-1">Manage Your Rooms</h1>
+          <h1 className="text-lg font-medium text-gray-900 mb-1">Manage Your Rooms</h1>
           <p className="text-gray-400 text-sm">Control availability, pricing, and details of all your listed rooms.</p>
         </div>
         <Button variant="outline" className="w-full sm:w-auto rounded-xl border-cyan-500 text-cyan-500 hover:bg-cyan-50 px-8 h-11 font-bold">
@@ -97,38 +98,12 @@ const EditRoom = () => {
         </Button>
       </div>
 
-      {/* Booking Status Widget */}
-      <div className="bg-white border border-gray-100 p-6 rounded-[24px] shadow-sm mb-12 w-full max-w-[360px]">
-        <div className="flex items-center gap-4 mb-6">
-          <Avatar className="w-12 h-12 border border-gray-200">
-            <AvatarImage src="https://i.pravatar.cc/150?u=sarah" />
-            <AvatarFallback>SM</AvatarFallback>
-          </Avatar>
-          <div>
-            <h4 className="text-sm font-bold text-gray-900">Sarah Murphy</h4>
-          </div>
-        </div>
-
-        <div className="space-y-4 mb-6">
-          <div className="flex justify-between text-xs text-gray-500 font-medium">
-            <span>Start Date:</span>
-            <span className="text-gray-900 font-bold">28-09-2024</span>
-          </div>
-          <div className="flex justify-between text-xs text-gray-500 font-medium">
-            <span>End Date:</span>
-            <span className="text-gray-900 font-bold">29-01-2025</span>
-          </div>
-        </div>
-
-        <Button className="w-full h-10 bg-red-50 text-red-500 hover:bg-red-100 border-none rounded-xl font-bold text-xs">
-          Cancel Booking
-        </Button>
-      </div>
+      <BookingStatusWidget />
 
       {/* Hero Image Preview */}
-      <div className="relative w-full h-[240px] sm:h-[400px] rounded-[32px] overflow-hidden mb-12 group border border-gray-100 shadow-sm">
-        <img src={room1} alt="Room hero" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-center justify-center">
+      <div className="relative w-full h-[240px] sm:h-[400px] md:h-[445px] rounded-[32px]  mb-12 group  border-gray-100  p-6 border">
+        <img src={room1} alt="Room hero" className="w-full h-full object-cover rounded-[14px]" />
+        <div className="absolute inset-0 bg-black/5 opacity-100 sm:opacity-0 rounded-[32px] sm:group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <Button className="bg-white/90 text-gray-900 hover:bg-white rounded-xl px-6 font-bold h-11 border border-gray-200 shadow-sm">
             Change Cover
           </Button>
