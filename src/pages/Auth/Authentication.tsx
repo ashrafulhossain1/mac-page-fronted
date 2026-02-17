@@ -9,10 +9,10 @@ import type { TAuthDataType } from "@/types/auth";
 export default function Authentication() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab") || "login";
-  const authType = searchParams.get("authType") || "guest";
+  const authType = searchParams.get("authType") || "normal";
   const [step, setStep] = useState<number>(1);
   const [authData, setAuthData] = useState<TAuthDataType | null>({
-    authType: authType,
+    authType: authType === "normal" ? "guest" : "host",
     guestData: {
       fullName: "",
       university: "",
@@ -56,8 +56,19 @@ export default function Authentication() {
       </DialogClose>
 
       {tab === "login" && <SignInForm />}
-      {tab === "signup" && step === 1 && authData?.authType === "normal" && <SignUpForm />}
-      {tab === "signup" && step === 1 && authData?.authType === "host" && <SignUpForm />}
+
+      {authType  === "host" ?
+      (
+        tab === "signup" && step === 1 && <SignUpForm />
+      )
+         
+         :
+         ""
+       
+    }
+
+      {tab === "signup" && step === 1 &&  authType  === "normal" && <SignUpForm />}
+      {tab === "signup" && step === 1 &&  authType === "host" && <SignUpForm />}
       {/* {tab === "signup" && step === 2 && <SignUpForm />} */}
     </div>
   );
