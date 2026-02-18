@@ -8,7 +8,7 @@ import ResetEmail from "@/pages/Auth/Forget/ResetEmail";
 import ResetCode from "@/pages/Auth/Forget/ResetCode";
 import NewPassword from "@/pages/Auth/Forget/NewPassword";
 import ResetSuccess from "@/pages/Auth/Forget/ResetSuccess";
-import SelectUserType from "@/pages/Auth/SelectUserType";
+import SelectUserType from "@/pages/Auth/components/SelectUserType";
 
 export default function Modals() {
   const { Modal } = useModal();
