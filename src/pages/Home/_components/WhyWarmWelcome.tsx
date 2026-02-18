@@ -115,17 +115,17 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 40 },
+//   show: {
+//     opacity: 1,
+//     y: 0,
+//     transition: {
+//       duration: 0.6,
+//       ease: "easeOut",
+//     },
+//   },
+// };
 
 const WhyWarmWelcome = () => {
   return (
@@ -162,7 +162,8 @@ const WhyWarmWelcome = () => {
           {features.map((item, idx) => (
             <motion.div
               key={idx}
-              variants={cardVariants}
+              // variants={cardVariants}
+
               whileHover={{ y: -8 }}
               className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
             >
