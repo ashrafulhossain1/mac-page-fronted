@@ -1,4 +1,4 @@
-
+import { motion } from "framer-motion";
 import whyWarm1 from "@/assets/home/why-warm-1.svg";
 import whyWarm2 from "@/assets/home/why-warm-2.svg";
 import whyWarm3 from "@/assets/home/why-warm-3.svg";
@@ -7,13 +7,13 @@ import whyWarm5 from "@/assets/home/why-warm-5.svg";
 import whyWarm6 from "@/assets/home/why-warm-6.svg";
 import whyWarm7 from "@/assets/home/why-warm-7.svg";
 
-// --- Types & Data ---
 interface Feature {
   title: string;
   description: string;
   icon: React.ReactNode;
   iconBg: string;
 }
+
 
 const features: Feature[] = [
   {
@@ -106,15 +106,40 @@ const features: Feature[] = [
   },
 ];
 
-// --- Main Component ---
-const WhyWarmWelcome = () => {
-  // const [openFaq, setOpenFaq] = useState<number | null>(0);
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const WhyWarmWelcome = () => {
   return (
     <div className="bg-secondary min-h-screen font-sans text-[#1A1A1A]">
-      {/* 1. WHY CHOOSE US SECTION */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+
+        {/* Title Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             Why <span className="text-primary">Students</span> and{" "}
             <span className="text-primary">Professionals</span> <br />
@@ -124,13 +149,22 @@ const WhyWarmWelcome = () => {
             Trusted by students, young professionals, and mid-term guests
             looking for safe, affordable accommodation across Ireland.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Cards Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {features.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              variants={cardVariants}
+              whileHover={{ y: -8 }}
+              className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
             >
               <div
                 className={`${item.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}
@@ -141,9 +175,10 @@ const WhyWarmWelcome = () => {
               <p className="text-gray-500 leading-relaxed text-sm">
                 {item.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
       </section>
     </div>
   );

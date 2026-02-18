@@ -28,7 +28,11 @@ const Partners = ({ className }: { className?: string }) => {
   const isHost = role === "host";
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true }}
       className={cn(
         "bg-black py-10 overflow-hidden w-full",
         isHost ? "mt-10" : "mt-64 md:mt-40",
@@ -44,30 +48,33 @@ const Partners = ({ className }: { className?: string }) => {
       <div className="flex w-full overflow-hidden relative">
         <motion.div
           className="flex items-center gap-16 min-w-full"
+          initial={{ x: 0 }}
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 20,
+            duration: 25, // slower = smoother
             ease: "linear",
             repeat: Infinity,
-            repeatType: "loop",
           }}
         >
-          {/* Double the array to ensure seamless loop */}
           {[...partners, ...partners].map((partner, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex-shrink-0 flex items-center justify-center w-[150px]"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: index * 0.05 }}
+              viewport={{ once: true }}
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="h-8 md:h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                className="h-8 md:h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
               />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
