@@ -59,20 +59,20 @@ export default function Authentication() {
 
       {tab === "login" && <SignInForm />}
 
-      {authType  === "host" ?
-        
-        <div className="">
-          { tab === "signup" && step === 1 && <HostProfileSet setStep={setStep} authData={authData} setAuthData={setAuthData} /> }
-          {tab === "signup" && step === 2 && <AddressInfo setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-        </div>
-      
-         
-         :
-         ""
-       
-    }
+      {authType === "host" ?
 
- 
+        <div className="">
+          {tab === "signup" && step === 1 && <HostProfileSet setStep={setStep} authData={authData} setAuthData={setAuthData} />}
+          {tab === "signup" && step === 2 && <AddressInfo setStep={setStep} authData={authData} setAuthData={setAuthData} />}
+        </div>
+
+
+        :
+        ""
+
+      }
+
+
     </div>
   );
 }
