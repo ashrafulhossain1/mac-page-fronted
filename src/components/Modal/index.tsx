@@ -8,7 +8,7 @@ import ResetEmail from "@/pages/Auth/Forget/ResetEmail";
 import ResetCode from "@/pages/Auth/Forget/ResetCode";
 import NewPassword from "@/pages/Auth/Forget/NewPassword";
 import ResetSuccess from "@/pages/Auth/Forget/ResetSuccess";
-import SelectUserType from "@/pages/Auth/components/SelectUserType";
+// import SelectUserType from "@/pages/Auth/components/SelectUserType";
 
 export default function Modals() {
   const { Modal } = useModal();
@@ -19,7 +19,7 @@ export default function Modals() {
       <Modal
         modalId="modal"
         openId="authentication"
-        closeModals={["tab", "authType", "modal"]}
+        closeModals={["tab", "authType", "modal" , "user-type-selector" , "user-type-selected"]}
         className="max-w-md"
       >
         <Authentication />
@@ -57,13 +57,13 @@ export default function Modals() {
         <ResetSuccess />
       </Modal>
 
-      <Modal
+      {/* <Modal
         modalId="type"
         openId="select-user-type"
         className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
       >
         <SelectUserType />
-      </Modal>
+      </Modal> */}
 
       {/* Profile Settings Modal */}
       <Modal

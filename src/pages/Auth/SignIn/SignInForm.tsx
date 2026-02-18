@@ -13,11 +13,29 @@ import useModal from "@/components/Modal/useModal";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import useSignIn from "./use-sign-in";
+import { useSearchParams } from "react-router";
 
 export default function SignInForm() {
   const { open } = useModal();
   const { form, onSubmit } = useSignIn();
   const [showPassword, setShowPassword] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const authType = searchParams.get("authType") || "normal";
+
+const handleAuthParamsSet = () => {
+  setSearchParams((prev) => {
+    const params = new URLSearchParams(prev);
+    params.set("user-type-selector", "false");
+    params.set(
+      "user-type-selected",
+      authType === "normal" ? "false" : "true"
+    );
+    return params;
+  });
+
+  open([{ modalId: "tab", openId: "signup" }]);
+};
+
 
   return (
     <Form {...form}>
@@ -106,7 +124,9 @@ export default function SignInForm() {
           <button
             type="button"
             className="text-sm text-primary-foreground font-medium hover:text-primary underline"
-            onClick={() => open([{ modalId: "tab", openId: "forgot-password" }])}
+            onClick={() =>
+              open([{ modalId: "tab", openId: "forgot-password" }])
+            }
           >
             Forgot Password
           </button>
@@ -151,7 +171,7 @@ export default function SignInForm() {
           Don't have an account?{" "}
           <button
             type="button"
-            onClick={() => open([{ modalId: "tab", openId: "signup" }])}
+            onClick={() => handleAuthParamsSet() }
             className="text-primary/95 hover:text-primary font-medium"
           >
             Sign Up
@@ -161,3 +181,8 @@ export default function SignInForm() {
     </Form>
   );
 }
+
+
+
+
+ 
