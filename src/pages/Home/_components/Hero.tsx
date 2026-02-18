@@ -32,10 +32,12 @@ const Hero = () => {
         </h3>
 
         {/* Action Buttons */}
+        {/* Action Buttons */}
         <div className="flex flex-col md:flex-row items-center gap-6 mt-12">
+          {/* Guest Button (Custom Green) */}
           <Button
             variant="host"
-            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]"
+            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]/95 hover:bg-[#5F6B3E] hover:opacity-100 text-white transition-all duration-300"
             asChild
           >
             <Link to="#">
@@ -44,9 +46,10 @@ const Hero = () => {
             </Link>
           </Button>
 
+          {/* Host Partner Button (Primary Color with Deep Hover) */}
           <Button
             variant="host"
-            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px]"
+            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] bg-primary/90 text-white hover:bg-primary hover:brightness-75 transition-all duration-300"
             asChild
           >
             <Link to="#">Become a Host Partner</Link>

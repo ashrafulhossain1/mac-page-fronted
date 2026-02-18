@@ -91,6 +91,8 @@ export default function Modals() {
       >
         <BookingModal />
       </ResponsiveModal>
+
+
     </>
   );
 }

@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router";
+import { NavLink, Link, useLocation } from "react-router";
 import { Button } from "../ui/button";
 import useModal from "../Modal/useModal";
 import { Bell, Menu, X } from "lucide-react";
 import UserNav from "./_components/UserNav";
+import NotificationModal from "./_components/NotificationModal";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 
 export default function Header() {
   const { open } = useModal();
   const role = useSelector((state: RootState) => state.userRole.role);
+  const location = useLocation();
   const isUser = role !== "default";
   const isHost = role === "host";
 
@@ -76,12 +83,25 @@ export default function Header() {
             <NavLink
               key={link.name}
               to={link.path}
-              className={({ isActive }) =>
-                `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${isActive
+              className={({ isActive }) => {
+                let active = isActive;
+
+                if (link.path.includes("#")) {
+                  const [path, hash] = link.path.split("#");
+                  // Custom check for hash links:
+                  // Must match pathname AND hash exactly
+                  active = location.pathname === path && location.hash === `#${hash}`;
+                } else if (link.path === "/") {
+                  // Home link should NOT be active if there is a hash (optional, but helps avoid 'Home' + 'How it works' lighting up together)
+                  // If user is at /#how-it-works, Home technically is active path, but visually we might want only one.
+                  // Let's implement strict home check: path is / and hash is empty.
+                  active = location.pathname === "/" && location.hash === "";
+                }
+                return `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${active
                   ? "text-primary"
                   : "text-secondary-foreground hover:text-primary"
-                }`
-              }
+                  }`;
+              }}
             >
               {link.name}
             </NavLink>
@@ -93,10 +113,17 @@ export default function Header() {
           {isUser ? (
             <>
               {/* Notification Bell */}
-              <div className="relative cursor-pointer">
-                <Bell className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700" />
-                <span className="absolute top-0 right-0 h-2 w-2 lg:h-2.5 lg:w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
-              </div>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <div className="relative cursor-pointer">
+                    <Bell className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700" />
+                    <span className="absolute top-0 right-0 h-2 w-2 lg:h-2.5 lg:w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                  </div>
+                </PopoverTrigger>
+                <PopoverContent className="w-80 p-0" align="end" sideOffset={5}>
+                  <NotificationModal />
+                </PopoverContent>
+              </Popover>
               <UserNav />
             </>
           ) : (
@@ -127,16 +154,16 @@ export default function Header() {
           >
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-0 rotate-90 scale-50"
-                  : "opacity-100 rotate-0 scale-100"
+                ? "opacity-0 rotate-90 scale-50"
+                : "opacity-100 rotate-0 scale-100"
                 }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-100 rotate-0 scale-100"
-                  : "opacity-0 -rotate-90 scale-50"
+                ? "opacity-100 rotate-0 scale-100"
+                : "opacity-0 -rotate-90 scale-50"
                 }`}
             >
               <X className="h-6 w-6 text-gray-800" />
@@ -148,8 +175,8 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${mobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setMobileMenuOpen(false)}
       />
@@ -211,12 +238,21 @@ export default function Header() {
                   key={link.name}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={({ isActive }) =>
-                    `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${isActive
+                  className={({ isActive }) => {
+                    let active = isActive;
+
+                    if (link.path.includes("#")) {
+                      const [path, hash] = link.path.split("#");
+                      active = location.pathname === path && location.hash === `#${hash}`;
+                    } else if (link.path === "/") {
+                      active = location.pathname === "/" && location.hash === "";
+                    }
+
+                    return `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${active
                       ? "text-primary bg-primary/5"
                       : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
-                    }`
-                  }
+                      }`;
+                  }}
                   style={{
                     transform: mobileMenuOpen
                       ? "translateX(0)"
