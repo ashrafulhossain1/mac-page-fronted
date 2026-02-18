@@ -54,6 +54,7 @@ export default function CountryCitySelector({
                 value={selectedCountry}
                 onChange={(opt) => onCountryChange(opt?.value || "")}
                 placeholder="Select Country"
+                className="h-4.5!" 
             />
         </div>
         <div className="">

@@ -27,8 +27,8 @@ export type TAuthDataType = {
     postalCode: string;
     isLegalResidenceConfirmed: boolean;
 
-    governmentIdFile: File | string;
-    selfieWithIdFile: File | string;
+    governmentIdFile: File | null;
+    selfieWithIdFile: File | null;
 
     email: string;
     password: string;
