@@ -2,7 +2,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Camera, X } from "lucide-react";
+import { Camera } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,7 +46,7 @@ export default function HostProfileSet({
     },
   });
 
-  // 3. Handle form submit
+  // Handle form submit
   function onSubmit(values: z.infer<typeof profileSchema>) {
  
     if (avatar && values.fullName && values.phoneNumber && values.bio) {
@@ -74,12 +74,7 @@ export default function HostProfileSet({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl w-full max-w-lg p-8 relative shadow-xl">
-        {/* Close Button */}
-        <button className="absolute right-6 top-6 text-red-500 hover:bg-slate-100 p-1 rounded-full transition-colors">
-          <X size={24} />
-        </button>
+      <div className="bg-white rounded-3xl w-full  relative "> 
 
         <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
 
@@ -177,7 +172,6 @@ export default function HostProfileSet({
             </Button>
           </form>
         </Form>
-      </div>
-    </div>
+      </div> 
   );
 }
