@@ -1,7 +1,7 @@
 export type TAuthDataType = {
   authType: "guest" | "host" | string;
 
-  guestData?: {
+  guestData: {
     fullName: string;
     university: string;
     dateOfBirth: string;
@@ -16,7 +16,7 @@ export type TAuthDataType = {
     emailVerificationCode?: string;
   };
 
-  hostData?: {
+  hostData: {
     fullName: string;
     phoneNumber: string;
     bio?: string;

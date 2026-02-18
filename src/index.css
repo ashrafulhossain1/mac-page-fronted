@@ -142,3 +142,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* custome */
+.selected-flag , .flag-dropdown {
+  @apply rounded-l-xl! hover:bg-gray-200!;
+}
