@@ -20,7 +20,7 @@ export default function Modals() {
         modalId="modal"
         openId="authentication"
         closeModals={["tab", "authType", "modal"]}
-        className="max-w-md"
+        className=" "
       >
         <Authentication />
       </Modal>
@@ -28,7 +28,7 @@ export default function Modals() {
       <Modal
         modalId="reset"
         openId="reset-email"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
+        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
       >
         <ResetEmail />
       </Modal>
@@ -36,7 +36,7 @@ export default function Modals() {
       <Modal
         modalId="reset"
         openId="reset-code"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
+        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
       >
         <ResetCode />
       </Modal>
@@ -44,7 +44,7 @@ export default function Modals() {
       <Modal
         modalId="reset"
         openId="new-password"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
+        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full"
       >
         <NewPassword />
       </Modal>
@@ -52,7 +52,7 @@ export default function Modals() {
       <Modal
         modalId="reset"
         openId="success"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
+        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
       >
         <ResetSuccess />
       </Modal>
@@ -60,7 +60,7 @@ export default function Modals() {
       <Modal
         modalId="type"
         openId="select-user-type"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full md:w-[680px]"
+        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
       >
         <SelectUserType />
       </Modal>

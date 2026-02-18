@@ -42,12 +42,12 @@ export default function Modal({
   };
 
   return (
-    <Dialog open={modal === openId} onOpenChange={handleOpenChange}>
+    <Dialog open={modal === openId} onOpenChange={handleOpenChange} >
       <DialogTrigger asChild hidden />
       <DialogContent
         showCloseButton={false}
         className={cn(
-          "min-h-auto min-w-fit border-none bg-transparent p-0 shadow-none",
+          "min-h-auto min-w-fit border-none bg-transparent p-0 shadow-none max-w-170 ",
           className,
         )}
       >

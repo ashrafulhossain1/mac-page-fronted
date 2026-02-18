@@ -32,7 +32,7 @@ function SearchCard() {
           type="number"
           min={0}
           placeholder="Max price"
-          className="h-12 bg-white border-0 rounded-xl text-lg px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
+          className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
           value={searchParams.maxPrice}
           onChange={(e) =>
             setSearchParams((prev) => ({
@@ -47,7 +47,7 @@ function SearchCard() {
           type="number"
           min={0}
           placeholder="Min price"
-          className="h-12 bg-white border-0 rounded-xl text-lg px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
+          className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
           value={searchParams.minPrice}
           onChange={(e) =>
             setSearchParams((prev) => ({
@@ -64,7 +64,7 @@ function SearchCard() {
             setSearchParams((prev) => ({ ...prev, city: value }))
           }
         >
-          <SelectTrigger className="h-12 w-full bg-white border-0 rounded-xl text-lg px-4 shadow-sm focus:ring-1 focus:ring-[#F97316] text-muted-foreground data-[state=checked]:text-black">
+          <SelectTrigger className="h-10 md:h-12 w-full bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 shadow-sm focus:ring-1 focus:ring-[#F97316] text-muted-foreground data-[state=checked]:text-black">
             <SelectValue placeholder="City" />
           </SelectTrigger>
           <SelectContent>
@@ -79,7 +79,7 @@ function SearchCard() {
         {/* Search Button */}
         <Button
           onClick={handleSearch}
-          className="h-12 bg-[#F97316] hover:bg-[#e06510] text-white text-lg font-semibold rounded-xl shadow-md transition-colors"
+          className="h-10 md:h-12 bg-[#F97316] hover:bg-[#e06510] text-white text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-xl shadow-md transition-colors"
         >
           Search
         </Button>

@@ -22,7 +22,7 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col items-center pt-32 px-6 md:px-16 max-w-[1000px] mx-auto text-center">
-        <h1 className="text-3xl md:text-[70px] font-bold text-white leading-[1.1] md:leading-[78px] drop-shadow-md">
+        <h1 className="text-3xl sm:text-[42px] md:text-[56px] lg:text-[70px] font-bold text-white leading-[1.1] md:leading-[78px] drop-shadow-md">
           Affordable Mid-Term Room Rentals in Ireland You Can Trust
         </h1>
 
@@ -35,7 +35,7 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center gap-6 mt-12">
           <Button
             variant="host"
-            className="px-6 py-3 text-[18px] font-semibold rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]"
+            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]"
             asChild
           >
             <Link to="#">
@@ -46,7 +46,7 @@ const Hero = () => {
 
           <Button
             variant="host"
-            className="px-6 py-3 text-[18px] font-semibold rounded-[16px]"
+            className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px]"
             asChild
           >
             <Link to="#">Become a Host Partner</Link>

@@ -16,6 +16,8 @@ export default function Authentication() {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab") || "login";
   const authType = searchParams.get("authType") || "normal";
+  const resetPassword = searchParams.get("reset") || "reset-email";
+
   const [step, setStep] = useState<number>(1);
   const [authData, setAuthData] = useState<TAuthDataType>({
     authType: authType === "normal" ? "guest" : "host",
@@ -54,33 +56,54 @@ export default function Authentication() {
 
   console.log(setStep, setAuthData);
 
-
   return (
-    <div className="bg-white rounded-4xl py-4 md:py-6 px-6 md:px-8 w-full md:w-170 relative">
+    <div className="bg-white rounded-4xl py-4 md:py-6 px-6 md:px-8 w-full  relative">
       <DialogClose className="absolute top-2 right-2 md:right-2">
         <X className=" w-10 text-orange-500  " />
       </DialogClose>
 
       {tab === "login" && <SignInForm />}
 
-      {authType === "host" ?
-
+      {authType === "host" ? (
         <div className="">
-          { tab === "signup" && step === 1 && <HostProfileSet setStep={setStep} authData={authData} setAuthData={setAuthData} /> }
-          {tab === "signup" && step === 2 && <AddressInfo setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 3 && <VerifiedBadge  setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 4 && <StartSignup setStep={setStep} authData={authData} setAuthData={setAuthData}   />}
-          {tab === "signup" && step === 5 && <VerifyOPThost  setStep={setStep}  />}
-          {tab === "signup" && step === 6 && <ThankYouPage    />}
+          {tab === "signup" && step === 1 && (
+            <HostProfileSet
+              setStep={setStep}
+              authData={authData}
+              setAuthData={setAuthData}
+            />
+          )}
+          {tab === "signup" && step === 2 && (
+            <AddressInfo
+              setStep={setStep}
+              authData={authData}
+              setAuthData={setAuthData}
+            />
+          )}
+          {tab === "signup" && step === 3 && (
+            <VerifiedBadge
+              setStep={setStep}
+              authData={authData}
+              setAuthData={setAuthData}
+            />
+          )}
+          {tab === "signup" && step === 4 && (
+            <StartSignup
+              setStep={setStep}
+              authData={authData}
+              setAuthData={setAuthData}
+            />
+          )}
+          {tab === "signup" && step === 5 && (
+            <VerifyOPThost setStep={setStep} />
+          )}
+          {tab === "signup" && step === 6 && <ThankYouPage />}
         </div>
-
-
-        :
+      ) : (
         ""
+      )}
 
-      }
-
-
+      {resetPassword === "reset-email" && step}
     </div>
   );
 }
