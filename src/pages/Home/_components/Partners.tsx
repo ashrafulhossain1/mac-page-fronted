@@ -21,7 +21,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section className="bg-black py-10 overflow-hidden w-full mt-52 md:mt-32">
+    <section className="bg-black py-10 overflow-hidden w-full mt-64 md:mt-40">
       <div className="container mx-auto px-4 mb-8 text-center">
         <h3 className="text-white text-lg tracking-[0.2em] font-medium uppercase">
           Where <span className="text-[#F97316]">Guests</span> are Based

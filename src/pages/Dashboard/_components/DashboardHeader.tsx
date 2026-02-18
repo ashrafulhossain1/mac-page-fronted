@@ -6,9 +6,11 @@ const DashboardHeader = () => {
   return (
     <header className="flex justify-between items-center py-4 px-4 sm:px-8 bg-white border-b border-gray-100 sticky top-0 z-50 max-w-7xl mx-auto">
       <div className="flex items-center gap-2">
-        <Link to="/dashboard">
-          <span className="text-[#F97316] font-bold text-xl">Warm</span>
-          <span className="font-bold text-xl text-black">Welcome</span>
+        <Link to="/">
+          <span className="text-[#F97316] font-bold text-2xl">Warm</span>{" "}
+          <span className="font-bold text-2xl text-primary-foreground">
+            Welcome
+          </span>
         </Link>
       </div>
 

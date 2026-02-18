@@ -6,7 +6,7 @@ import SearchCard from "./SearchCard";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1280px] mx-auto relative h-[800px] w-full">
+    <section className="max-w-[1280px] mx-auto relative h-[800px] w-full ">
       {/* Background Container with Rounded Corners and Overflow Hidden */}
       <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-hidden">
         {/* Background Image */}
@@ -54,7 +54,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <SearchCard />
+      <div className="absolute left-0 right-0 top-full -translate-y-1/2 z-30 px-4 flex justify-center">
+        <SearchCard />
+      </div>
     </section>
   );
 };
