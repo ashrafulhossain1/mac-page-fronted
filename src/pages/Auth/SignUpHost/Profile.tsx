@@ -48,7 +48,6 @@ export default function HostProfileSet({
 
   // 3. Handle form submit
   function onSubmit(values: z.infer<typeof profileSchema>) {
- 
     if (avatar && values.fullName && values.phoneNumber && values.bio) {
       setAuthData({
         ...authData,

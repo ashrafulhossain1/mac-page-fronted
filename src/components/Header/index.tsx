@@ -77,9 +77,10 @@ export default function Header() {
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${isActive
-                  ? "text-primary"
-                  : "text-secondary-foreground hover:text-primary"
+                `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${
+                  isActive
+                    ? "text-primary"
+                    : "text-secondary-foreground hover:text-primary"
                 }`
               }
             >
@@ -113,7 +114,8 @@ export default function Header() {
                 className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 py-2 lg:py-3"
                 onClick={() => openModal("host")}
               >
-                Become a Host <span className="hidden xl:inline-block ml-1">Partner</span>
+                Become a Host{" "}
+                <span className="hidden xl:inline-block ml-1">Partner</span>
               </Button>
             </>
           )}
@@ -125,18 +127,20 @@ export default function Header() {
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             <span
-              className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-0 rotate-90 scale-50"
-                : "opacity-100 rotate-0 scale-100"
-                }`}
+              className={`absolute transition-all duration-300 ease-in-out ${
+                mobileMenuOpen
+                  ? "opacity-0 rotate-90 scale-50"
+                  : "opacity-100 rotate-0 scale-100"
+              }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
-              className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-100 rotate-0 scale-100"
-                : "opacity-0 -rotate-90 scale-50"
-                }`}
+              className={`absolute transition-all duration-300 ease-in-out ${
+                mobileMenuOpen
+                  ? "opacity-100 rotate-0 scale-100"
+                  : "opacity-0 -rotate-90 scale-50"
+              }`}
             >
               <X className="h-6 w-6 text-gray-800" />
             </span>
@@ -146,17 +150,19 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${mobileMenuOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${
+          mobileMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
         onClick={() => setMobileMenuOpen(false)}
       />
 
       {/* Mobile Menu Panel - slides from right */}
       <div
-        className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-50 md:hidden transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-tl-2xl rounded-bl-2xl ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-50 md:hidden transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-tl-2xl rounded-bl-2xl ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex flex-col h-full">
           {/* Close Button */}
@@ -211,9 +217,10 @@ export default function Header() {
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${isActive
-                      ? "text-primary bg-primary/5"
-                      : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
+                    `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${
+                      isActive
+                        ? "text-primary bg-primary/5"
+                        : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
                     }`
                   }
                   style={{
@@ -221,8 +228,9 @@ export default function Header() {
                       ? "translateX(0)"
                       : "translateX(20px)",
                     opacity: mobileMenuOpen ? 1 : 0,
-                    transition: `all 0.3s ease ${mobileMenuOpen ? (index + 2) * 50 : 0
-                      }ms`,
+                    transition: `all 0.3s ease ${
+                      mobileMenuOpen ? (index + 2) * 50 : 0
+                    }ms`,
                   }}
                 >
                   {link.name}
