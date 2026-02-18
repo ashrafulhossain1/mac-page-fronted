@@ -49,6 +49,14 @@ export default function Header() {
         modalId: "authType",
         openId: type,
       },
+      {
+        modalId: "user-type-selector",
+        openId: type === "host" ? "false" : "true" ,
+      },
+      {
+        modalId: "user-type-selected",
+        openId: type === "host" ? "true" : "false" ,
+      }
     ]);
   };
 

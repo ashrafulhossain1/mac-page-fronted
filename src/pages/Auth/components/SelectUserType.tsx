@@ -1,6 +1,29 @@
 import { Button } from "@/components/ui/button";
+import type { TAuthDataType } from "@/types/auth";
+import { useSearchParams } from "react-router";
 
-const SelectUserType = () => {
+const SelectUserType = ({ 
+    setAuthData
+}:{ 
+      setAuthData: React.Dispatch<React.SetStateAction<TAuthDataType>>;
+}) => {
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+const handleUserTypeSelect = (userType: string) => {
+    setAuthData((prev) => ({
+        ...prev,
+        authType: userType === "normal" ? "guest" : "host",
+    }));
+
+    // Update the query param properly
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set("user-type-selector", "false");
+    newParams.set("user-type-selected", "true");
+    newParams.set("authType", userType);
+    setSearchParams(newParams);
+};
+
     return (
         <div className="flex flex-col items-center justify-center w-full py-7">
             {/* Header */}
@@ -14,14 +37,16 @@ const SelectUserType = () => {
             <div className="w-full space-y-4">
                 {/* Guest Option */}
                 <Button
-                    className="w-full  rounded-[16px] text-xl md:text-3xl lg:text-[48px] font-bold bg-gray-100 hover:bg-gray-200 text-secondary-foreground transition-all shadow-sm active:scale-[0.98]"
+                    onClick={()=> handleUserTypeSelect("normal")}
+                    className="w-full  rounded-xl text-xl   font-bold bg-gray-100 hover:bg-gray-200 text-secondary-foreground transition-all shadow-sm active:scale-[0.98]  "
                 >
                     Guest
                 </Button>
 
                 {/* Host Option */}
                 <Button
-                    className="w-full h-16 md:h-20 lg:h-[80px] rounded-[16px]  text-xl md:text-3xl lg:text-[48px] font-bold bg-primary hover:bg-primary/90 text-white transition-all shadow-md active:scale-[0.98]"
+                    onClick={()=> handleUserTypeSelect("host")}
+                    className="w-full    rounded-xl  text-xl  font-bold bg-primary hover:bg-primary/90 text-white transition-all shadow-md active:scale-[0.98]   "
                 >
                     Become a Host
                 </Button>
