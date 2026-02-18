@@ -4,7 +4,7 @@ import how3 from "@/assets/home/how (3).svg";
 
 const HowToWorks = () => {
   return (
-    <div className="bg-[#FFF6F0]">
+    <div className="bg-[#FFF6F0]" id="how-it-works">
       <div className="pb-[120px]">
         <h2 className="text-[48px] font-semibold leading-[48px] pt-[120px] mb-[50px]  text-center text-black">
           How it works?

@@ -50,7 +50,7 @@ export default function RoomDetails() {
   ].slice(0, 6);
 
   return (
-    <div className="max-w-[1280px] mx-auto px-4 sm:px-0 pt-8 pb-20">
+    <div className="max-w-[1280px] mx-auto px-4 lg:px-0 pt-8 pb-20">
       {/* Top Section: Carousel + Right side placeholder */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Carousel takes 2 cols */}

@@ -3,10 +3,11 @@ import HomeLayout from "@/pages/Home/layout";
 import Browse from "@/pages/Browse";
 import RoomDetails from "@/pages/RoomDetails";
 import OurStory from "@/pages/OurStory";
-import HowItWorks from "@/pages/HowItWorks";
 import Support from "@/pages/Support";
 import TermsConditions from "@/pages/TermsConditions";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import Blog from "@/pages/Blog";
+import BlogDetail from "@/pages/Blog/BlogDetail";
 import Dashboard from "@/pages/Dashboard";
 import AddRoom from "@/pages/Dashboard/AddRoom";
 import MyAllListings from "@/pages/Dashboard/MyAllListings";
@@ -39,10 +40,6 @@ export const routes = createBrowserRouter([
         element: <OurStory />,
       },
       {
-        path: "how-it-works",
-        element: <HowItWorks />,
-      },
-      {
         path: "support",
         element: <Support />,
       },
@@ -53,6 +50,14 @@ export const routes = createBrowserRouter([
       {
         path: "privacy-policy",
         element: <PrivacyPolicy />,
+      },
+      {
+        path: "blog",
+        element: <Blog />,
+      },
+      {
+        path: "blog/:id",
+        element: <BlogDetail />,
       },
     ],
   },
