@@ -26,7 +26,6 @@ export default function Authentication() {
   const isUserSelector = searchParams.get("user-type-selector") || "false";
   const isUserSelected = searchParams.get("user-type-selected") || "false";
   const authType = searchParams.get("authType") || "normal";
-  const resetPassword = searchParams.get("reset") || "reset-email";
 
   const [step, setStep] = useState<number>(1);
   const [authData, setAuthData] = useState<TAuthDataType>({

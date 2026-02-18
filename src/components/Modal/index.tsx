@@ -3,11 +3,7 @@ import Authentication from "@/pages/Auth/Authentication";
 import ProfileForm from "@/pages/Profile/ProfileForm";
 import ResponsiveModal from "./ResponsiveModal";
 import MessagesList from "@/pages/Messages/MessagesList";
-import BookingModal from "@/pages/RoomDetails/_components/BookingModal";
-import ResetEmail from "@/pages/Auth/Forget/ResetEmail";
-import ResetCode from "@/pages/Auth/Forget/ResetCode";
-import NewPassword from "@/pages/Auth/Forget/NewPassword";
-import ResetSuccess from "@/pages/Auth/Forget/ResetSuccess";
+import BookingModal from "@/pages/RoomDetails/_components/BookingModal"; 
 // import SelectUserType from "@/pages/Auth/components/SelectUserType";
 
 export default function Modals() {
@@ -24,46 +20,7 @@ export default function Modals() {
       >
         <Authentication />
       </Modal>
-
-      <Modal
-        modalId="reset"
-        openId="reset-email"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
-      >
-        <ResetEmail />
-      </Modal>
-
-      <Modal
-        modalId="reset"
-        openId="reset-code"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
-      >
-        <ResetCode />
-      </Modal>
-
-      <Modal
-        modalId="reset"
-        openId="new-password"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full"
-      >
-        <NewPassword />
-      </Modal>
-
-      <Modal
-        modalId="reset"
-        openId="success"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
-      >
-        <ResetSuccess />
-      </Modal>
-
-      {/* <Modal
-        modalId="type"
-        openId="select-user-type"
-        className="bg-white  rounded-4xl py-4 md:py-6 px-4 md:px-8 w-full "
-      >
-        <SelectUserType />
-      </Modal> */}
+ 
 
       {/* Profile Settings Modal */}
       <Modal
