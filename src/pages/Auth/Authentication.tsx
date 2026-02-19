@@ -6,7 +6,7 @@ import SignInForm from "./SignIn/SignInForm";
 import { useState } from "react";
 import type { TAuthDataType } from "@/types/auth";
 
-// 
+//
 import HostProfileSet from "./SignUpHost/Profile";
 import AddressInfo from "./SignUpHost/AddressInfo";
 import VerifiedBadge from "./SignUpHost/VerifiedBadge";
@@ -62,8 +62,6 @@ export default function Authentication() {
       emailVerificationCode: "",
     },
   });
- 
-
 
   return (
     <div className="bg-white rounded-4xl py-4 md:py-6 px-6 md:px-8 w-full  relative">
@@ -73,45 +71,97 @@ export default function Authentication() {
 
       {tab === "login" && <SignInForm />}
 
-      {tab === "signup" && isUserSelector === "true" && <SelectUserType setAuthData={setAuthData} />}
+      {tab === "signup" && isUserSelector === "true" && (
+        <SelectUserType setAuthData={setAuthData} />
+      )}
 
-      {authType === "host" && isUserSelector === "false" && isUserSelected === "true" && 
-        <div className="">
-          { tab === "signup" && step === 1 && <HostProfileSet setStep={setStep} authData={authData} setAuthData={setAuthData} /> }
-          {tab === "signup" && step === 2 && <AddressInfo setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 3 && <VerifiedBadge  setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 4 && <StartSignup setStep={setStep} authData={authData} setAuthData={setAuthData}   />}
-          {tab === "signup" && step === 5 && <VerifyOPThost  setStep={setStep}  />}
-          {tab === "signup" && step === 6 && <ThankYouPage    />}
-        </div> 
-      }
-      
-      {authType === "normal" && isUserSelector === "false" && isUserSelected === "true" && 
-        <div className="">
-          {tab === "signup" && step === 1 && <GuestProfileSet setStep={setStep} authData={authData} setAuthData={setAuthData} /> }
-          {tab === "signup" && step === 2 && <AddressInfo setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 3 && <VerifiedBadge  setStep={setStep} authData={authData} setAuthData={setAuthData}  />}
-          {tab === "signup" && step === 4 && <StartSignup setStep={setStep} authData={authData} setAuthData={setAuthData}   />}
-          {tab === "signup" && step === 5 && <VerifyOPThost  setStep={setStep}  />}
-          {tab === "signup" && step === 6 && <ThankYouPage    />}
-        </div> 
-      }
+      {authType === "host" &&
+        isUserSelector === "false" &&
+        isUserSelected === "true" && (
+          <div className="">
+            {tab === "signup" && step === 1 && (
+              <HostProfileSet
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 2 && (
+              <AddressInfo
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 3 && (
+              <VerifiedBadge
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 4 && (
+              <StartSignup
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 5 && (
+              <VerifyOPThost setStep={setStep} />
+            )}
+            {tab === "signup" && step === 6 && <ThankYouPage />}
+          </div>
+        )}
 
+      {authType === "normal" &&
+        isUserSelector === "false" &&
+        isUserSelected === "true" && (
+          <div className="">
+            {tab === "signup" && step === 1 && (
+              <GuestProfileSet
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 2 && (
+              <AddressInfo
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 3 && (
+              <VerifiedBadge
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 4 && (
+              <StartSignup
+                setStep={setStep}
+                authData={authData}
+                setAuthData={setAuthData}
+              />
+            )}
+            {tab === "signup" && step === 5 && (
+              <VerifyOPThost setStep={setStep} />
+            )}
+            {tab === "signup" && step === 6 && <ThankYouPage />}
+          </div>
+        )}
 
       {/* forgot-password */}
-      {tab === "forgot-password" && 
+      {tab === "forgot-password" && (
         <div className="">
-          {step === 1 && <ResetEmail setStep={setStep}/>}
+          {step === 1 && <ResetEmail setStep={setStep} />}
           {step === 2 && <ResetCode setStep={setStep} />}
-          {step === 3 && <NewPassword setStep={setStep}/>}
-          {step === 4 && <ResetSuccess setStep={setStep}/>}
+          {step === 3 && <NewPassword setStep={setStep} />}
+          {step === 4 && <ResetSuccess />}
         </div>
-      }
-
-
-
-
-
+      )}
     </div>
   );
 }
