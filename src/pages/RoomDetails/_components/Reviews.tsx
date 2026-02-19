@@ -3,9 +3,15 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import avatarImg from "@/assets/home/Ellipse 1.png";
 import { ReviewCard } from "@/components/ReviewCard";
+import {
+  headingVariants,
+  headingViewport,
+  sequentialStaggerVariants,
+  fastCardVariants,
+  defaultViewport,
+} from "@/lib/animations";
 
 const reviewsData = [
-  // ... (keeping existing data)
   {
     id: 1,
     rating: 5,
@@ -102,8 +108,6 @@ export default function Reviews() {
 
   const totalItems = reviewsData.length;
   const maxIndex = Math.max(0, totalItems - perView);
-
-  // Safety check for index out of bounds after resize or perView change
   const currentIndex = Math.min(index, maxIndex);
 
   const next = () => {
@@ -124,19 +128,32 @@ export default function Reviews() {
   return (
     <section className="w-full mt-16 mb-8 overflow-hidden px-4 md:px-0">
       <div className="w-full">
-        {/* Title */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-primary-foreground text-center md:text-left">Reviews</h2>
+        {/* Title — Animate with headingVariants */}
+        <motion.h2
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+          className="text-3xl md:text-4xl font-bold mb-10 text-primary-foreground text-center md:text-left"
+        >
+          Reviews
+        </motion.h2>
 
-        {/* Carousel Viewport */}
+        {/* Carousel Viewport — Animate with sequentialStagger */}
         <div className="relative">
           <motion.div
+            variants={sequentialStaggerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
             animate={{ x: `calc(-${currentIndex * itemWidthPercent}% - ${currentIndex * (gap / perView)}px)` }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
             className="flex gap-8"
           >
             {reviewsData.map((review) => (
-              <div
+              <motion.div
                 key={review.id}
+                variants={fastCardVariants}
                 className="shrink-0"
                 style={{
                   width: `calc(${itemWidthPercent}% - ${(perView - 1) * gap / perView}px)`
@@ -149,19 +166,25 @@ export default function Reviews() {
                   role={review.role}
                   avatar={review.avatar}
                 />
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="flex justify-center items-center gap-4 mt-12">
+        {/* Navigation Arrows — Smooth entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center items-center gap-4 mt-12"
+        >
           <button
             onClick={prev}
             disabled={currentIndex === 0}
             className={`flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-[20px] transition-all duration-300 ${currentIndex === 0
-                ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-                : "bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-pointer shadow-sm hover:shadow-md"
+              ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+              : "bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-pointer shadow-sm hover:shadow-md"
               }`}
           >
             <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />
@@ -171,15 +194,14 @@ export default function Reviews() {
             onClick={next}
             disabled={currentIndex >= maxIndex}
             className={`flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-[20px] transition-all duration-300 ${currentIndex >= maxIndex
-                ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-                : "bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-pointer shadow-sm hover:shadow-md"
+              ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+              : "bg-gray-100 text-gray-500 hover:bg-gray-200 cursor-pointer shadow-sm hover:shadow-md"
               }`}
           >
             <ChevronRight className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-

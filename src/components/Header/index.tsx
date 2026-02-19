@@ -51,12 +51,12 @@ export default function Header() {
       },
       {
         modalId: "user-type-selector",
-        openId: type === "host" ? "false" : "true" ,
+        openId: type === "host" ? "false" : "true",
       },
       {
         modalId: "user-type-selected",
-        openId: type === "host" ? "true" : "false" ,
-      }
+        openId: type === "host" ? "true" : "false",
+      },
     ]);
   };
 
@@ -71,7 +71,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full bg-white border-gray-100 sticky top-0 z-50">
+    <header className="w-full bg-white border-gray-100 sticky top-0 z-500">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-1 py-5 md:py-6">
         {/* Logo */}
         <div className="shrink-0">
@@ -98,7 +98,8 @@ export default function Header() {
                   const [path, hash] = link.path.split("#");
                   // Custom check for hash links:
                   // Must match pathname AND hash exactly
-                  active = location.pathname === path && location.hash === `#${hash}`;
+                  active =
+                    location.pathname === path && location.hash === `#${hash}`;
                 } else if (link.path === "/") {
                   // Home link should NOT be active if there is a hash (optional, but helps avoid 'Home' + 'How it works' lighting up together)
                   // If user is at /#how-it-works, Home technically is active path, but visually we might want only one.
@@ -106,8 +107,8 @@ export default function Header() {
                   active = location.pathname === "/" && location.hash === "";
                 }
                 return `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${active
-                  ? "text-primary"
-                  : "text-secondary-foreground hover:text-primary"
+                    ? "text-primary"
+                    : "text-secondary-foreground hover:text-primary"
                   }`;
               }}
             >
@@ -125,10 +126,14 @@ export default function Header() {
                 <PopoverTrigger asChild>
                   <div className="relative cursor-pointer">
                     <Bell className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700" />
-                    <span className="absolute top-0 right-0 h-2 w-2 lg:h-2.5 lg:w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                    <span className="absolute top-0 right-0 h-2 w-2 lg:h-2.5 lg:w-2.5  "></span>
                   </div>
                 </PopoverTrigger>
-                <PopoverContent className="w-80 p-0" align="end" sideOffset={5}>
+                <PopoverContent
+                  className="w-80 p-0 rounded-lg "
+                  align="end"
+                  sideOffset={5}
+                >
                   <NotificationModal />
                 </PopoverContent>
               </Popover>
@@ -138,14 +143,14 @@ export default function Header() {
             <>
               <Button
                 variant="login"
-                className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 py-2 lg:py-3"
+                className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 xl:px-6 py-2 lg:py-3"
                 onClick={() => openModal("normal")}
               >
                 Login
               </Button>
               <Button
                 variant="host"
-                className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 py-2 lg:py-3"
+                className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 xl:px-6 py-2 lg:py-3"
                 onClick={() => openModal("host")}
               >
                 Become a Host{" "}
@@ -162,16 +167,16 @@ export default function Header() {
           >
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-0 rotate-90 scale-50"
-                : "opacity-100 rotate-0 scale-100"
+                  ? "opacity-0 rotate-90 scale-50"
+                  : "opacity-100 rotate-0 scale-100"
                 }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                ? "opacity-100 rotate-0 scale-100"
-                : "opacity-0 -rotate-90 scale-50"
+                  ? "opacity-100 rotate-0 scale-100"
+                  : "opacity-0 -rotate-90 scale-50"
                 }`}
             >
               <X className="h-6 w-6 text-gray-800" />
@@ -183,8 +188,8 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${mobileMenuOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setMobileMenuOpen(false)}
       />
@@ -251,14 +256,17 @@ export default function Header() {
 
                     if (link.path.includes("#")) {
                       const [path, hash] = link.path.split("#");
-                      active = location.pathname === path && location.hash === `#${hash}`;
+                      active =
+                        location.pathname === path &&
+                        location.hash === `#${hash}`;
                     } else if (link.path === "/") {
-                      active = location.pathname === "/" && location.hash === "";
+                      active =
+                        location.pathname === "/" && location.hash === "";
                     }
 
                     return `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${active
-                      ? "text-primary bg-primary/5"
-                      : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
+                        ? "text-primary bg-primary/5"
+                        : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
                       }`;
                   }}
                   style={{

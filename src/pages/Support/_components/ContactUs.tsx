@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+
+    sequentialStaggerVariants,
+    fastCardVariants,
+    defaultViewport,
+} from "@/lib/animations";
 
 const supportOptions = [
     "General Inquiry",
@@ -16,12 +23,17 @@ export default function ContactUs() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
-        <section className="py-[120px] px-6 bg-secondary">
+        <section className="py-[120px] px-6 bg-secondary overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className=" rounded-[16px] px-8 md:px-16 ">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                         {/* Left Side - Title */}
-                        <div>
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={defaultViewport}
+                            transition={{ type: "spring", stiffness: 60, damping: 20 }}
+                        >
                             <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
                                 Contact Support
                             </h2>
@@ -29,16 +41,21 @@ export default function ContactUs() {
                                 Our team typically responds within 24 hours. We're here to help
                                 make your warmwelcome experience as smooth as possible.
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Right Side - Form */}
-                        <div>
-                            <p className="text-gray-500 text-lg mb-4">
+                        <motion.div
+                            variants={sequentialStaggerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={defaultViewport}
+                        >
+                            <motion.p variants={fastCardVariants} className="text-gray-500 text-lg mb-4">
                                 What can we help you with today?
-                            </p>
+                            </motion.p>
 
                             {/* Dropdown */}
-                            <div className="relative mb-6">
+                            <motion.div variants={fastCardVariants} className="relative mb-6">
                                 <button
                                     type="button"
                                     onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -70,10 +87,11 @@ export default function ContactUs() {
                                         ))}
                                     </div>
                                 )}
-                            </div>
+                            </motion.div>
 
-                            {/* Form Fields */}
-                            <div className="border border-gray-200 rounded-2xl p-6 space-y-5 bg-white">
+                            {/* Form Fields — Wrapped in a container with its own stagger if we want finer control, 
+                  but sequentialStaggerVariants + fastCardVariants works great here */}
+                            <motion.div variants={fastCardVariants} className="border border-gray-200 rounded-2xl p-6 space-y-5 bg-white shadow-sm">
                                 {/* Full Name */}
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-800 mb-1.5">
@@ -125,12 +143,12 @@ export default function ContactUs() {
                                 {/* Submit Button */}
                                 <button
                                     type="button"
-                                    className="w-full bg-[#F97316] text-white font-semibold text-base py-3.5 rounded-xl hover:bg-[#ea580c] transition-colors duration-200 cursor-pointer"
+                                    className="w-full bg-[#F97316] text-white font-semibold text-base py-3.5 rounded-xl hover:bg-[#ea580c] transition-colors duration-200 cursor-pointer shadow-sm hover:shadow-md"
                                 >
                                     Submit
                                 </button>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </div>

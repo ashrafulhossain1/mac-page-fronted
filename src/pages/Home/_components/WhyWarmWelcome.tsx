@@ -6,6 +6,11 @@ import whyWarm4 from "@/assets/home/why-warm-4.svg";
 import whyWarm5 from "@/assets/home/why-warm-5.svg";
 import whyWarm6 from "@/assets/home/why-warm-6.svg";
 import whyWarm7 from "@/assets/home/why-warm-7.svg";
+import {
+  innerStaggerVariants,
+  innerItemVariants,
+
+} from "@/lib/animations";
 
 interface Feature {
   title: string;
@@ -14,118 +19,33 @@ interface Feature {
   iconBg: string;
 }
 
+// ── Same Apple spring used in FeaturedRooms ──
+const appleSpring = {
+  type: "spring",
+  stiffness: 38,
+  damping: 22,
+  mass: 1.4,
+} as const;
 
-const features: Feature[] = [
-  {
-    title: "Safe, Verified Homes",
-    description:
-      "Trusted listings give you peace of mind from booking to moving in.",
-    icon: (
-      <img
-        src={whyWarm7}
-        alt="Safe, Verified Homes"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-blue-50",
-  },
-  {
-    title: "All-Inclusive, Transparent Pricing",
-    description:
-      "Weekly price — no extra bills, no hidden fees — so you always know what you're paying.",
-    icon: (
-      <img
-        src={whyWarm6}
-        alt="All-Inclusive, Transparent Pricing"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-orange-50",
-  },
-  {
-    title: "Move-In Ready",
-    description: "Fully furnished rooms for a stress-free start.",
-    icon: (
-      <img
-        src={whyWarm5}
-        alt="Move-In Ready"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-green-50",
-  },
-  {
-    title: "Responsive Support",
-    description: "Local, reliable help whenever you need it.",
-    icon: (
-      <img
-        src={whyWarm4}
-        alt="Responsive Support"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-purple-50",
-  },
-  {
-    title: "Warm & Inclusive Community",
-    description: "Inclusive environment helping you feel at home from day one.",
-    icon: (
-      <img
-        src={whyWarm3}
-        alt="Warm & Inclusive Community"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-cyan-50",
-  },
-  {
-    title: "Safe & Respectful Living Standards",
-    description:
-      "Enjoy comfortable, private accommodation where respectful house rules and clear communication make settling in effortless.",
-    icon: (
-      <img
-        src={whyWarm2}
-        alt="Safe & Respectful Living Standards"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-red-50",
-  },
-  {
-    title: "Practical Guidance",
-    description:
-      "Helpful guidance on essentials like banking, transport, orientation, and local services.",
-    icon: (
-      <img
-        src={whyWarm1}
-        alt="Practical Guidance"
-        className="w-full h-full object-contain"
-      />
-    ),
-    iconBg: "bg-yellow-50",
-  },
-];
-
-const containerVariants = {
+// ── Card grid stagger container ──
+const gridVariants = {
   hidden: {},
-  show: {
+  visible: {
     transition: {
       staggerChildren: 0.12,
     },
   },
 };
 
-// const cardVariants = {
-//   hidden: { opacity: 0, y: 40 },
-//   show: {
-//     opacity: 1,
-//     y: 0,
-//     transition: {
-//       duration: 0.6,
-//       ease: "easeOut",
-//     },
-//   },
-// };
+// ── Each card enters: drifts up from below ──
+const cardVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { ...appleSpring },
+  },
+};
 
 const WhyWarmWelcome = () => {
   return (
@@ -134,10 +54,10 @@ const WhyWarmWelcome = () => {
 
         {/* Title Animation */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ ...appleSpring, delay: 0.05 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -153,29 +73,42 @@ const WhyWarmWelcome = () => {
 
         {/* Cards Grid */}
         <motion.div
-          variants={containerVariants}
+          variants={gridVariants}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {features.map((item, idx) => (
             <motion.div
               key={idx}
-              // variants={cardVariants}
-
-              whileHover={{ y: -8 }}
-              className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{
+                y: -3,
+                transition: { type: "spring", stiffness: 150, damping: 25 },
+              }}
+              className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-500"
             >
-              <div
-                className={`${item.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}
+              <motion.div
+                variants={innerStaggerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="flex flex-col"
               >
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">
-                {item.description}
-              </p>
+                <motion.div
+                  variants={innerItemVariants}
+                  className={`${item.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}
+                >
+                  {item.icon}
+                </motion.div>
+                <motion.h3 variants={innerItemVariants} className="text-xl font-bold mb-3">
+                  {item.title}
+                </motion.h3>
+                <motion.p variants={innerItemVariants} className="text-gray-500 leading-relaxed text-sm">
+                  {item.description}
+                </motion.p>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
@@ -186,3 +119,48 @@ const WhyWarmWelcome = () => {
 };
 
 export default WhyWarmWelcome;
+
+const features: Feature[] = [
+  {
+    title: "Safe, Verified Homes",
+    description: "Trusted listings give you peace of mind from booking to moving in.",
+    icon: (<img src={whyWarm7} alt="Safe, Verified Homes" className="w-full h-full object-contain" />),
+    iconBg: "bg-blue-50",
+  },
+  {
+    title: "All-Inclusive, Transparent Pricing",
+    description: "Weekly price — no extra bills, no hidden fees — so you always know what you're paying.",
+    icon: (<img src={whyWarm6} alt="All-Inclusive, Transparent Pricing" className="w-full h-full object-contain" />),
+    iconBg: "bg-orange-50",
+  },
+  {
+    title: "Move-In Ready",
+    description: "Fully furnished rooms for a stress-free start.",
+    icon: (<img src={whyWarm5} alt="Move-In Ready" className="w-full h-full object-contain" />),
+    iconBg: "bg-green-50",
+  },
+  {
+    title: "Responsive Support",
+    description: "Local, reliable help whenever you need it.",
+    icon: (<img src={whyWarm4} alt="Responsive Support" className="w-full h-full object-contain" />),
+    iconBg: "bg-purple-50",
+  },
+  {
+    title: "Warm & Inclusive Community",
+    description: "Inclusive environment helping you feel at home from day one.",
+    icon: (<img src={whyWarm3} alt="Warm & Inclusive Community" className="w-full h-full object-contain" />),
+    iconBg: "bg-cyan-50",
+  },
+  {
+    title: "Safe & Respectful Living Standards",
+    description: "Enjoy comfortable, private accommodation where respectful house rules and clear communication make settling in effortless.",
+    icon: (<img src={whyWarm2} alt="Safe & Respectful Living Standards" className="w-full h-full object-contain" />),
+    iconBg: "bg-red-50",
+  },
+  {
+    title: "Practical Guidance",
+    description: "Helpful guidance on essentials like banking, transport, orientation, and local services.",
+    icon: (<img src={whyWarm1} alt="Practical Guidance" className="w-full h-full object-contain" />),
+    iconBg: "bg-yellow-50",
+  },
+];

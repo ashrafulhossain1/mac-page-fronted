@@ -7,6 +7,12 @@ import BlogHero from "./_components/BlogHero";
 import BlogCard from "./_components/BlogCard";
 import Pagination from "./_components/Pagination";
 import BlogSort from "./_components/BlogSort";
+import { motion } from "framer-motion";
+import {
+    sequentialStaggerVariants,
+    fastCardVariants,
+    defaultViewport,
+} from "@/lib/animations";
 
 const POSTS_PER_PAGE = 6;
 
@@ -39,7 +45,7 @@ export default function Blog() {
     const goToPage = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 350, behavior: "smooth" });
         }
     };
 
@@ -52,19 +58,41 @@ export default function Blog() {
         <div>
             <BlogHero title={title} heroImage={heroImage} />
             <div className="max-w-7xl mx-auto px-6 py-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={defaultViewport}
+                    transition={{ duration: 0.6 }}
+                >
+                    <BlogSort sortOrder={sortOrder} onSortChange={handleSortChange} />
+                </motion.div>
 
-                <BlogSort sortOrder={sortOrder} onSortChange={handleSortChange} />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div
+                    key={`${sortOrder}-${currentPage}`} // Re-animate when sorting or paging changes
+                    variants={sequentialStaggerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                >
                     {paginatedBlogs.map((blog) => (
-                        <BlogCard key={blog.id} blog={blog} />
+                        <motion.div key={blog.id} variants={fastCardVariants}>
+                            <BlogCard blog={blog} />
+                        </motion.div>
                     ))}
-                </div>
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={goToPage}
-                />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={defaultViewport}
+                    transition={{ delay: 0.5 }}
+                >
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={goToPage}
+                    />
+                </motion.div>
             </div>
         </div>
     );

@@ -12,7 +12,9 @@ const Dashboard = () => {
         <StatCards />
 
         {/* Quick Actions */}
-        <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-6">Quick Actions</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-6">
+          Quick Actions
+        </h2>
         <QuickAction />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-16">

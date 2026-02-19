@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import { motion, AnimatePresence } from "framer-motion";
+import { headingVariants, headingViewport } from "@/lib/animations";
 
 interface FAQItem {
     question: string;
     answer: string;
 }
-
-
 
 export default function SupportFAQ() {
     const role = useSelector((state: RootState) => state.userRole.role);
@@ -22,52 +22,68 @@ export default function SupportFAQ() {
     return (
         <section className="bg-white mt-20 mb-[120px] px-6 font-sans">
             <div className="max-w-7xl mx-auto">
-                {/* Heading */}
-                <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
+                {/* Heading — using shared headingVariants */}
+                <motion.h2
+                    variants={headingVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={headingViewport}
+                    className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground"
+                >
                     <span className="text-primary">Frequently</span> Asked Questions
-                </h2>
+                </motion.h2>
 
-                {/* FAQ List */}
+                {/* FAQ List — matches the pattern fixed in FAQ.tsx */}
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div
-                            key={index}
-                            className="bg-[#EDEDED] rounded-[20px] overflow-hidden transition-all duration-300"
+                        <motion.div
+                            key={faq.question}
+                            variants={headingVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={headingViewport}
+                            className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
                         >
                             <button
                                 onClick={() => toggleFAQ(index)}
-                                className="w-full flex justify-between items-center p-6 md:p-8 text-left cursor-pointer"
+                                className="w-full flex justify-between items-center p-6 md:p-8 text-left group"
                             >
-                                <span className="text-xl md:text-2xl font-semibold text-black">
+                                <span className="text-xl md:text-2xl font-semibold text-black transition-colors duration-300 group-hover:text-primary">
                                     {faq.question}
                                 </span>
-                                <div className="shrink-0 ml-4">
+                                <div className="shrink-0 ml-4 transition-transform duration-500">
                                     {openIndex === index ? (
-                                        <Minus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
+                                        <Minus className="w-6 h-6 border-2 rounded-full p-0.5 text-primary border-primary" />
                                     ) : (
                                         <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
                                     )}
                                 </div>
                             </button>
 
-                            <div
-                                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index
-                                    ? "pb-8 max-h-40 opacity-100"
-                                    : "max-h-0 opacity-0"
-                                    }`}
-                            >
-                                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-                                    {faq.answer}
-                                </p>
-                            </div>
-                        </div>
+                            <AnimatePresence>
+                                {openIndex === index && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="px-6 md:px-8 pb-8">
+                                            <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                                                {faq.answer}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
                     ))}
                 </div>
             </div>
         </section>
     );
 }
-
 
 const hostFaqs: FAQItem[] = [
     {

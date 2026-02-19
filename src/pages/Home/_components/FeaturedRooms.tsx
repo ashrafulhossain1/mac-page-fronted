@@ -5,8 +5,7 @@ import room3 from "@/assets/home/room-3.png";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { motion } from "framer-motion";
 
 const rooms = [
   {
@@ -44,59 +43,47 @@ const rooms = [
   },
 ];
 
-function FeaturedRooms() {
-  const sectionRef = useRef(null);
+// Apple-style spring config — slow, heavy, premium feel
+const appleSpring = {
+  type: "spring",
+  stiffness: 38,
+  damping: 22,
+  mass: 1.4,
+} as const;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-
-      tl.from(".featured-title", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      })
-        .from(
-          ".room-card",
-          {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out",
-          },
-          "-=0.4"
-        )
-        .from(
-          ".featured-btn",
-          {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.3"
-        );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function FeaturedRooms() {
   return (
-    <div
-      ref={sectionRef}
-      className="max-w-[1280px] mx-auto py-[120px] px-4 md:px-6 lg:px-0"
-    >
-      <div className="flex flex-col md:flex-row justify-between items-end mb-[38px]">
-        <h2 className="featured-title text-[32px] md:text-4xl lg:text-[48px] font-semibold leading-[48px] text-left text-black">
+    <div className="max-w-[1280px] mx-auto py-[120px] px-4 md:px-6 lg:px-0">
+      {/* Title */}
+      <motion.div
+        initial={{ opacity: 0, y: 70 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ ...appleSpring, delay: 0.05 }}
+        className="flex flex-col md:flex-row justify-between items-end mb-[38px]"
+      >
+        <h2 className="text-[32px] md:text-4xl lg:text-[48px] font-semibold leading-[48px] text-left text-black">
           Featured <span className="text-primary">Student</span> Accommodations
         </h2>
-      </div>
+      </motion.div>
 
+      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rooms.map((room) => (
-          <div key={room.id} className="room-card">
+        {rooms.map((room, idx) => (
+          <motion.div
+            key={room.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              ...appleSpring,
+              delay: idx * 0.12,
+            }}
+            whileHover={{
+              y: -3,
+              transition: { type: "spring", stiffness: 300, damping: 25 },
+            }}
+          >
             <RoomCard
               id={room.id}
               image={room.image}
@@ -107,14 +94,21 @@ function FeaturedRooms() {
               rating={room.rating}
               reviews={room.reviews}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center mt-6 items-center">
+      {/* Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ ...appleSpring, delay: 0.35 }}
+        className="flex flex-col md:flex-row justify-center mt-6 md:mt-8 items-center"
+      >
         <Button
           variant="host"
-          className="featured-btn px-8 py-3 text-[18px] font-semibold rounded-[16px] flex items-center gap-2 bg-primary text-white hover:bg-primary/80 transition-colors mt-6 md:mt-0"
+          className="px-8 py-3 text-[18px] w-[247px] h-[60px] font-semibold rounded-[16px] flex items-center gap-2 bg-primary text-white hover:bg-primary/80 transition-colors mt-6 md:mt-0"
           asChild
         >
           <Link to="/browse">
@@ -122,9 +116,7 @@ function FeaturedRooms() {
             <FaArrowRightLong />
           </Link>
         </Button>
-      </div>
+      </motion.div>
     </div>
   );
 }
-
-export default FeaturedRooms;

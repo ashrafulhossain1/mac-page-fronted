@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { headingVariants, headingViewport } from "@/lib/animations";
 
 interface FAQItem {
   question: string;
@@ -9,42 +11,36 @@ interface FAQItem {
 const initialFaqs: FAQItem[] = [
   {
     question: "What is Warmwelcome?",
-    answer:
-      "WarmWelcome is a trusted accommodation platform that connects students with verified hosts offering safe, comfortable places to stay. We focus on transparency, trust, and community to ensure a welcoming experience for both guests and hosts.",
+    answer: "WarmWelcome is a trusted accommodation platform...",
   },
   {
     question: "How do I book a room safely?",
-    answer:
-      "You can book safely through our verified payment system and by reviewing host profiles and student feedback before making a commitment.",
+    answer: "You can book safely through our verified payment system...",
   },
   {
     question: "Where is Warmwelcome available?",
-    answer:
-      "We are currently operating throughout Ireland, focusing on major student hubs and cities.",
+    answer: "We are currently operating throughout Ireland...",
   },
   {
     question: "Who can use this platform?",
-    answer:
-      "The platform is designed for students seeking mid-term accommodation and local hosts who have spare rooms and want to support the student community.",
+    answer: "The platform is designed for students and local hosts...",
   },
 ];
 
 const extraFaqs: FAQItem[] = [
   {
     question: "Are there any service fees?",
-    answer:
-      "We maintain a transparent fee structure for both hosts and guests to cover platform maintenance and verification services.",
+    answer: "We maintain a transparent fee structure for both hosts and guests...",
   },
   {
     question: "How does the verification process work?",
-    answer:
-      "Every host undergoes a strict identity check and property verification process to ensure the safety of our student community.",
+    answer: "Every host undergoes a strict identity check and property verification...",
   },
 ];
 
 const FAQ: React.FC = () => {
   const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Default first one open
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [hasMore, setHasMore] = useState(true);
 
   const toggleFAQ = (index: number) => {
@@ -59,57 +55,63 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-white py-20 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
+        <motion.h2 variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport} className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
           <span className="text-primary">Frequently</span> Asked Questions
-        </h2>
+        </motion.h2>
 
-        {/* FAQ List */}
         <div className="space-y-4 mb-10">
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-[#EDEDED] rounded-[20px] overflow-hidden transition-all duration-300"
+            <motion.div
+              key={faq.question}
+              variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport}
+              className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 md:p-8 text-left"
+                className="w-full flex justify-between items-center p-6 md:p-8 text-left group"
               >
-                <span className="text-xl md:text-2xl font-semibold text-black">
+                <span className="text-xl md:text-2xl font-semibold text-black transition-colors duration-300 group-hover:text-primary">
                   {faq.question}
                 </span>
-                <div className="flex-shrink-0 ml-4">
+                <div className="shrink-0 ml-4 transition-transform duration-500">
                   {openIndex === index ? (
-                    <Minus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
+                    <Minus className="w-6 h-6 border-2 rounded-full p-0.5 text-primary border-primary" />
                   ) : (
                     <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
                   )}
                 </div>
               </button>
 
-              <div
-                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index
-                    ? "pb-8 max-h-40 opacity-100"
-                    : "max-h-0 opacity-0"
-                  }`}
-              >
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
+              {/* Only animate each FAQ content */}
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 md:px-8 pb-8">
+                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
 
-        {/* See More Button */}
         {hasMore && (
           <div className="flex justify-center">
-            <button
+            <motion.button
               onClick={loadMore}
               className="bg-[#F97316] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#ea580c] transition shadow-sm"
             >
-              see more FAQs
-            </button>
+              See more FAQs
+            </motion.button>
           </div>
         )}
       </div>
