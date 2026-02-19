@@ -49,7 +49,7 @@ const HostHero = () => {
             className="px-6 py-3 w-[200px] md:w-[260px] text-[16px] md:text-[22px] font-semibold rounded-[12px] md:rounded-[16px]"
             asChild
           >
-            <Link className="" to="#">List Your Room</Link>
+            <Link className="" to="/dashboard/all-listings">List Your Room</Link>
           </Button>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 import {
   headingVariants,
   headingViewport,
@@ -27,21 +28,23 @@ const HostCTA = () => {
         >
           Join a trusted hosting community built on respect, safety, and long-term stays.
         </motion.p>
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={defaultViewport}
-          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
-          whileHover={{
-            scale: 1.02,
-            y: -4,
-            transition: { type: "spring", stiffness: 300, damping: 15 },
-          }}
-          whileTap={{ scale: 0.98 }}
-          className="bg-[#F97316] text-white px-12 py-4 rounded-xl font-bold text-xl hover:bg-[#ea580c] transition-shadow shadow-lg hover:shadow-xl cursor-pointer"
-        >
-          List Your Room
-        </motion.button>
+        <Link to="/dashboard/all-listings" className="inline-block">
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={defaultViewport}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
+            whileHover={{
+              scale: 1.02,
+              y: -4,
+              transition: { type: "spring", stiffness: 300, damping: 15 },
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-[#F97316] text-white px-12 py-4 rounded-xl font-bold text-xl hover:bg-[#ea580c] transition-shadow shadow-lg hover:shadow-xl cursor-pointer"
+          >
+            List Your Room
+          </motion.button>
+        </Link>
       </div>
     </section>
   );

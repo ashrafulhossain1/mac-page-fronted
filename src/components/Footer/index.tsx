@@ -22,9 +22,11 @@ const Footer: React.FC = () => {
             whileInView="visible"
             viewport={headingViewport}
           >
-            <h2 className="text-3xl font-bold mb-2">
-              Warm <span className="text-[#F97316]">Welcome</span>
-            </h2>
+            <Link to="/" className="inline-block">
+              <h2 className="text-3xl font-bold mb-2">
+                Warm <span className="text-[#F97316]">Welcome</span>
+              </h2>
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-[200px]">
               Trusted Mid-Term Room Rentals in Ireland
             </p>
@@ -51,7 +53,15 @@ const Footer: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Link to={text === "Our Story" ? "/our-story" : text.includes("Blog") ? "/blog" : "/browse"} className="hover:text-white transition">
+                  <Link
+                    to={
+                      text === "Our Story" ? "/our-story" :
+                        text === "List Room" ? "/dashboard/all-listings" :
+                          text.includes("Blog") ? "/blog" :
+                            "/browse"
+                    }
+                    className="hover:text-white transition"
+                  >
                     {text}
                   </Link>
                 </motion.li>

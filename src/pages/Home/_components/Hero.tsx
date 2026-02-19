@@ -58,7 +58,7 @@ const Hero = () => {
             className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] bg-primary/90 text-white hover:bg-primary hover:brightness-75 transition-all duration-300"
             asChild
           >
-            <Link to="#">Become a Host Partner</Link>
+            <Link to="/dashboard/all-listings">Become a Host Partner</Link>
           </Button>
         </div>
       </div>
