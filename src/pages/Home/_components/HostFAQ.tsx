@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  headingVariants,
+  headingViewport,
+  sequentialStaggerVariants,
+  fastCardVariants,
+  defaultViewport,
+  decentHover,
+} from "@/lib/animations";
 
 interface FAQItem {
   question: string;
@@ -60,57 +69,90 @@ const HostFAQ: React.FC = () => {
   const displayedFaqs = showAll ? hostFaqs : hostFaqs.slice(0, 4);
 
   return (
-    <section className="bg-secondary py-20 px-6 font-sans">
+    <section className="bg-secondary py-24 px-6 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 text-black">
-          <span className="text-[#F97316]">Frequently</span> Asked Questions
-        </h2>
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-black">
+            <span className="text-[#F97316]">Frequently</span> Asked Questions
+          </h2>
+          <p className="text-gray-500 mt-4 text-lg">
+            Find answers to common questions about hosting with us
+          </p>
+        </motion.div>
 
-        <div className="space-y-4 mb-10">
+        <motion.div
+          key={displayedFaqs.length}
+          variants={sequentialStaggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="space-y-4 mb-10"
+        >
           {displayedFaqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-[#EDEDED] rounded-[20px] overflow-hidden transition-all duration-300"
+              variants={fastCardVariants}
+              whileHover={decentHover}
+              className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 md:p-8 text-left"
+                className="w-full flex justify-between items-center p-6 md:p-8 text-left group"
               >
-                <span className="text-xl md:text-2xl font-semibold text-black">
+                <span className="text-xl md:text-2xl font-semibold text-black transition-colors duration-300 group-hover:text-primary">
                   {faq.question}
                 </span>
-                <div className="flex-shrink-0 ml-4">
+                <div className="shrink-0 ml-4 transition-transform duration-500">
                   {openIndex === index ? (
-                    <Minus className="w-6 h-6 border-2 border-black rounded-full p-0.5 text-black" />
+                    <Minus className="w-6 h-6 border-2 rounded-full p-0.5 text-primary border-primary" />
                   ) : (
-                    <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5 text-black" />
+                    <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
                   )}
                 </div>
               </button>
 
-              <div
-                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index
-                  ? "pb-8 max-h-40 opacity-100"
-                  : "max-h-0 opacity-0"
-                  }`}
-              >
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 md:px-8 pb-8">
+                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {!showAll && (
-          <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={defaultViewport}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            className="flex justify-center"
+          >
             <button
               onClick={() => setShowAll(true)}
               className="bg-[#F97316] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#ea580c] transition shadow-sm text-lg"
             >
               See more Questions
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

@@ -2,6 +2,7 @@ import { Star, MapPin, Wifi, BedDouble, ShowerHead, Wind, ArrowUpRight } from "l
 import { Link } from "react-router";
 import type { Room } from "@/types/room";
 import { motion } from "framer-motion";
+import { Separator } from "@/components/ui/separator"
 
 type RoomCardProps = Pick<
   Room,
@@ -59,14 +60,14 @@ const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <Link to={`/browse/${id}`} className="block group">
-      <div className="relative w-full overflow-hidden rounded-[28px] bg-white border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
+      <div className="relative w-full overflow-hidden rounded-[28px] bg-white border p-4 border-gray-300 hover:shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
 
         {/* ── Image ── */}
-        <div className="relative overflow-hidden h-[220px] md:h-[270px]">
+        <div className="relative overflow-hidden rounded-[16px] h-[220px] md:h-[270px] mb-4">
           <img
             src={image}
             alt={title}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+            className="h-full w-full object-cover rounded-[16px] transition-transform duration-700 ease-out group-hover:scale-[1.06]"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
@@ -84,7 +85,7 @@ const RoomCard = ({
 
         {/* ── Body — stagger container ── */}
         <motion.div
-          className="p-5 flex flex-col gap-3"
+          className=" flex flex-col gap-3"
           variants={bodyVariants}
           initial="hidden"
           whileInView="visible"
@@ -134,7 +135,7 @@ const RoomCard = ({
           </motion.div>
 
           {/* Divider */}
-          <motion.div variants={itemVariants} className="h-px bg-gray-100 mt-1" />
+          <div className="border-b mb-4 md:mb-6 mt-4 md:mt-7" />
 
           {/* Footer */}
           <motion.div

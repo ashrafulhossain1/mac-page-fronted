@@ -22,6 +22,7 @@ const partners = [
 import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
+import { headingVariants, fastCardVariants } from "@/lib/animations";
 
 const Partners = ({ className }: { className?: string }) => {
   const role = useSelector((state: RootState) => state.userRole.role);
@@ -29,10 +30,9 @@ const Partners = ({ className }: { className?: string }) => {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      viewport={{ once: true }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       className={cn(
         "bg-black py-10 overflow-hidden w-full",
         isHost ? "mt-10 md:mt-20" : "mt-64 md:mt-40",
@@ -40,9 +40,12 @@ const Partners = ({ className }: { className?: string }) => {
       )}
     >
       <div className="container mx-auto px-4 mb-8 text-center">
-        <h3 className="text-white text-lg tracking-[0.2em] font-medium uppercase">
+        <motion.h3
+          variants={headingVariants}
+          className="text-white text-lg tracking-[0.2em] font-medium uppercase"
+        >
           Where <span className="text-[#F97316]">Guests</span> are Based
-        </h3>
+        </motion.h3>
       </div>
 
       <div className="flex w-full overflow-hidden relative">
@@ -51,7 +54,7 @@ const Partners = ({ className }: { className?: string }) => {
           initial={{ x: 0 }}
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 7, // slower = smoother
+            duration: 10, // slightly slower for smoother loop
             ease: "linear",
             repeat: Infinity,
           }}
@@ -60,11 +63,8 @@ const Partners = ({ className }: { className?: string }) => {
             (partner, index) => (
               <motion.div
                 key={index}
-                className="flex-shrink-0 flex items-center justify-center w-[150px]"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.05 }}
-                viewport={{ once: true }}
+                variants={fastCardVariants}
+                className="shrink-0 flex items-center justify-center w-[150px]"
               >
                 <img
                   src={partner.logo}

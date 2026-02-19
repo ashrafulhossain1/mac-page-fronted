@@ -15,6 +15,8 @@ import hostBlog3 from "@/assets/blogs/host-blog (3).jpg";
 import hostBlog4 from "@/assets/blogs/host-blog (4).jpg";
 import hostBlog5 from "@/assets/blogs/host-blog (5).jpg";
 import hostBlog6 from "@/assets/blogs/host-blog (6).jpg";
+import hostBlog7 from "@/assets/blogs/host-blog (5).jpg";
+import hostBlog8 from "@/assets/blogs/host-blog (6).jpg";
 
 export interface BlogSection {
     title: string;
@@ -240,6 +242,34 @@ export const hostBlogs: BlogPost[] = [
         description:
             "A cozy room in a quiet residential area. 10 mins walk to city center. Includes high-speed WiFi and a study desk...",
         image: hostBlog6,
+        views: 100,
+        date: "January 15, 2025",
+        fullContent: {
+            intro: SAMPLE_GUEST_INTRO,
+            sections: SAMPLE_SECTIONS,
+            conclusion: SAMPLE_CONCLUSION
+        }
+    },
+    {
+        id: 7,
+        title: "Hosting & home insurance",
+        description:
+            "A cozy room in a quiet residential area. 10 mins walk to city center. Includes high-speed WiFi and a study desk...",
+        image: hostBlog7,
+        views: 190,
+        date: "January 15, 2025",
+        fullContent: {
+            intro: SAMPLE_GUEST_INTRO,
+            sections: SAMPLE_SECTIONS,
+            conclusion: SAMPLE_CONCLUSION
+        }
+    },
+    {
+        id: 8,
+        title: "6 steps to become a host",
+        description:
+            "A cozy room in a quiet residential area. 10 mins walk to city center. Includes high-speed WiFi and a study desk...",
+        image: hostBlog8,
         views: 100,
         date: "January 15, 2025",
         fullContent: {

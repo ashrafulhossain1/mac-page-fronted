@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   headingVariants,
   headingViewport,
   sequentialStaggerVariants,
   fastCardVariants,
-  innerStaggerVariants,
-  innerItemVariants,
   defaultViewport,
   decentHover,
 } from "@/lib/animations";
@@ -70,8 +68,7 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-white py-20 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
-
-        {/* Heading */}
+        {/* Heading — Decent Animation */}
         <motion.h2
           variants={headingVariants}
           initial="hidden"
@@ -82,8 +79,9 @@ const FAQ: React.FC = () => {
           <span className="text-primary">Frequently</span> Asked Questions
         </motion.h2>
 
-        {/* FAQ rows — one by one */}
+        {/* FAQ rows — Original Gray Box Design restored */}
         <motion.div
+          key={faqs.length}
           variants={sequentialStaggerVariants}
           initial="hidden"
           whileInView="visible"
@@ -99,34 +97,37 @@ const FAQ: React.FC = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 md:p-8 text-left"
+                className="w-full flex justify-between items-center p-6 md:p-8 text-left group"
               >
-                <span className="text-xl md:text-2xl font-semibold text-black">
+                <span className="text-xl md:text-2xl font-semibold text-black transition-colors duration-300 group-hover:text-primary">
                   {faq.question}
                 </span>
-                <div className="flex-shrink-0 ml-4">
+                <div className="shrink-0 ml-4 transition-transform duration-500">
                   {openIndex === index ? (
-                    <Minus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
+                    <Minus className="w-6 h-6 border-2 rounded-full p-0.5 text-primary border-primary" />
                   ) : (
                     <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
                   )}
                 </div>
               </button>
 
-              <motion.div
-                variants={innerStaggerVariants}
-                initial="hidden"
-                animate={openIndex === index ? "visible" : "hidden"}
-                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index ? "pb-8 max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-              >
-                <motion.p
-                  variants={innerItemVariants}
-                  className="text-gray-600 leading-relaxed text-base md:text-lg"
-                >
-                  {faq.answer}
-                </motion.p>
-              </motion.div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 md:px-8 pb-8">
+                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </motion.div>
