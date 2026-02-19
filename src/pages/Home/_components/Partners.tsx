@@ -51,27 +51,29 @@ const Partners = ({ className }: { className?: string }) => {
           initial={{ x: 0 }}
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 25, // slower = smoother
+            duration: 10, // slower = smoother
             ease: "linear",
             repeat: Infinity,
           }}
         >
-          {[...partners, ...partners].map((partner, index) => (
-            <motion.div
-              key={index}
-              className="flex-shrink-0 flex items-center justify-center w-[150px]"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: index * 0.05 }}
-              viewport={{ once: true }}
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="h-8 md:h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
-            </motion.div>
-          ))}
+          {[...partners, ...partners, ...partners, ...partners].map(
+            (partner, index) => (
+              <motion.div
+                key={index}
+                className="flex-shrink-0 flex items-center justify-center w-[150px]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: index * 0.05 }}
+                viewport={{ once: true }}
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-8 md:h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+              </motion.div>
+            ),
+          )}
         </motion.div>
       </div>
     </motion.section>
