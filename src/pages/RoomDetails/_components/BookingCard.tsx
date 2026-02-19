@@ -11,6 +11,8 @@ import { CalendarDays } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import useModal from "@/components/Modal/useModal";
+import { motion } from "framer-motion";
+import { innerItemVariants, headingViewport } from "@/lib/animations";
 
 interface BookingCardProps {
     pricePerWeek: number;
@@ -64,15 +66,27 @@ export default function BookingCard({ pricePerWeek }: BookingCardProps) {
         ]);
     };
 
-
-
     return (
         <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            {/* Title */}
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Book This Room</h3>
+            {/* Each child has its own entrance logic to avoid parent appearing issues */}
+            <motion.h3
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={headingViewport}
+                className="text-xl font-bold text-gray-900 mb-6"
+            >
+                Book This Room
+            </motion.h3>
 
             {/* Check-in Date */}
-            <div className="mb-4">
+            <motion.div
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={headingViewport}
+                className="mb-4"
+            >
                 <label className="text-sm font-semibold text-gray-800 mb-1.5 block">
                     Check-in Date
                 </label>
@@ -103,10 +117,16 @@ export default function BookingCard({ pricePerWeek }: BookingCardProps) {
                         />
                     </PopoverContent>
                 </Popover>
-            </div>
+            </motion.div>
 
             {/* Check-out Date */}
-            <div className="mb-6">
+            <motion.div
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={headingViewport}
+                className="mb-6"
+            >
                 <label className="text-sm font-semibold text-gray-800 mb-1.5 block">
                     Check-out Date
                 </label>
@@ -139,10 +159,16 @@ export default function BookingCard({ pricePerWeek }: BookingCardProps) {
                         />
                     </PopoverContent>
                 </Popover>
-            </div>
+            </motion.div>
 
             {/* Price Breakdown */}
-            <div className="rounded-xl bg-[#FFF8F3] border border-orange-100 p-4 mb-6">
+            <motion.div
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={headingViewport}
+                className="rounded-xl bg-[#FFF8F3] border border-orange-100 p-4 mb-6"
+            >
                 <div className="flex justify-between items-center mb-3">
                     <span className="text-sm text-gray-600">
                         €{Math.round(pricePerDay)} × {days} days
@@ -178,16 +204,23 @@ export default function BookingCard({ pricePerWeek }: BookingCardProps) {
                         €{total.toFixed(2)}
                     </span>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Book Now Button */}
-            <Button
-                onClick={handleBookNow}
-                disabled={!checkIn || !checkOut}
-                className="w-full h-12 rounded-xl bg-[#F97316] hover:bg-[#ea580c] text-white text-base font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-orange-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            <motion.div
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={headingViewport}
             >
-                Book Now
-            </Button>
+                <Button
+                    onClick={handleBookNow}
+                    disabled={!checkIn || !checkOut}
+                    className="w-full h-12 rounded-xl bg-[#F97316] hover:bg-[#ea580c] text-white text-base font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-orange-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Book Now
+                </Button>
+            </motion.div>
         </div>
     );
 }

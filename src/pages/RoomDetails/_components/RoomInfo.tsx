@@ -4,6 +4,11 @@ import RoomSizeIcon from "@/assets/rooms/room-size.svg?react";
 import type { Room } from "@/types/room";
 import { Separator } from "@/components/ui/separator";
 import ExcIcon from "@/assets/icons/exc.svg?react";
+import { motion } from "framer-motion";
+import {
+  headingViewport,
+  innerItemVariants,
+} from "@/lib/animations";
 
 interface RoomInfoProps extends Pick<
   Room,
@@ -35,11 +40,17 @@ export default function RoomInfo({
 }: RoomInfoProps) {
   return (
     <div className="w-full">
-      {/* Header: Title + Price + Location + Rating */}
+      {/* Header card is a static container now */}
       <div className="bg-[#fbfbfb] rounded-[30px] border border-gray-300 p-6 shadow-sm mb-6">
-        {/* top */}
+
+        {/* Individual elements are animated separately */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-          <div>
+          <motion.div
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+          >
             <h1 className="text-xl md:text-2xl font-bold text-gray-900">
               {title}
             </h1>
@@ -56,37 +67,84 @@ export default function RoomInfo({
                 </span>
               </div>
             </div>
-          </div>
-          <div className="text-right sm:min-w-[100px]">
+          </motion.div>
+
+          <motion.div
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-right sm:min-w-[100px]"
+          >
             <span className="text-2xl md:text-3xl font-bold text-[#F97316]">
               {price.replace("/week", "")}
             </span>
             <p className="text-sm text-gray-400">Per week</p>
-          </div>
+          </motion.div>
         </div>
-        <Separator className="my-4" />
+
+        <motion.div
+          variants={innerItemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+        >
+          <Separator className="my-4" />
+        </motion.div>
 
         {/* About this room */}
         <div className="mt-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">
+          <motion.h2
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-lg font-bold text-gray-900 mb-3"
+          >
             About this room
-          </h2>
-          <p className="text-sm text-gray-500 leading-relaxed">{aboutRoom}</p>
+          </motion.h2>
+          <motion.p
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-sm text-gray-500 leading-relaxed"
+          >
+            {aboutRoom}
+          </motion.p>
         </div>
 
         {/* About location */}
         <div className="mt-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">
+          <motion.h2
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-lg font-bold text-gray-900 mb-3"
+          >
             About location
-          </h2>
-          <p className="text-sm text-gray-500 leading-relaxed">
+          </motion.h2>
+          <motion.p
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-sm text-gray-500 leading-relaxed"
+          >
             {aboutLocation}
-          </p>
+          </motion.p>
         </div>
 
         {/* Room Type & Room Size */}
         <div className="flex items-center gap-8 mt-6">
-          <div className="flex items-center gap-3 ">
+          <motion.div
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="flex items-center gap-3 "
+          >
             <RoomTypeIcon className="w-16 h-16 p-3 rounded-lg bg-gray-100" />
             <div>
               <p className="text-base text-secondary-foreground">Room Type</p>
@@ -94,9 +152,15 @@ export default function RoomInfo({
                 {type}
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex items-center gap-3">
+          <motion.div
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="flex items-center gap-3"
+          >
             <RoomSizeIcon className="w-16 h-16 p-3 rounded-lg bg-gray-100" />
             <div>
               <p className="text-base text-secondary-foreground">Room Size</p>
@@ -104,35 +168,62 @@ export default function RoomInfo({
                 {roomSize}
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Amenities */}
         <div className="mt-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Amenities</h2>
+          <motion.h2
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-lg font-bold text-gray-900 mb-4"
+          >
+            Amenities
+          </motion.h2>
           <div className="grid grid-cols-2 gap-3">
             {amenities.map((amenity, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="px-6 py-[14px] rounded-xl  bg-gray-100 text-sm text-primary-foreground font-medium hover:border-gray-300 transition-colors"
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="px-6 py-[14px] rounded-xl bg-gray-100 text-sm text-primary-foreground font-medium hover:bg-gray-200 transition-colors"
               >
                 {amenity}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* House Rules */}
         <div className="mt-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">House Rules</h2>
+          <motion.h2
+            variants={innerItemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={headingViewport}
+            className="text-lg font-bold text-gray-900 mb-4"
+          >
+            House Rules
+          </motion.h2>
           <div className="flex flex-col gap-3">
             {houseRules.map((rule, index) => (
-              <div key={index} className="flex items-center gap-3">
+              <motion.div
+                key={index}
+                variants={innerItemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="flex items-center gap-3"
+              >
                 <ExcIcon className="w-6 h-6 shrink-0" />
                 <span className="text-lg text-secondary-foreground">
                   {rule}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

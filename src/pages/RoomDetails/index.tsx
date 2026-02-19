@@ -3,6 +3,13 @@ import { rooms } from "@/data/rooms";
 import RoomImageCarousel from "./_components/RoomImageCarousel";
 import RoomInfo from "./_components/RoomInfo";
 import BookingCard from "./_components/BookingCard";
+import HostProfile from "./_components/HostProfile";
+import Reviews from "./_components/Reviews";
+import RelevantRooms from "./_components/RelevantRooms";
+import { motion } from "framer-motion";
+import {
+  headingVariants,
+} from "@/lib/animations";
 
 // Room detail images from assets/rooms
 import roomImg1 from "@/assets/rooms/room-details (1).png";
@@ -12,9 +19,6 @@ import roomImg4 from "@/assets/rooms/room-details (3).jpg";
 import roomImg5 from "@/assets/rooms/room-details (4).jpg";
 import roomImg6 from "@/assets/rooms/room-details (5).jpg";
 import roomImg7 from "@/assets/rooms/room-details (6).jpg";
-import HostProfile from "./_components/HostProfile";
-import Reviews from "./_components/Reviews";
-import RelevantRooms from "./_components/RelevantRooms";
 
 const roomDetailImages = [
   roomImg1,
@@ -29,8 +33,6 @@ const roomDetailImages = [
 export default function RoomDetails() {
   const { id } = useParams<{ id: string }>();
   const room = rooms.find((r) => r.id === Number(id));
-
-  console.log("single trigged room", room);
 
   if (!room) {
     return (
@@ -51,21 +53,34 @@ export default function RoomDetails() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 lg:px-0 pt-8 pb-20">
-      {/* Top Section: Carousel + Right side placeholder */}
+      {/* Top Section: Carousel + Booking Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Carousel takes 2 cols */}
-        <div className="lg:col-span-2">
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          animate="visible"
+          className="lg:col-span-2"
+        >
           <RoomImageCarousel images={carouselImages} title={room.title} />
-        </div>
+        </motion.div>
 
         {/* Right side - Booking Card */}
-        <div className="hidden lg:block">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: 50 },
+            visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 20, delay: 0.2 } }
+          }}
+          initial="hidden"
+          animate="visible"
+          className="hidden lg:block"
+        >
           <div className="sticky top-8">
             <BookingCard
               pricePerWeek={parseInt(room.price.replace(/[^0-9]/g, ""))}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom Section: Room Info (left) */}
