@@ -3,14 +3,7 @@ import { Plus, Minus } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-    headingVariants,
-    headingViewport,
-    sequentialStaggerVariants,
-    fastCardVariants,
-    defaultViewport,
-    decentHover,
-} from "@/lib/animations";
+import { headingVariants, headingViewport } from "@/lib/animations";
 
 interface FAQItem {
     question: string;
@@ -40,19 +33,15 @@ export default function SupportFAQ() {
                     <span className="text-primary">Frequently</span> Asked Questions
                 </motion.h2>
 
-                {/* FAQ List — Original Gray Box Design restored */}
-                <motion.div
-                    variants={sequentialStaggerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={defaultViewport}
-                    className="space-y-4"
-                >
+                {/* FAQ List — matches the pattern fixed in FAQ.tsx */}
+                <div className="space-y-4">
                     {faqs.map((faq, index) => (
                         <motion.div
-                            key={index}
-                            variants={fastCardVariants}
-                            whileHover={decentHover}
+                            key={faq.question}
+                            variants={headingVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={headingViewport}
                             className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
                         >
                             <button
@@ -90,7 +79,7 @@ export default function SupportFAQ() {
                             </AnimatePresence>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

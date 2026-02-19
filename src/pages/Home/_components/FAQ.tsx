@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  headingVariants,
-  headingViewport,
-  sequentialStaggerVariants,
-  fastCardVariants,
-  defaultViewport,
-  decentHover,
-} from "@/lib/animations";
+import { headingVariants, headingViewport } from "@/lib/animations";
 
 interface FAQItem {
   question: string;
@@ -18,36 +11,30 @@ interface FAQItem {
 const initialFaqs: FAQItem[] = [
   {
     question: "What is Warmwelcome?",
-    answer:
-      "WarmWelcome is a trusted accommodation platform that connects students with verified hosts offering safe, comfortable places to stay. We focus on transparency, trust, and community to ensure a welcoming experience for both guests and hosts.",
+    answer: "WarmWelcome is a trusted accommodation platform...",
   },
   {
     question: "How do I book a room safely?",
-    answer:
-      "You can book safely through our verified payment system and by reviewing host profiles and student feedback before making a commitment.",
+    answer: "You can book safely through our verified payment system...",
   },
   {
     question: "Where is Warmwelcome available?",
-    answer:
-      "We are currently operating throughout Ireland, focusing on major student hubs and cities.",
+    answer: "We are currently operating throughout Ireland...",
   },
   {
     question: "Who can use this platform?",
-    answer:
-      "The platform is designed for students seeking mid-term accommodation and local hosts who have spare rooms and want to support the student community.",
+    answer: "The platform is designed for students and local hosts...",
   },
 ];
 
 const extraFaqs: FAQItem[] = [
   {
     question: "Are there any service fees?",
-    answer:
-      "We maintain a transparent fee structure for both hosts and guests to cover platform maintenance and verification services.",
+    answer: "We maintain a transparent fee structure for both hosts and guests...",
   },
   {
     question: "How does the verification process work?",
-    answer:
-      "Every host undergoes a strict identity check and property verification process to ensure the safety of our student community.",
+    answer: "Every host undergoes a strict identity check and property verification...",
   },
 ];
 
@@ -68,31 +55,15 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-white py-20 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
-        {/* Heading — Decent Animation */}
-        <motion.h2
-          variants={headingVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={headingViewport}
-          className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground"
-        >
+        <motion.h2 variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport} className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
           <span className="text-primary">Frequently</span> Asked Questions
         </motion.h2>
 
-        {/* FAQ rows — Original Gray Box Design restored */}
-        <motion.div
-          key={faqs.length}
-          variants={sequentialStaggerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
-          className="space-y-4 mb-10"
-        >
+        <div className="space-y-4 mb-10">
           {faqs.map((faq, index) => (
             <motion.div
-              key={index}
-              variants={fastCardVariants}
-              whileHover={decentHover}
+              key={faq.question}
+              variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport}
               className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
             >
               <button
@@ -111,6 +82,7 @@ const FAQ: React.FC = () => {
                 </div>
               </button>
 
+              {/* Only animate each FAQ content */}
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -130,24 +102,17 @@ const FAQ: React.FC = () => {
               </AnimatePresence>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* See More Button */}
         {hasMore && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={defaultViewport}
-            transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            className="flex justify-center"
-          >
-            <button
+          <div className="flex justify-center">
+            <motion.button
               onClick={loadMore}
               className="bg-[#F97316] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#ea580c] transition shadow-sm"
             >
-              see more FAQs
-            </button>
-          </motion.div>
+              See more FAQs
+            </motion.button>
+          </div>
         )}
       </div>
     </section>

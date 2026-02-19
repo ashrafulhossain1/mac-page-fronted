@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  headingVariants,
-  headingViewport,
-  sequentialStaggerVariants,
-  fastCardVariants,
-  defaultViewport,
-  decentHover,
-} from "@/lib/animations";
+import { headingVariants, headingViewport } from "@/lib/animations";
 
 interface FAQItem {
   question: string;
@@ -18,43 +11,35 @@ interface FAQItem {
 const hostFaqs: FAQItem[] = [
   {
     question: "Do I have to accept every booking?",
-    answer:
-      "No. You can chat with guests and accept only the bookings you're comfortable with. You have full control over who stays in your home.",
+    answer: "No. You can chat with guests and accept only the bookings you're comfortable with. You have full control over who stays in your home.",
   },
   {
     question: "How do I list my space?",
-    answer:
-      "Listing your space is easy. Just create a host account, provide details about your room (location, price, amenities), upload some photos, and you're ready to go!",
+    answer: "Listing your space is easy. Just create a host account, provide details about your room (location, price, amenities), upload some photos, and you're ready to go!",
   },
   {
     question: "Is hosting safe?",
-    answer:
-      "Safety is our priority. We verify all guests through ID checks and profile verification. You can also chat with them beforehand to get to know them.",
+    answer: "Safety is our priority. We verify all guests through ID checks and profile verification. You can also chat with them beforehand to get to know them.",
   },
   {
     question: "How do I get paid?",
-    answer:
-      "Payments are processed securely through our platform via Stripe. Once a booking is confirmed and the guest moves in, your payment is sent directly to your account.",
+    answer: "Payments are processed securely through our platform via Stripe. Once a booking is confirmed and the guest moves in, your payment is sent directly to your account.",
   },
   {
     question: "What happens if a guest cancels?",
-    answer:
-      "Our cancellation policies are designed to protect hosts. Depending on when the guest cancels, you may be eligible for a payout. You can choose a policy that works best for you.",
+    answer: "Our cancellation policies are designed to protect hosts. Depending on when the guest cancels, you may be eligible for a payout. You can choose a policy that works best for you.",
   },
   {
     question: "Can I set my own house rules?",
-    answer:
-      "Absolutely! You can specify house rules regarding pets, smoking, quiet hours, and guests. Guests must agree to your rules before booking.",
+    answer: "Absolutely! You can specify house rules regarding pets, smoking, quiet hours, and guests. Guests must agree to your rules before booking.",
   },
   {
     question: "Do I need special insurance?",
-    answer:
-      "We recommend contacting your insurance provider to ensure you are covered for short-term or mid-term rentals. Some policies may require an add-on.",
+    answer: "We recommend contacting your insurance provider to ensure you are covered for short-term or mid-term rentals. Some policies may require an add-on.",
   },
   {
     question: "Is there support if something goes wrong?",
-    answer:
-      "Yes, our 24/7 host support team is always available to assist you with any issues or questions you may have during a stay.",
+    answer: "Yes, our 24/7 host support team is always available to assist you with any issues or questions you may have during a stay.",
   },
 ];
 
@@ -71,34 +56,24 @@ const HostFAQ: React.FC = () => {
   return (
     <section className="bg-secondary py-24 px-6 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <motion.div
+        <motion.h2
           variants={headingVariants}
           initial="hidden"
           whileInView="visible"
           viewport={headingViewport}
-          className="text-center mb-16"
+          className="text-center text-4xl md:text-5xl font-bold mb-12 text-black"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-black">
-            <span className="text-[#F97316]">Frequently</span> Asked Questions
-          </h2>
-          <p className="text-gray-500 mt-4 text-lg">
-            Find answers to common questions about hosting with us
-          </p>
-        </motion.div>
+          <span className="text-[#F97316]">Frequently</span> Asked Questions
+        </motion.h2>
 
-        <motion.div
-          key={displayedFaqs.length}
-          variants={sequentialStaggerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
-          className="space-y-4 mb-10"
-        >
+        <div className="space-y-4 mb-10">
           {displayedFaqs.map((faq, index) => (
             <motion.div
-              key={index}
-              variants={fastCardVariants}
-              whileHover={decentHover}
+              key={faq.question}
+              variants={headingVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={headingViewport}
               className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
             >
               <button
@@ -136,23 +111,17 @@ const HostFAQ: React.FC = () => {
               </AnimatePresence>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {!showAll && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={defaultViewport}
-            transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            className="flex justify-center"
-          >
-            <button
+          <div className="flex justify-center">
+            <motion.button
               onClick={() => setShowAll(true)}
               className="bg-[#F97316] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#ea580c] transition shadow-sm text-lg"
             >
               See more Questions
-            </button>
-          </motion.div>
+            </motion.button>
+          </div>
         )}
       </div>
     </section>
