@@ -1,5 +1,16 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  headingVariants,
+  headingViewport,
+  sequentialStaggerVariants,
+  fastCardVariants,
+  innerStaggerVariants,
+  innerItemVariants,
+  defaultViewport,
+  decentHover,
+} from "@/lib/animations";
 
 interface FAQItem {
   question: string;
@@ -44,7 +55,7 @@ const extraFaqs: FAQItem[] = [
 
 const FAQ: React.FC = () => {
   const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Default first one open
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [hasMore, setHasMore] = useState(true);
 
   const toggleFAQ = (index: number) => {
@@ -59,17 +70,32 @@ const FAQ: React.FC = () => {
   return (
     <section className="bg-white py-20 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <h2 className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
-          <span className="text-primary">Frequently</span> Asked Questions
-        </h2>
 
-        {/* FAQ List */}
-        <div className="space-y-4 mb-10">
+        {/* Heading */}
+        <motion.h2
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+          className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground"
+        >
+          <span className="text-primary">Frequently</span> Asked Questions
+        </motion.h2>
+
+        {/* FAQ rows — one by one */}
+        <motion.div
+          variants={sequentialStaggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="space-y-4 mb-10"
+        >
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-[#EDEDED] rounded-[20px] overflow-hidden transition-all duration-300"
+              variants={fastCardVariants}
+              whileHover={decentHover}
+              className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
             >
               <button
                 onClick={() => toggleFAQ(index)}
@@ -87,30 +113,40 @@ const FAQ: React.FC = () => {
                 </div>
               </button>
 
-              <div
-                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index
-                    ? "pb-8 max-h-40 opacity-100"
-                    : "max-h-0 opacity-0"
+              <motion.div
+                variants={innerStaggerVariants}
+                initial="hidden"
+                animate={openIndex === index ? "visible" : "hidden"}
+                className={`px-6 md:px-8 overflow-hidden transition-all duration-300 ${openIndex === index ? "pb-8 max-h-40 opacity-100" : "max-h-0 opacity-0"
                   }`}
               >
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                <motion.p
+                  variants={innerItemVariants}
+                  className="text-gray-600 leading-relaxed text-base md:text-lg"
+                >
                   {faq.answer}
-                </p>
-              </div>
-            </div>
+                </motion.p>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* See More Button */}
         {hasMore && (
-          <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={defaultViewport}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            className="flex justify-center"
+          >
             <button
               onClick={loadMore}
               className="bg-[#F97316] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#ea580c] transition shadow-sm"
             >
               see more FAQs
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

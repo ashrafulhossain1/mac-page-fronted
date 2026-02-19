@@ -51,7 +51,7 @@ const Partners = ({ className }: { className?: string }) => {
           initial={{ x: 0 }}
           animate={{ x: ["0%", "-50%"] }}
           transition={{
-            duration: 10, // slower = smoother
+            duration: 7, // slower = smoother
             ease: "linear",
             repeat: Infinity,
           }}

@@ -1,5 +1,14 @@
+import { motion } from "framer-motion";
 import { ReviewCard } from "@/components/ReviewCard";
 import avatarImg from "@/assets/home/Ellipse 1.png";
+import {
+  headingViewport,
+  sequentialStaggerVariants,
+  fastCardVariants,
+  defaultViewport,
+  decentHover,
+  headingVariants,
+} from "@/lib/animations";
 
 interface Testimonial {
   id: number;
@@ -10,7 +19,6 @@ interface Testimonial {
   avatar: string;
 }
 
-// Direct object paths using public/images/home folder
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -40,31 +48,48 @@ const testimonials: Testimonial[] = [
 
 export function GuestsSay() {
   return (
-    <section className="w-full py-24 ">
+    <section className="w-full py-24">
       <div className="w-full max-w-[1280px] mx-auto px-4">
         {/* Title */}
-        <div className="text-center mb-16">
+        <motion.div
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold">
             What Our <span className="text-orange-500">Guests</span> Say
           </h2>
           <p className="text-gray-500 mt-4 text-lg">
             Hear directly from our guests who stayed with us
           </p>
-        </div>
+        </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Review cards — one by one */}
+        <motion.div
+          variants={sequentialStaggerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {testimonials.map((testimonial) => (
-            <ReviewCard
+            <motion.div
               key={testimonial.id}
-              rating={testimonial.rating}
-              text={testimonial.text}
-              author={testimonial.author}
-              role={testimonial.role}
-              avatar={testimonial.avatar}
-            />
+              variants={fastCardVariants}
+              whileHover={decentHover}
+            >
+              <ReviewCard
+                rating={testimonial.rating}
+                text={testimonial.text}
+                author={testimonial.author}
+                role={testimonial.role}
+                avatar={testimonial.avatar}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
