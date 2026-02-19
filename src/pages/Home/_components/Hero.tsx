@@ -5,15 +5,42 @@ import bannerImg from "@/assets/home/banner.jpg";
 import SearchCard from "./SearchCard";
 import { useEffect, useRef } from "react";
 import { gsapAnimate } from "@/lib/gsapAnimations";
+import useModal from "@/components/Modal/useModal";
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const { open } = useModal();
 
   useEffect(() => {
     // Using the shared 'heroEnter' preset for full cinematic effect
     const ctx = gsapAnimate.heroEnter(heroRef);
     return () => ctx.revert();
   }, []);
+
+  const openModal = (type: string) => {
+    open([
+      {
+        modalId: "modal",
+        openId: "authentication",
+      },
+      {
+        modalId: "tab",
+        openId: "login",
+      },
+      {
+        modalId: "authType",
+        openId: type,
+      },
+      {
+        modalId: "user-type-selector",
+        openId: type === "host" ? "false" : "true",
+      },
+      {
+        modalId: "user-type-selected",
+        openId: type === "host" ? "true" : "false",
+      },
+    ]);
+  };
 
   return (
     <section
@@ -47,7 +74,7 @@ const Hero = () => {
             className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]/95 hover:bg-[#5F6B3E] hover:opacity-100 text-white transition-all duration-300"
             asChild
           >
-            <Link to="#">
+            <Link to="/browse">
               <Search className="w-5 h-5" />
               I’m a Guest → Find a Room
             </Link>
@@ -56,9 +83,9 @@ const Hero = () => {
           <Button
             variant="host"
             className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] bg-primary/90 text-white hover:bg-primary hover:brightness-75 transition-all duration-300"
-            asChild
+            onClick={() => openModal("host")}
           >
-            <Link to="/dashboard/all-listings">Become a Host Partner</Link>
+            Become a Host Partner
           </Button>
         </div>
       </div>
