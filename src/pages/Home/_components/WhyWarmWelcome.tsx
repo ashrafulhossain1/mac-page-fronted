@@ -9,7 +9,7 @@ import whyWarm7 from "@/assets/home/why-warm-7.svg";
 import {
   innerStaggerVariants,
   innerItemVariants,
-  defaultViewport,
+
 } from "@/lib/animations";
 
 interface Feature {

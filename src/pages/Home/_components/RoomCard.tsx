@@ -1,8 +1,15 @@
-import { Star, MapPin, Wifi, BedDouble, ShowerHead, Wind, ArrowUpRight } from "lucide-react";
+import {
+  Star,
+  MapPin,
+  Wifi,
+  BedDouble,
+  ShowerHead,
+  Wind,
+  ArrowUpRight,
+} from "lucide-react";
 import { Link } from "react-router";
 import type { Room } from "@/types/room";
 import { motion } from "framer-motion";
-import { Separator } from "@/components/ui/separator"
 
 type RoomCardProps = Pick<
   Room,
@@ -60,8 +67,7 @@ const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <Link to={`/browse/${id}`} className="block group">
-      <div className="relative w-full overflow-hidden rounded-[28px] bg-white border p-4 border-gray-300 hover:shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
-
+      <div className="relative w-full overflow-hidden rounded-[28px] bg-[#fbfbfb] border p-4 border-gray-300 hover:shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
         {/* ── Image ── */}
         <div className="relative overflow-hidden rounded-[16px] h-[220px] md:h-[270px] mb-4">
           <img
@@ -126,16 +132,16 @@ const RoomCard = ({
             {amenities.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-1.5 bg-gray-50 border border-gray-100 rounded-full px-3 py-1 text-xs text-gray-500 font-medium"
+                className="flex items-center gap-1.5   rounded-full px-3 py-1 text-xs text-gray-500 font-medium"
               >
-                <Icon size={13} strokeWidth={1.8} />
-                {label}
+                <Icon size={24} strokeWidth={1.8} />
+                {/* {label} */}
               </div>
             ))}
           </motion.div>
 
           {/* Divider */}
-          <div className="border-b mb-4 md:mb-6 mt-4 md:mt-7" />
+          <div className="border-b mb-3 md:mb-5 mt-3 md:mt-5" />
 
           {/* Footer */}
           <motion.div
@@ -152,7 +158,6 @@ const RoomCard = ({
             </span>
           </motion.div>
         </motion.div>
-
       </div>
     </Link>
   );

@@ -104,11 +104,11 @@ export default function FeaturedRooms() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ ...appleSpring, delay: 0.35 }}
-        className="flex flex-col md:flex-row justify-center mt-6 items-center"
+        className="flex flex-col md:flex-row justify-center mt-6 md:mt-8 items-center"
       >
         <Button
           variant="host"
-          className="px-8 py-3 text-[18px] font-semibold rounded-[16px] flex items-center gap-2 bg-primary text-white hover:bg-primary/80 transition-colors mt-6 md:mt-0"
+          className="px-8 py-3 text-[18px] w-[247px] h-[60px] font-semibold rounded-[16px] flex items-center gap-2 bg-primary text-white hover:bg-primary/80 transition-colors mt-6 md:mt-0"
           asChild
         >
           <Link to="/browse">

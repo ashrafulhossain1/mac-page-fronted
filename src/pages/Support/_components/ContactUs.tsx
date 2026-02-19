@@ -2,8 +2,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import {
-    headingVariants,
-    headingViewport,
+
     sequentialStaggerVariants,
     fastCardVariants,
     defaultViewport,

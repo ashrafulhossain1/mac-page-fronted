@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import RoomCard from "../../Home/_components/RoomCard";
 import { rooms } from "@/data/rooms";
@@ -14,7 +14,7 @@ import {
   sequentialStaggerVariants,
   fastCardVariants,
   decentHover,
-  defaultViewport,
+
 } from "@/lib/animations";
 
 export default function Rooms() {
