@@ -10,7 +10,9 @@ export default function HostProfile() {
       {/* Meet your Host */}
       <Card className="bg-[#fbfbfb] rounded-[30px] border border-gray-300 p-6 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold">Meet your Host</CardTitle>
+          <CardTitle className="text-xl font-semibold">
+            Meet your Host
+          </CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-6">
@@ -37,11 +39,13 @@ export default function HostProfile() {
                 <div className="flex items-center gap-4 text-sm text-zinc-500">
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-orange-400 text-orange-400" />
-                    <span className="font-medium text-zinc-700">4.9</span> rating
+                    <span className="font-medium text-zinc-700">4.9</span>{" "}
+                    rating
                   </div>
                   <div className="flex items-center gap-1">
                     <Home className="h-4 w-4" />
-                    <span className="font-medium text-zinc-700">3</span> Listings
+                    <span className="font-medium text-zinc-700">3</span>{" "}
+                    Listings
                   </div>
                 </div>
               </div>
@@ -60,10 +64,11 @@ export default function HostProfile() {
           {/* Description */}
           <p className="text-zinc-600 leading-relaxed text-sm sm:text-base">
             This room is part of a safe, quiet, and friendly home, ideal for
-            students and short-term guests. The space is kept clean, comfortable,
-            and exactly as described. Located in a convenient area with easy
-            access to transport, shops, and local amenities. Privacy is respected,
-            with support always available to help you feel at home.
+            students and short-term guests. The space is kept clean,
+            comfortable, and exactly as described. Located in a convenient area
+            with easy access to transport, shops, and local amenities. Privacy
+            is respected, with support always available to help you feel at
+            home.
           </p>
         </CardContent>
       </Card>
@@ -73,7 +78,7 @@ export default function HostProfile() {
         <h2 className="text-xl font-bold text-gray-900 mb-4">Location</h2>
         <div className="w-full h-[400px] rounded-2xl overflow-hidden border border-gray-200">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.7098308477498!2d-6.260309684153064!3d53.34980597997789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e844f3e6dcb%3A0x981086c2a5765c66!2sDublin%20City%20Centre!5e0!3m2!1sen!2sie!4v1700000000000!5m2!1sen!2sie"
+            src={`https://maps.google.com/maps?q=${23.7742661},${90.3529205}&hl=es&z=16&output=embed`}
             width="100%"
             height="100%"
             style={{ border: 0 }}

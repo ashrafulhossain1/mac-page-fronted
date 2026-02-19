@@ -35,8 +35,8 @@ const Partners = ({ className }: { className?: string }) => {
       viewport={{ once: true }}
       className={cn(
         "bg-black py-10 overflow-hidden w-full",
-        isHost ? "mt-10" : "mt-64 md:mt-40",
-        className
+        isHost ? "mt-10 md:mt-20" : "mt-64 md:mt-40",
+        className,
       )}
     >
       <div className="container mx-auto px-4 mb-8 text-center">

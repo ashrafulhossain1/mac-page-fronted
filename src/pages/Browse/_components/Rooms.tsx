@@ -3,6 +3,12 @@ import RoomCard from "../../Home/_components/RoomCard";
 import { rooms } from "@/data/rooms";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal, ArrowLeft, ArrowRight } from "lucide-react";
+import AdvanceFilters from "@/pages/Home/_components/AdvanceFilters";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function Rooms() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +26,8 @@ export default function Rooms() {
     }
   };
 
+  const [openFilter, setOpenFilter] = useState(false);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-[80px]">
       {/* Filter Bar */}
@@ -30,10 +38,20 @@ export default function Rooms() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button className="bg-black text-white hover:bg-black/90 rounded-full px-6 py-2.5 h-auto text-sm font-medium flex items-center gap-2">
-            Advance Filter
-            <SlidersHorizontal size={16} className="rotate-90" />
-          </Button>
+          <Popover open={openFilter} onOpenChange={setOpenFilter}>
+            <PopoverTrigger asChild>
+              <Button className="bg-black text-white hover:bg-black/90 rounded-[16px] px-6 py-2.5 h-auto text-sm font-medium flex items-center gap-2">
+                Advance Fil xter
+                <SlidersHorizontal size={16} className="rotate-90" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto p-0 border-none shadow-none bg-transparent"
+              align="end"
+            >
+              <AdvanceFilters onClose={() => setOpenFilter(false)} />
+            </PopoverContent>
+          </Popover>
 
           <Button
             variant="outline"
