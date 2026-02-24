@@ -82,8 +82,8 @@ export default function HostProfile() {
         </motion.div>
       </div>
 
-      {/* Location card is standard div now */}
-      <div className="bg-[#fbfbfb] rounded-[30px] border border-gray-300 p-6 shadow-sm">
+      {/* Location card is standard div now (dont need location) */}
+      {/* <div className="bg-[#fbfbfb] rounded-[30px] border border-gray-300 p-6 shadow-sm">
         <motion.div
           variants={innerItemVariants}
           initial="hidden"
@@ -104,7 +104,7 @@ export default function HostProfile() {
             />
           </div>
         </motion.div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
-import { heroImages, guestBlogs, hostBlogs } from "../../data/data";
+import { heroImages, hostBlogs } from "../../data/data";
 import type { BlogPost } from "../../data/data";
-import BlogHero from "./_components/BlogHero";
-import BlogCard from "./_components/BlogCard";
-import Pagination from "./_components/Pagination";
-import BlogSort from "./_components/BlogSort";
+import BlogHero from "../Blog/_components/BlogHero";
+import BlogCard from "../Blog/_components/BlogCard";
+import Pagination from "../Blog/_components/Pagination";
+import BlogSort from "../Blog/_components/BlogSort";
 import { motion } from "framer-motion";
 import {
     sequentialStaggerVariants,
@@ -16,17 +14,11 @@ import {
 
 const POSTS_PER_PAGE = 6;
 
-interface BlogProps {
-    type?: "guest" | "host";
-}
-
-export default function Blog({ type }: BlogProps) {
-    const role = useSelector((state: RootState) => state.userRole.role);
-    const isHost = type ? type === "host" : role === "host";
-
-    const blogs: BlogPost[] = isHost ? hostBlogs : guestBlogs;
-    const heroImage = isHost ? heroImages.host : heroImages.guest;
-    const title = isHost ? "Host Blog" : "Guest Blog";
+export default function HostBlog() {
+    const isHost = true;
+    const blogs: BlogPost[] = hostBlogs;
+    const heroImage = heroImages.host;
+    const title = "Host Blog";
 
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");

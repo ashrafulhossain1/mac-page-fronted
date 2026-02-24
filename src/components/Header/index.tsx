@@ -71,15 +71,14 @@ export default function Header() {
   ];
 
   return (
-    <header className="w-full bg-white border-gray-100 sticky top-0 z-500">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-1 py-5 md:py-6">
+    <header className="w-full bg-white border-gray-100 sticky top-0 z-40">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-1 py-5 md:py-6">
         {/* Logo */}
         <div className="shrink-0">
           <Link to="/" className="cursor-pointer">
-            <h1 className="text-[22px] lg:text-[24px] xl:text-[26px] font-bold tracking-tight leading-tight">
+            <h1 className="text-[18px] lg:text-[24px] xl:text-[26px] font-bold tracking-tight leading-tight">
               <span className="text-primary">Warm</span>
-              <br className="hidden md:block lg:hidden" />
-              <span className="md:inline lg:hidden"> </span>
+              <br className=" md:block lg:hidden" />
               <span className="text-primary-foreground">Welcome</span>
             </h1>
           </Link>
@@ -107,8 +106,8 @@ export default function Header() {
                   active = location.pathname === "/" && location.hash === "";
                 }
                 return `text-[14px] lg:text-[16px] xl:text-[18px] font-semibold transition-all duration-200 ${active
-                    ? "text-primary"
-                    : "text-secondary-foreground hover:text-primary"
+                  ? "text-primary"
+                  : "text-secondary-foreground hover:text-primary"
                   }`;
               }}
             >
@@ -143,10 +142,10 @@ export default function Header() {
             <>
               <Button
                 variant="login"
-                className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 xl:px-6 py-2 lg:py-3"
+                className="hidden  md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 xl:px-6 py-2 lg:py-3"
                 onClick={() => openModal("normal")}
               >
-                Login
+                Log in
               </Button>
               <Button
                 variant="host"
@@ -167,16 +166,16 @@ export default function Header() {
           >
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-0 rotate-90 scale-50"
-                  : "opacity-100 rotate-0 scale-100"
+                ? "opacity-0 rotate-90 scale-50"
+                : "opacity-100 rotate-0 scale-100"
                 }`}
             >
               <Menu className="h-6 w-6 text-gray-800" />
             </span>
             <span
               className={`absolute transition-all duration-300 ease-in-out ${mobileMenuOpen
-                  ? "opacity-100 rotate-0 scale-100"
-                  : "opacity-0 -rotate-90 scale-50"
+                ? "opacity-100 rotate-0 scale-100"
+                : "opacity-0 -rotate-90 scale-50"
                 }`}
             >
               <X className="h-6 w-6 text-gray-800" />
@@ -188,8 +187,8 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       <div
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300 ${mobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
           }`}
         onClick={() => setMobileMenuOpen(false)}
       />
@@ -229,7 +228,7 @@ export default function Header() {
                   className="w-full text-[16px] font-semibold rounded-[16px] py-3"
                   onClick={() => openModal("normal")}
                 >
-                  Login
+                  Log in
                 </Button>
                 <Button
                   variant="host"
@@ -265,8 +264,8 @@ export default function Header() {
                     }
 
                     return `text-[17px] font-semibold px-4 py-3 rounded-xl transition-all duration-200 ${active
-                        ? "text-primary bg-primary/5"
-                        : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
+                      ? "text-primary bg-primary/5"
+                      : "text-secondary-foreground hover:text-primary hover:bg-gray-50"
                       }`;
                   }}
                   style={{

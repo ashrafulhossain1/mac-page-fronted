@@ -3,10 +3,7 @@ import { Instagram, Facebook, Twitter, ArrowRight } from "lucide-react";
 import RoleToggle from "./RoleToggle";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
-import {
-  headingViewport,
-  innerItemVariants,
-} from "@/lib/animations";
+import { headingViewport, innerItemVariants } from "@/lib/animations";
 
 const Footer: React.FC = () => {
   return (
@@ -14,7 +11,6 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Main Grid Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
           {/* Brand Section */}
           <motion.div
             variants={innerItemVariants}
@@ -44,7 +40,13 @@ const Footer: React.FC = () => {
               Quick Links
             </motion.h3>
             <ul className="space-y-4 text-gray-300">
-              {["Browse", "List Room", "Our Story", "Host Blog", "Guest Blog"].map((text, i) => (
+              {[
+                "Browse",
+                "List Room",
+                "Our Story",
+                "Host Blog",
+                "Guest Blog",
+              ].map((text, i) => (
                 <motion.li
                   key={text}
                   variants={innerItemVariants}
@@ -55,10 +57,15 @@ const Footer: React.FC = () => {
                 >
                   <Link
                     to={
-                      text === "Our Story" ? "/our-story" :
-                        text === "List Room" ? "/dashboard/all-listings" :
-                          text.includes("Blog") ? "/blog" :
-                            "/browse"
+                      text === "Our Story"
+                        ? "/our-story"
+                        : text === "List Room"
+                          ? "/dashboard/all-listings"
+                          : text === "Host Blog"
+                            ? "/host-blog"
+                            : text === "Guest Blog"
+                              ? "/guest-blog"
+                              : "/browse"
                     }
                     className="hover:text-white transition"
                   >
@@ -84,7 +91,7 @@ const Footer: React.FC = () => {
               {[
                 { icon: Instagram, label: "Instagram" },
                 { icon: Facebook, label: "Facebook" },
-                { icon: Twitter, label: "X" }
+                { icon: Twitter, label: "X" },
               ].map((social, i) => (
                 <motion.li
                   key={social.label}
@@ -98,7 +105,9 @@ const Footer: React.FC = () => {
                   <div className="bg-[#F97316] p-2 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#ea580c]">
                     <social.icon size={20} className="text-white" />
                   </div>
-                  <span className="text-gray-300 group-hover:text-white transition-colors">{social.label}</span>
+                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                    {social.label}
+                  </span>
                 </motion.li>
               ))}
             </ul>
@@ -136,7 +145,15 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400"
         >
-          <p>hello@warmwelcome.ie</p>
+          <div className="flex items-center gap-8">
+            <p>hello@warmwelcome.ie</p>
+            <Link
+              to="/support#contact-us"
+              className="text-[#F97316] hover:text-[#ea580c] font-medium transition"
+            >
+              Contact Us
+            </Link>
+          </div>
           <div className="flex gap-8 mt-4 md:mt-0">
             <Link to="/term-condition" className="hover:text-white transition">
               Terms & conditions

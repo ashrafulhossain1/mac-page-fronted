@@ -6,11 +6,7 @@ import whyWarm4 from "@/assets/home/why-warm-4.svg";
 import whyWarm5 from "@/assets/home/why-warm-5.svg";
 import whyWarm6 from "@/assets/home/why-warm-6.svg";
 import whyWarm7 from "@/assets/home/why-warm-7.svg";
-import {
-  innerStaggerVariants,
-  innerItemVariants,
-
-} from "@/lib/animations";
+import { innerStaggerVariants, innerItemVariants } from "@/lib/animations";
 
 interface Feature {
   title: string;
@@ -51,7 +47,6 @@ const WhyWarmWelcome = () => {
   return (
     <div className="bg-secondary min-h-screen font-sans text-[#1A1A1A]">
       <section className="py-20 px-6 max-w-7xl mx-auto">
-
         {/* Title Animation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -77,7 +72,7 @@ const WhyWarmWelcome = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-[30px]"
         >
           {features.map((item, idx) => (
             <motion.div
@@ -87,7 +82,7 @@ const WhyWarmWelcome = () => {
                 y: -3,
                 transition: { type: "spring", stiffness: 150, damping: 25 },
               }}
-              className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-500"
+              className="bg-white md:h-[303px] p-4 md:p-6 rounded-[24px] border border-gray-100  hover:shadow-lg transition-shadow duration-500"
             >
               <motion.div
                 variants={innerStaggerVariants}
@@ -98,21 +93,26 @@ const WhyWarmWelcome = () => {
               >
                 <motion.div
                   variants={innerItemVariants}
-                  className={`${item.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}
+                  className={` w-14 h-14 border p-2 bg-gray-200 rounded-2xl flex items-center justify-center mb-6`}
                 >
                   {item.icon}
                 </motion.div>
-                <motion.h3 variants={innerItemVariants} className="text-xl font-bold mb-3">
+                <motion.h3
+                  variants={innerItemVariants}
+                  className="text-xl md:text-[22px] font-bold mb-3 md:mb-4"
+                >
                   {item.title}
                 </motion.h3>
-                <motion.p variants={innerItemVariants} className="text-gray-500 leading-relaxed text-sm">
+                <motion.p
+                  variants={innerItemVariants}
+                  className="text-gray-500 leading-relaxed text-sm md:text-base"
+                >
                   {item.description}
                 </motion.p>
               </motion.div>
             </motion.div>
           ))}
         </motion.div>
-
       </section>
     </div>
   );
@@ -123,44 +123,90 @@ export default WhyWarmWelcome;
 const features: Feature[] = [
   {
     title: "Safe, Verified Homes",
-    description: "Trusted listings give you peace of mind from booking to moving in.",
-    icon: (<img src={whyWarm7} alt="Safe, Verified Homes" className="w-full h-full object-contain" />),
+    description:
+      "Trusted listings give you peace of mind from booking to moving in.",
+    icon: (
+      <img
+        src={whyWarm7}
+        alt="Safe, Verified Homes"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-blue-50",
   },
   {
     title: "All-Inclusive, Transparent Pricing",
-    description: "Weekly price — no extra bills, no hidden fees — so you always know what you're paying.",
-    icon: (<img src={whyWarm6} alt="All-Inclusive, Transparent Pricing" className="w-full h-full object-contain" />),
+    description:
+      "Weekly price — no extra bills, no hidden fees — so you always know what you're paying.",
+    icon: (
+      <img
+        src={whyWarm6}
+        alt="All-Inclusive, Transparent Pricing"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-orange-50",
   },
   {
     title: "Move-In Ready",
     description: "Fully furnished rooms for a stress-free start.",
-    icon: (<img src={whyWarm5} alt="Move-In Ready" className="w-full h-full object-contain" />),
+    icon: (
+      <img
+        src={whyWarm5}
+        alt="Move-In Ready"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-green-50",
   },
   {
     title: "Responsive Support",
     description: "Local, reliable help whenever you need it.",
-    icon: (<img src={whyWarm4} alt="Responsive Support" className="w-full h-full object-contain" />),
+    icon: (
+      <img
+        src={whyWarm4}
+        alt="Responsive Support"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-purple-50",
   },
   {
     title: "Warm & Inclusive Community",
     description: "Inclusive environment helping you feel at home from day one.",
-    icon: (<img src={whyWarm3} alt="Warm & Inclusive Community" className="w-full h-full object-contain" />),
+    icon: (
+      <img
+        src={whyWarm3}
+        alt="Warm & Inclusive Community"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-cyan-50",
   },
   {
     title: "Safe & Respectful Living Standards",
-    description: "Enjoy comfortable, private accommodation where respectful house rules and clear communication make settling in effortless.",
-    icon: (<img src={whyWarm2} alt="Safe & Respectful Living Standards" className="w-full h-full object-contain" />),
+    description:
+      "Enjoy comfortable, private accommodation where respectful house rules and clear communication make settling in effortless.",
+    icon: (
+      <img
+        src={whyWarm2}
+        alt="Safe & Respectful Living Standards"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-red-50",
   },
   {
     title: "Practical Guidance",
-    description: "Helpful guidance on essentials like banking, transport, orientation, and local services.",
-    icon: (<img src={whyWarm1} alt="Practical Guidance" className="w-full h-full object-contain" />),
+    description:
+      "Helpful guidance on essentials like banking, transport, orientation, and local services.",
+    icon: (
+      <img
+        src={whyWarm1}
+        alt="Practical Guidance"
+        className="w-full h-full object-contain"
+      />
+    ),
     iconBg: "bg-yellow-50",
   },
 ];

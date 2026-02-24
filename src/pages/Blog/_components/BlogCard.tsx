@@ -6,13 +6,16 @@ import { decentHover } from "@/lib/animations";
 
 interface BlogCardProps {
     blog: BlogPost;
+    isHost?: boolean;
 }
 
-export default function BlogCard({ blog }: BlogCardProps) {
+export default function BlogCard({ blog, isHost }: BlogCardProps) {
+    const blogPath = isHost ? `/host-blog/${blog.id}` : `/guest-blog/${blog.id}`;
+
     return (
         <motion.div whileHover={decentHover} className="w-full h-full">
             <Link
-                to={`/blog/${blog.id}`}
+                to={blogPath}
                 className="group block h-full rounded-[24px] overflow-hidden border border-gray-300 hover:shadow-xl transition-all duration-500 p-4 bg-white"
             >
                 {/* Image */}

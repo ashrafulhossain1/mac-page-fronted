@@ -6,6 +6,10 @@ import OurStory from "@/pages/OurStory";
 import Support from "@/pages/Support";
 import TermsConditions from "@/pages/TermsConditions";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import GuestBlog from "@/pages/GuestBlog";
+import GuestBlogDetail from "@/pages/GuestBlog/BlogDetail";
+import HostBlog from "@/pages/HostBlog";
+import HostBlogDetail from "@/pages/HostBlog/BlogDetail";
 import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/Blog/BlogDetail";
 import Dashboard from "@/pages/Dashboard";
@@ -56,8 +60,24 @@ export const routes = createBrowserRouter([
         element: <Blog />,
       },
       {
+        path: "guest-blog",
+        element: <GuestBlog />,
+      },
+      {
+        path: "host-blog",
+        element: <HostBlog />,
+      },
+      {
         path: "blog/:id",
         element: <BlogDetail />,
+      },
+      {
+        path: "guest-blog/:id",
+        element: <GuestBlogDetail />,
+      },
+      {
+        path: "host-blog/:id",
+        element: <HostBlogDetail />,
       },
     ],
   },

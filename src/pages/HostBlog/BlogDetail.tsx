@@ -1,22 +1,13 @@
 import { useParams, Navigate } from "react-router";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
-import { guestBlogs, hostBlogs } from "../../data/data";
+import { hostBlogs } from "../../data/data";
 import { Button } from "@/components/ui/button";
 
-interface BlogDetailProps {
-    type?: "guest" | "host";
-}
-
-export default function BlogDetail({ type }: BlogDetailProps) {
+export default function HostBlogDetail() {
     const { id } = useParams();
-    const role = useSelector((state: RootState) => state.userRole.role);
-    const isHost = type ? type === "host" : role === "host";
-
-    const blogs = isHost ? hostBlogs : guestBlogs;
+    const blogs = hostBlogs;
     const blog = blogs.find((b) => b.id === Number(id));
 
-    const redirectPath = isHost ? "/host-blog" : "/guest-blog";
+    const redirectPath = "/host-blog";
 
     if (!id || !blog) {
         return <Navigate to={redirectPath} replace />;
@@ -80,7 +71,7 @@ export default function BlogDetail({ type }: BlogDetailProps) {
                             {/* CTA Button */}
                             <div className="pt-4 flex justify-center">
                                 <Button className="bg-primary hover:bg-[#ea580c] text-white px-10 py-6 text-lg rounded-full font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
-                                    {isHost ? "Rent your room" : "Book your room"}
+                                    Rent your room
                                 </Button>
                             </div>
                         </div>

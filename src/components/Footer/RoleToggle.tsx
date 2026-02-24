@@ -4,7 +4,7 @@ import type { UserRole } from "@/store/userRoleSlice";
 import type { RootState } from "@/store";
 
 const roles: { value: UserRole; label: string }[] = [
-    { value: "default", label: "Not Logged In" },
+    { value: "default", label: "Not Sign" },
     { value: "guest", label: "Guest" },
     { value: "host", label: "Host" },
 ];

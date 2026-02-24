@@ -8,7 +8,7 @@ import { useState } from "react";
 const roomTypes = [
   { id: "all", label: "All Types" },
   { id: "single", label: "Single Room" },
-  { id: "shared", label: "Shared Room" },
+  { id: "double", label: "Double Room" },
   { id: "studio", label: "Studio" },
   { id: "ensuite", label: "Ensuite" },
 ];
@@ -19,6 +19,7 @@ const amenitiesList = [
   { id: "private_bathroom", label: "Private Bathroom" },
   { id: "kitchen_access", label: "Kitchen Access" },
   { id: "laundry", label: "Laundry" },
+  { id: "laundry_with_dryer", label: "Laundry with Dryer" },
   { id: "parking", label: "Parking" },
 ];
 
