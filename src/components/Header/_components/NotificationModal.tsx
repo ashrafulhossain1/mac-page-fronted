@@ -32,6 +32,24 @@ const notifications = [
     avatar: "https://i.pravatar.cc/150?u=aashna",
     hasHashtag: false,
   },
+  {
+    id: 3,
+    name: "Aashna",
+    action: "uploaded a new document",
+    time: "2 days ago",
+    category: "Client Onboarding",
+    avatar: "https://i.pravatar.cc/150?u=aashna",
+    hasHashtag: false,
+  },
+  {
+    id: 4,
+    name: "Aashna",
+    action: "uploaded a new document",
+    time: "2 days ago",
+    category: "Client Onboarding",
+    avatar: "https://i.pravatar.cc/150?u=aashna",
+    hasHashtag: false,
+  },
 ];
 
 const NotificationModal = () => {

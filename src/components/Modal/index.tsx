@@ -3,7 +3,7 @@ import Authentication from "@/pages/Auth/Authentication";
 import ProfileForm from "@/pages/Profile/ProfileForm";
 import ResponsiveModal from "./ResponsiveModal";
 import MessagesList from "@/pages/Messages/MessagesList";
-import BookingModal from "@/pages/RoomDetails/_components/BookingModal"; 
+import BookingModal from "@/pages/RoomDetails/_components/BookingModal";
 // import SelectUserType from "@/pages/Auth/components/SelectUserType";
 
 export default function Modals() {
@@ -15,12 +15,12 @@ export default function Modals() {
       <Modal
         modalId="modal"
         openId="authentication"
-        closeModals={["tab", "authType", "modal" , "user-type-selector" , "user-type-selected"]}
+        closeModals={["tab", "authType", "modal", "user-type-selector", "user-type-selected"]}
         className="max-w-md"
       >
         <Authentication />
       </Modal>
- 
+
 
       {/* Profile Settings Modal */}
       <Modal

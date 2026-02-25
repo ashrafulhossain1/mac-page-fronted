@@ -52,10 +52,19 @@ export default function AddressInfo({
   function onSubmit(values: z.infer<typeof addressSchema>) {
     console.log("Submitted Address:", values);
 
-    setAuthData({ ...authData, hostData: { ...authData.hostData, country: values.country, city: values.city , fullAddress: values.address, postalCode: values.postalCode , isLegalResidenceConfirmed: values.isLegalResidence } });
+    setAuthData({
+      ...authData,
+      hostData: {
+        ...authData.hostData,
+        country: values.country,
+        city: values.city,
+        fullAddress: values.address,
+        postalCode: values.postalCode,
+        isLegalResidenceConfirmed: values.isLegalResidence,
+      },
+    });
 
     setStep((prev) => prev + 1);
-
   }
 
   return (
@@ -67,12 +76,12 @@ export default function AddressInfo({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Country & City Row */}
-            <CountryCitySelector
-              countryValue={form.watch("country")}
-              cityValue={form.watch("city")}
-              onCountryChange={(val) => form.setValue("country", val)}
-              onCityChange={(val) => form.setValue("city", val)}
-            />  
+          <CountryCitySelector
+            countryValue={form.watch("country")}
+            cityValue={form.watch("city")}
+            onCountryChange={(val) => form.setValue("country", val)}
+            onCityChange={(val) => form.setValue("city", val)}
+          />
 
           {/* Address Field */}
           <FormField
@@ -87,7 +96,7 @@ export default function AddressInfo({
                   <Input
                     placeholder="Enter full address"
                     {...field}
-                    className="h-14 rounded-2xl border-gray-200"
+                    className="h-12 md:h-14 rounded-2xl border-gray-200"
                   />
                 </FormControl>
                 <FormMessage />
@@ -108,7 +117,7 @@ export default function AddressInfo({
                   <Input
                     placeholder="Enter postal code"
                     {...field}
-                    className="h-14 rounded-2xl border-gray-200"
+                    className="h-12 md:h-14 rounded-2xl border-gray-200"
                   />
                 </FormControl>
                 <FormMessage />

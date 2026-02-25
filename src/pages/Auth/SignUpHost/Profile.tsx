@@ -73,104 +73,104 @@ export default function HostProfileSet({
   }
 
   return (
-      <div className="bg-white rounded-3xl w-full  relative "> 
+    <div className="bg-white rounded-3xl w-full  relative ">
 
-        <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
+      <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
 
-        {/* Avatar Upload */}
-        <div className="flex justify-center mb-8">
-          <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden">
-            {avatar ? (
-              <img
-                src={avatar}
-                alt="avatar"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <Camera className="text-gray-400" size={32} />
+      {/* Avatar Upload */}
+      <div className="flex justify-center mb-8">
+        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden">
+          {avatar ? (
+            <img
+              src={avatar}
+              alt="avatar"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <Camera className="text-gray-400" size={32} />
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleAvatarChange}
+          />
+        </label>
+      </div>
+
+      {/* Form */}
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Full Name */}
+          <FormField
+            control={form.control}
+            name="fullName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold">Full name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Enter your full name"
+                    {...field}
+                    className="h-12 rounded-xl"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleAvatarChange}
-            />
-          </label>
-        </div>
+          />
 
-        {/* Form */}
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Full Name */}
-            <FormField
-              control={form.control}
-              name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Full name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter your full name"
-                      {...field}
-                      className="h-12 rounded-xl"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          {/* Phone Number */}
+          <FormField
+            control={form.control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold">Phone Number</FormLabel>
+                <FormControl>
+                  <PhoneInput
+                    country={"bd"} // default country Bangladesh
+                    value={field.value}
+                    onChange={(phone: string) =>
+                      form.setValue("phoneNumber", phone, {
+                        shouldValidate: true,
+                      })
+                    }
+                    inputClass="h-11! rounded-2xl! w-full! overflow-hidden "
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            {/* Phone Number */}
-            <FormField
-              control={form.control}
-              name="phoneNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Phone Number</FormLabel>
-                  <FormControl>
-                    <PhoneInput
-                      country={"bd"} // default country Bangladesh
-                      value={field.value}
-                      onChange={(phone: string) =>
-                        form.setValue("phoneNumber", phone, {
-                          shouldValidate: true,
-                        })
-                      }
-                      inputClass="h-11! rounded-2xl! w-full! overflow-hidden "
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          {/* Bio */}
+          <FormField
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold">Bio</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Guests trust hosts who share a little about themselves"
+                    className="resize-none rounded-xl min-h-25"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            {/* Bio */}
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-semibold">Bio</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Guests trust hosts who share a little about themselves"
-                      className="resize-none rounded-xl min-h-25"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button
-              type="submit"
-              className="w-full bg-[#FF7A1A] hover:bg-[#e66d17] text-white h-12 text-lg font-semibold rounded-xl"
-            >
-              Continue
-            </Button>
-          </form>
-        </Form>
-      </div> 
+          <Button
+            type="submit"
+            className="w-full bg-[#FF7A1A] hover:bg-[#e66d17] text-white h-12 text-lg font-semibold rounded-xl"
+          >
+            Continue
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }

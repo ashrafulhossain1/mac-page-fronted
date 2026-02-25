@@ -2,8 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X } from "lucide-react";
 import useModal from "@/components/Modal/useModal";
-import { type Conversation, type Message, useMessages } from "./use-messages";
+
 import { useState } from "react";
+import type { Conversation, Message } from "@/types/message";
+import { useMessages } from "./use-messages";
 
 interface ChatViewProps {
     conversation: Conversation;
@@ -33,7 +35,7 @@ export default function ChatView({ conversation, onBack }: ChatViewProps) {
     };
 
     return (
-        <div className="flex flex-col h-full bg-white rounded-t-[10px] sm:rounded-none min-h-[600px]">
+        <div className="flex flex-col h-full bg-white rounded-t-[10px] sm:rounded-none max-h-[600px]">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
                 <div className="flex items-center gap-3">

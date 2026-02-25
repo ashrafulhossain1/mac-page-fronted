@@ -89,12 +89,12 @@ export default function GuestProfileSet({
   }
 
   return (
-    <div className="bg-white rounded-3xl w-full relative p-6">
+    <div className=" rounded-3xl w-full relative p-2 md:p-6 overflow-auto">
       <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
 
       {/* Avatar Upload */}
       <div className="flex justify-center mb-8">
-        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden">
+        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors ">
           {avatar ? (
             <img
               src={avatar}
@@ -114,7 +114,7 @@ export default function GuestProfileSet({
       </div>
 
       {/* Form */}
-      <Form {...form}>
+      <Form {...form} >
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Full Name */}
           <FormField
@@ -127,7 +127,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your full name"
                     {...field}
-                    className="h-12 rounded-[16px]"
+                    className="h-10 md:h-12 rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -205,7 +205,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Tell us about yourself"
                     {...field}
-                    className="h-24 rounded-[16px]"
+                    className="h-24 rounded-[16px] overflow-y-scroll"
                   />
                 </FormControl>
                 <FormMessage />

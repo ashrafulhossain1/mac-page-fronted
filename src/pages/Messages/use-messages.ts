@@ -1,32 +1,8 @@
+import type { Conversation, Message } from "@/types/message";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
 
-export type MessageStatus = "online" | "offline";
 
-export interface MessageUser {
-    id: string;
-    name: string;
-    avatar: string;
-    status: MessageStatus;
-    lastActive?: string;
-    role?: string; // e.g. "Cozy single room in City Center, Owner"
-}
-
-export interface Conversation {
-    id: string;
-    user: MessageUser;
-    lastMessage: string;
-    time: string;
-    unreadCount: number;
-}
-
-export interface Message {
-    id: string;
-    content: string;
-    senderId: string;
-    timestamp: string;
-    isOwn: boolean;
-}
 
 export const useMessages = () => {
     const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -68,7 +44,7 @@ export const useMessages = () => {
             if (mockConversations[1]) {
                 mockConversations[1].user.name = "Smith Khan";
                 mockConversations[1].unreadCount = 0;
-                mockConversations[1].time = "Active 1 day ago"; // This is actually status in the design, handled in UI logic
+                mockConversations[1].time = "Active 1 day ago";
                 mockConversations[1].user.status = "offline";
                 mockConversations[1].user.lastActive = "Active 1 day ago";
             }
@@ -90,8 +66,6 @@ export const useMessages = () => {
 
     const getMessagesForConversation = (_conversationId: string): Message[] => {
         void _conversationId; // Silence unused variable warning
-        // Mock messages for the selected conversation
-        // In a real app, this would fetch from an API
         return [
             {
                 id: "1",
