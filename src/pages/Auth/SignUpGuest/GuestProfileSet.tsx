@@ -19,7 +19,7 @@ import type { TAuthDataType } from "@/types/auth";
  
 const profileSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
-  phoneNumber: z.string().min(10, "Please enter a valid phone number"),
+  // phoneNumber: z.string().min(10, "Please enter a valid phone number"),
   university: z.string().min(2, "University must be at least 2 characters"),
   dateOfBirth: z.string().refine(
     (date) => {
@@ -48,7 +48,7 @@ export default function GuestProfileSet({
     resolver: zodResolver(profileSchema),
     defaultValues: {
       fullName: "",
-      phoneNumber: "",
+      // phoneNumber: "",
       university: "",
       dateOfBirth: "",
       nationality: "",
@@ -60,11 +60,11 @@ export default function GuestProfileSet({
 
     console.log(values)
 
-    if (avatar && values.fullName && values.phoneNumber) {
+    if (avatar && values.fullName && values.university && values.dateOfBirth && values.nationality && values.bio) {
       setAuthData({
         ...authData,
-        hostData: {
-          ...authData.hostData,
+        guestData: {
+          ...authData.guestData,
           ...values,
         },
       });

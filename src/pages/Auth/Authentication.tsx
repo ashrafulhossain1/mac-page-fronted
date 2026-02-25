@@ -139,17 +139,7 @@ export default function Authentication() {
                 setAuthData={setAuthData}
               />
             )}
-            {tab === "signup" && step === 4 && (
-              <StartSignup
-                setStep={setStep}
-                authData={authData}
-                setAuthData={setAuthData}
-              />
-            )}
-            {tab === "signup" && step === 5 && (
-              <VerifyOPThost setStep={setStep} />
-            )}
-            {tab === "signup" && step === 6 && <ThankYouPage />}
+             
           </div>
         )}
 

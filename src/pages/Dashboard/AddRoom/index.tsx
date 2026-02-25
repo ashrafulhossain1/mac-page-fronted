@@ -1,7 +1,3 @@
-import React, { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Plus, Minus, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,74 +17,34 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useNavigate } from "react-router";
-
-const roomSchema = z.object({
-  title: z.string().min(5, "Title must be at least 5 characters"),
-  roomType: z.string().min(1, "Please select a room type"),
-  roomSize: z.string().min(1, "Please enter room size"),
-  minStay: z.string().min(1, "Please select minimum stay"),
-  weeklyPrice: z.string().min(1, "Please enter weekly price"),
-  aboutRoom: z.string().min(20, "Description must be at least 20 characters"),
-  locationName: z.string().min(5, "Location name is required"),
-  mapLink: z.string().url("Please enter a valid URL").or(z.literal("")),
-  aboutLocation: z.string().min(20, "Location description must be at least 20 characters"),
-  amenities: z.array(z.object({ value: z.string() })),
-  rules: z.array(z.object({ value: z.string() })),
-});
-
-type RoomFormValues = z.infer<typeof roomSchema>;
+import { useAddRoom, MIN_STAY_OPTIONS } from "./_components/useAddRoom";
 
 const AddRoom = () => {
-  const navigate = useNavigate();
-  const [images, setImages] = useState<string[]>([]);
+  const {
+    form,
+    images,
+    amenityFields,
+    appendAmenity,
+    removeAmenity,
+    ruleFields,
+    appendRule,
+    removeRule,
+    onSubmit,
+    handleImageUpload,
+    removeImage,
+    navigate,
+  } = useAddRoom();
 
-  const form = useForm<RoomFormValues>({
-    resolver: zodResolver(roomSchema),
-    defaultValues: {
-      title: "Shared Room with Study Space",
-      roomType: "Single",
-      roomSize: "15",
-      minStay: "1 month",
-      weeklyPrice: "€445",
-      aboutRoom: "A comfortable single room perfect for students, located in the heart of the city. Close to universities, public transport, and all amenities. The room is fully furnished with a comfortable bed, study desk, and wardrobe. Shared kitchen and bathroom facilities are modern and well-maintained.",
-      locationName: "Dublin 2, Ireland",
-      mapLink: "https://maps.app.goo.gl/hXxpzTU2ygAZzL8BA",
-      aboutLocation: "It's a stunning location with great access to Limerick's city centre. The area has great walks and a beautiful garden. Jetland Shopping Centre with a cinema and Dunnes is just 10 mins walk. am only 25 mins by bus to the city centre so this location will suit most of the students and professionals.",
-      amenities: [{ value: "Wifi" }],
-      rules: [{ value: "No smoking" }],
-    },
-  });
 
-  const { fields: amenityFields, append: appendAmenity, remove: removeAmenity } = useFieldArray({
-    control: form.control,
-    name: "amenities",
-  });
-
-  const { fields: ruleFields, append: appendRule, remove: removeRule } = useFieldArray({
-    control: form.control,
-    name: "rules",
-  });
-
-  const onSubmit = (data: RoomFormValues) => {
-    console.log("Form Data:", data);
-    // Handle submission (e.g., API call)
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-      const newImages = Array.from(files).map((file) => URL.createObjectURL(file));
-      setImages((prev) => [...prev, ...newImages]);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] font-sans">
       {/* Header Info */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Add your Room</h1>
-        <p className="text-gray-500 text-sm">Add availability, pricing, and details of all your listed rooms</p>
+        <p className="text-gray-500 text-sm">
+          Add availability, pricing, and details of all your listed rooms
+        </p>
       </div>
 
       <main className="max-w-[1280px] mx-auto px-4 sm:px-8 pb-32">
@@ -100,9 +56,14 @@ const AddRoom = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-bold text-gray-900">Room Title</FormLabel>
+                  <FormLabel className="text-sm font-bold text-gray-900">
+                    Room Title
+                  </FormLabel>
                   <FormControl>
-                    <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                    <Input
+                      {...field}
+                      className="h-14 rounded-xl border-gray-200 bg-white"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,18 +76,24 @@ const AddRoom = () => {
                 control={form.control}
                 name="roomType"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Room Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormItem className="w-full">
+                    <FormLabel className="text-sm font-bold text-gray-900">
+                      Room Type
+                    </FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
-                        <SelectTrigger className="h-14 rounded-xl border-gray-200 bg-white">
+                        <SelectTrigger className="h-14 w-full rounded-xl border-gray-200 bg-white">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Single">Single</SelectItem>
-                        <SelectItem value="Double">Double</SelectItem>
-                        <SelectItem value="Shared">Shared</SelectItem>
+                        <SelectItem value="single">Single</SelectItem>
+                        <SelectItem value="double">Double</SelectItem>
+                        <SelectItem value="studio">Studio</SelectItem>
+                        <SelectItem value="ensuite">Ensuite</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -138,9 +105,26 @@ const AddRoom = () => {
                 name="roomSize"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Room Size</FormLabel>
+                    <div className="flex flex-col gap-1">
+                      <FormLabel className="text-sm font-bold text-gray-900">
+                        Room Size
+                      </FormLabel>
+                      <p className="text-[12px] text-gray-400">
+                        Please specify or add the room size in square feet (sq ft).
+                      </p>
+                    </div>
                     <FormControl>
-                      <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          type="number"
+                          placeholder="0"
+                          className="h-14 rounded-xl border-gray-200 bg-white pr-16"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium pointer-events-none text-xs">
+                          sq ft
+                        </span>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -155,10 +139,26 @@ const AddRoom = () => {
                 name="minStay"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Minimum Stay</FormLabel>
-                    <FormControl>
-                      <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
-                    </FormControl>
+                    <FormLabel className="text-sm font-bold text-gray-900">
+                      Minimum Stay
+                    </FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="h-14 w-full rounded-xl border-gray-200 bg-white">
+                          <SelectValue placeholder="Select minimum stay" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {MIN_STAY_OPTIONS.map((option) => (
+                          <SelectItem key={option} value={option}>
+                            {option}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -168,9 +168,21 @@ const AddRoom = () => {
                 name="weeklyPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Weekly Price</FormLabel>
+                    <FormLabel className="text-sm font-bold text-gray-900">
+                      Weekly Price
+                    </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          type="number"
+                          placeholder="0.00"
+                          className="h-14 rounded-xl border-gray-200 bg-white pl-12"
+                        />
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium pointer-events-none">
+                          €
+                        </span>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -184,7 +196,9 @@ const AddRoom = () => {
               name="aboutRoom"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-bold text-gray-900">About This Room</FormLabel>
+                  <FormLabel className="text-sm font-bold text-gray-900">
+                    About This Room
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
@@ -203,9 +217,14 @@ const AddRoom = () => {
                 name="locationName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Location Name</FormLabel>
+                    <FormLabel className="text-sm font-bold text-gray-900">
+                      Town and County
+                    </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                      <Input
+                        {...field}
+                        className="h-14 rounded-xl border-gray-200 bg-white"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -216,10 +235,19 @@ const AddRoom = () => {
                 name="mapLink"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-bold text-gray-900">Location Map Link</FormLabel>
+                    <FormLabel className="text-sm font-bold text-gray-900">
+                      Location Map Link (Optional)
+                    </FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                      <Input
+                        {...field}
+                        placeholder="Paste Google Maps link if available"
+                        className="h-14 rounded-xl border-gray-200 bg-white"
+                      />
                     </FormControl>
+                    <p className="text-[12px] text-gray-400 mt-1">
+                      If you're unsure how to find this, you can leave it blank.
+                    </p>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -232,7 +260,9 @@ const AddRoom = () => {
               name="aboutLocation"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-bold text-gray-900">About The Location</FormLabel>
+                  <FormLabel className="text-sm font-bold text-gray-900">
+                    About The Location
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
@@ -246,7 +276,14 @@ const AddRoom = () => {
 
             {/* Amenities */}
             <div className="space-y-4">
-              <FormLabel className="text-sm font-bold text-gray-900">Amenities</FormLabel>
+              <div className="flex flex-col gap-1">
+                <FormLabel className="text-sm font-bold text-gray-900">
+                  Amenities
+                </FormLabel>
+                <p className="text-[12px] text-gray-400">
+                  Add as many amenities as you need.
+                </p>
+              </div>
               {amenityFields.map((field, index) => (
                 <div key={field.id} className="flex gap-4 items-center">
                   <FormField
@@ -254,7 +291,10 @@ const AddRoom = () => {
                     name={`amenities.${index}.value`}
                     render={({ field }) => (
                       <FormControl className="flex-1">
-                        <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                        <Input
+                          {...field}
+                          className="h-14 rounded-xl border-gray-200 bg-white"
+                        />
                       </FormControl>
                     )}
                   />
@@ -280,7 +320,14 @@ const AddRoom = () => {
 
             {/* House Rules */}
             <div className="space-y-4">
-              <FormLabel className="text-sm font-bold text-gray-900">House Rules Q1</FormLabel>
+              <div className="flex flex-col gap-1">
+                <FormLabel className="text-sm font-bold text-gray-900">
+                  House Rules
+                </FormLabel>
+                <p className="text-[12px] text-gray-400">
+                  No limit - add as many rules as you need to be clear.
+                </p>
+              </div>
               {ruleFields.map((field, index) => (
                 <div key={field.id} className="flex gap-4 items-center">
                   <FormField
@@ -288,7 +335,10 @@ const AddRoom = () => {
                     name={`rules.${index}.value`}
                     render={({ field }) => (
                       <FormControl className="flex-1">
-                        <Input {...field} className="h-14 rounded-xl border-gray-200 bg-white" />
+                        <Input
+                          {...field}
+                          className="h-14 rounded-xl border-gray-200 bg-white"
+                        />
                       </FormControl>
                     )}
                   />
@@ -314,15 +364,36 @@ const AddRoom = () => {
 
             {/* Room Photos */}
             <div className="space-y-6">
-              <FormLabel className="text-sm font-bold text-gray-900">Room Photos</FormLabel>
-              
+              <div className="flex flex-col gap-1">
+                <FormLabel className="text-sm font-bold text-gray-900">
+                  Room Photos
+                </FormLabel>
+                <div className="space-y-1">
+                  <p className="text-[12px] text-gray-500 font-medium">
+                    Add up to 20 photos. Horizontal (Landscape) photos are
+                    highly recommended.
+                  </p>
+                  <p className="text-[12px] text-orange-600 font-bold italic">
+                    Note: Please remove personal items (documents, personal
+                    pictures, etc.) before taking photos.
+                  </p>
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-4">
                 {images.map((src, idx) => (
-                  <div key={idx} className="relative w-32 h-32 rounded-xl overflow-hidden group">
-                    <img src={src} alt={`Upload ${idx}`} className="w-full h-full object-cover" />
+                  <div
+                    key={idx}
+                    className="relative w-32 h-32 rounded-xl overflow-hidden group"
+                  >
+                    <img
+                      src={src}
+                      alt={`Upload ${idx}`}
+                      className="w-full h-full object-cover"
+                    />
                     <button
                       type="button"
-                      onClick={() => setImages((prev) => prev.filter((_, i) => i !== idx))}
+                      onClick={() => removeImage(idx)}
                       className="absolute top-1 right-1 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       <X className="w-3 h-3" />
@@ -343,7 +414,9 @@ const AddRoom = () => {
                   <div className="bg-gray-50 p-4 rounded-2xl mb-4 text-gray-400">
                     <Upload className="w-8 h-8 sm:w-10 h-10" />
                   </div>
-                  <h4 className="text-lg sm:text-xl font-medium text-gray-600 mb-2">Click to upload or drag and drop</h4>
+                  <h4 className="text-lg sm:text-xl font-medium text-gray-600 mb-2">
+                    Click to upload or drag and drop
+                  </h4>
                   <p className="text-sm text-gray-400">PNG, JPG up to 10MB</p>
                 </div>
               </div>
