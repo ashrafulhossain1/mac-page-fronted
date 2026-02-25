@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import "react-phone-input-2/lib/style.css";
 import type { TAuthDataType } from "@/types/auth";
- 
+
 const profileSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   // phoneNumber: z.string().min(10, "Please enter a valid phone number"),
@@ -57,10 +57,16 @@ export default function GuestProfileSet({
   });
 
   function onSubmit(values: z.infer<typeof profileSchema>) {
+    console.log(values);
 
-    console.log(values)
-
-    if (avatar && values.fullName && values.university && values.dateOfBirth && values.nationality && values.bio) {
+    if (
+      avatar &&
+      values.fullName &&
+      values.university &&
+      values.dateOfBirth &&
+      values.nationality &&
+      values.bio
+    ) {
       setAuthData({
         ...authData,
         guestData: {
@@ -88,7 +94,7 @@ export default function GuestProfileSet({
 
       {/* Avatar Upload */}
       <div className="flex justify-center mb-8">
-        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden">
+        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors overflow-hidden">
           {avatar ? (
             <img
               src={avatar}
@@ -121,7 +127,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your full name"
                     {...field}
-                    className="h-12 rounded-xl"
+                    className="h-12 rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -140,7 +146,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your university"
                     {...field}
-                    className="h-12 rounded-xl"
+                    className="h-12 rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -156,7 +162,11 @@ export default function GuestProfileSet({
               <FormItem>
                 <FormLabel className="font-semibold">Date of Birth</FormLabel>
                 <FormControl>
-                  <Input type="date" {...field} className="h-12 rounded-xl" />
+                  <Input
+                    type="date"
+                    {...field}
+                    className="h-12 rounded-[16px]"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -174,7 +184,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your nationality"
                     {...field}
-                    className="h-12 rounded-xl"
+                    className="h-12 rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -195,7 +205,7 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Tell us about yourself"
                     {...field}
-                    className="h-12 rounded-xl"
+                    className="h-24 rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />

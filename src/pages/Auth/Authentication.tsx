@@ -12,13 +12,15 @@ import AddressInfo from "./SignUpHost/AddressInfo";
 import VerifiedBadge from "./SignUpHost/VerifiedBadge";
 import StartSignup from "./SignUpHost/StartSignup";
 import VerifyOPThost from "./SignUpHost/VerifyOPThost";
-import ThankYouPage from "./SignUpHost/ThankYouPage";
 import GuestProfileSet from "./SignUpGuest/GuestProfileSet";
 import SelectUserType from "./components/SelectUserType";
 import ResetEmail from "./Forget/ResetEmail";
 import ResetCode from "./Forget/ResetCode";
 import NewPassword from "./Forget/NewPassword";
 import ResetSuccess from "./Forget/ResetSuccess";
+import NumberEmailPassword from "./SignUpGuest/NumberEmailPassword";
+import VerifyOTPGuest from "./SignUpGuest/VerifyOTPGuest";
+import SignUpSuccess from "./components/SignUpSuccess";
 
 export default function Authentication() {
   const [searchParams] = useSearchParams();
@@ -110,7 +112,7 @@ export default function Authentication() {
             {tab === "signup" && step === 5 && (
               <VerifyOPThost setStep={setStep} />
             )}
-            {tab === "signup" && step === 6 && <ThankYouPage />}
+            {tab === "signup" && step === 6 && <SignUpSuccess />}
           </div>
         )}
 
@@ -126,20 +128,17 @@ export default function Authentication() {
               />
             )}
             {tab === "signup" && step === 2 && (
-              <AddressInfo
+              <NumberEmailPassword
                 setStep={setStep}
                 authData={authData}
                 setAuthData={setAuthData}
               />
             )}
             {tab === "signup" && step === 3 && (
-              <VerifiedBadge
-                setStep={setStep}
-                authData={authData}
-                setAuthData={setAuthData}
-              />
+              <VerifyOTPGuest setStep={setStep} />
             )}
-             
+            {tab === "signup" && step === 4 && <SignUpSuccess />}
+
           </div>
         )}
 
