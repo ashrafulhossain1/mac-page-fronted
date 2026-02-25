@@ -15,7 +15,6 @@ export default function SignUpSuccess() {
 
     return (
         <div className="flex flex-col items-center justify-center w-full py-12 bg-white rounded-3xl">
-            {/* Success Icon */}
             <div className="mb-8 w-[150px] md:w-[200px] animate-in zoom-in duration-500">
                 <img src={okay} alt="Success" className="w-full h-auto shadow-sm rounded-full" />
             </div>

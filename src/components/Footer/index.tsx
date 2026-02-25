@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Facebook, Twitter, ArrowRight } from "lucide-react";
+import { Instagram, Facebook, Twitter, ArrowRight, Youtube } from "lucide-react";
 import RoleToggle from "./RoleToggle";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
@@ -89,9 +89,10 @@ const Footer: React.FC = () => {
             </motion.h3>
             <ul className="space-y-4">
               {[
-                { icon: Instagram, label: "Instagram" },
-                { icon: Facebook, label: "Facebook" },
-                { icon: Twitter, label: "X" },
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/warmwelcome_listings/" },
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/WarmWelcome.ie/" },
+                { icon: Youtube, label: "Youtube", href: "https://www.youtube.com/@WarmWelcomeIE" },
+                { icon: Twitter, label: "X", href: "#" },
               ].map((social, i) => (
                 <motion.li
                   key={social.label}
@@ -100,14 +101,20 @@ const Footer: React.FC = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-3 group cursor-pointer"
                 >
-                  <div className="bg-[#F97316] p-2 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#ea580c]">
-                    <social.icon size={20} className="text-white" />
-                  </div>
-                  <span className="text-gray-300 group-hover:text-white transition-colors">
-                    {social.label}
-                  </span>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 group cursor-pointer w-fit"
+                  >
+                    <div className="bg-[#F97316] p-2 rounded-full transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#ea580c]">
+                      <social.icon size={20} className="text-white" />
+                    </div>
+                    <span className="text-gray-300 group-hover:text-white transition-colors">
+                      {social.label}
+                    </span>
+                  </a>
                 </motion.li>
               ))}
             </ul>

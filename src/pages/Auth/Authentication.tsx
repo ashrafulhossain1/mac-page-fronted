@@ -20,7 +20,7 @@ import NewPassword from "./Forget/NewPassword";
 import ResetSuccess from "./Forget/ResetSuccess";
 import NumberEmailPassword from "./SignUpGuest/NumberEmailPassword";
 import VerifyOTPGuest from "./SignUpGuest/VerifyOTPGuest";
-import SignUpSuccess from "./components/SignUpSuccess";
+import SignUpSuccess from "./SignUpGuest/SignUpSuccess";
 
 export default function Authentication() {
   const [searchParams] = useSearchParams();
