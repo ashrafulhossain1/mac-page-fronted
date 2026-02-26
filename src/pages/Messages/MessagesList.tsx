@@ -6,8 +6,10 @@ import useModal from "@/components/Modal/useModal";
 import ChatView from "./ChatView";
 import { useSearchParams } from "react-router";
 
+
 export default function MessagesList() {
     const { conversations } = useMessages();
+
     const { close } = useModal();
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,8 +49,9 @@ export default function MessagesList() {
                     </p>
                 </div>
                 <button
+
                     onClick={() => close(["modal"])}
-                    className="p-2 transition-colors rounded-full hover:bg-gray-100"
+                    className={`p-2 transition-colors rounded-full hover:bg-gray-100 hidden md:block`}
                 >
                     <X className="w-6 h-6 text-red-500" />
                 </button>

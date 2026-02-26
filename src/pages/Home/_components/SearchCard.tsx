@@ -61,7 +61,7 @@ function SearchCard() {
   return (
     <div className="bg-[#eff1f3] backdrop-blur-sm p-8 rounded-[32px] w-full max-w-[1050px] ">
       <h2 className="text-2xl font-semibold text-gray-900 mb-4 ml-1">
-        Find Your Perfect Room (England)
+        Find Your Perfect Room (Ireland)
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">

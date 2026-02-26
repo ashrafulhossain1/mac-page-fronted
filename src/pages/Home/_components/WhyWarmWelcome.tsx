@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { GiThreeFriends } from "react-icons/gi";
+import { ClipboardCheck } from "lucide-react";
 import whyWarm1 from "@/assets/home/why-warm-1.svg";
 import whyWarm2 from "@/assets/home/why-warm-2.svg";
 import whyWarm3 from "@/assets/home/why-warm-3.svg";
@@ -208,5 +210,23 @@ const features: Feature[] = [
       />
     ),
     iconBg: "bg-yellow-50",
+  },
+  {
+    title: "Cultural Sensitivity & Diversity Friendly",
+    description:
+      "Homes that respect different cultures, religions, and lifestyles — something international guests deeply value.",
+    icon: (
+      <GiThreeFriends className="w-full h-full text-emerald-600" />
+    ),
+    iconBg: "bg-emerald-50",
+  },
+  {
+    title: "Clear Expectations From Day One",
+    description:
+      "Transparent house rules and communication standards to avoid misunderstandings.",
+    icon: (
+      <ClipboardCheck className="w-full h-full text-indigo-600" />
+    ),
+    iconBg: "bg-indigo-50",
   },
 ];

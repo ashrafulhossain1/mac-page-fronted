@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import "react-phone-input-2/lib/style.css";
 import type { TAuthDataType } from "@/types/auth";
+import { Textarea } from "@/components/ui/textarea";
 
 const profileSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -75,7 +76,10 @@ export default function GuestProfileSet({
         },
       });
 
-      setStep((prev) => prev + 1);
+      setStep((prev) => {
+        console.log(values)
+        return prev + 1
+      });
     }
   }
 
@@ -89,12 +93,12 @@ export default function GuestProfileSet({
   }
 
   return (
-    <div className=" rounded-3xl w-full relative p-2 md:p-6 overflow-auto">
-      <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
+    <div className="rounded-3xl w-full relative p-2 md:p-6 overflow-auto">
+      <h2 className=" text-xl md:text-3xl font-bold text-center mb-4 md:mb-6">Profile</h2>
 
       {/* Avatar Upload */}
       <div className="flex justify-center mb-8">
-        <label className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors ">
+        <label className="w-16 h-16 md:w-24 md:h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors ">
           {avatar ? (
             <img
               src={avatar}
@@ -115,7 +119,7 @@ export default function GuestProfileSet({
 
       {/* Form */}
       <Form {...form} >
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3  md:space-y-6">
           {/* Full Name */}
           <FormField
             control={form.control}
@@ -127,10 +131,10 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your full name"
                     {...field}
-                    className="h-10 md:h-12 rounded-[16px]"
+                    className="h-9 md:h-12 rounded-[16px]"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px] md:text-sm" />
               </FormItem>
             )}
           />
@@ -146,10 +150,10 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your university"
                     {...field}
-                    className="h-12 rounded-[16px]"
+                    className="h-9 md:h-12 rounded-[16px]"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px] md:text-sm" />
               </FormItem>
             )}
           />
@@ -165,10 +169,10 @@ export default function GuestProfileSet({
                   <Input
                     type="date"
                     {...field}
-                    className="h-12 rounded-[16px]"
+                    className="h-9 md:h-12 rounded-[16px]"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px] md:text-sm" />
               </FormItem>
             )}
           />
@@ -184,10 +188,10 @@ export default function GuestProfileSet({
                   <Input
                     placeholder="Enter your nationality"
                     {...field}
-                    className="h-12 rounded-[16px]"
+                    className="h-9 md:h-12 rounded-[16px]"
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px] md:text-sm" />
               </FormItem>
             )}
           />
@@ -202,20 +206,20 @@ export default function GuestProfileSet({
                   Self Description
                 </FormLabel>
                 <FormControl>
-                  <Input
+                  <Textarea
                     placeholder="Tell us about yourself"
                     {...field}
-                    className="h-24 rounded-[16px] overflow-y-scroll"
+                    className="max-h-[120px] rounded-[16px] resize-none "
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-[10px] md:text-sm" />
               </FormItem>
             )}
           />
 
           <Button
             type="submit"
-            className="w-full bg-[#FF7A1A] hover:bg-[#e66d17] text-white h-12 text-lg font-semibold rounded-xl"
+            className="w-full bg-[#FF7A1A] hover:bg-[#e66d17] text-white h-10 md:h-12 text-md md:text-lg font-semibold rounded-xl"
           >
             Continue
           </Button>
