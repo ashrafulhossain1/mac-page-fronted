@@ -67,7 +67,7 @@ const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <Link to={`/browse/${id}`} className="block group">
-      <div className="relative w-full overflow-hidden rounded-[28px] bg-[#fbfbfb] border p-4 border-gray-300 hover:shadow-[0_2px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
+      <div className="relative w-full overflow-hidden rounded-[28px] bg-[#fbfbfb] border p-4 border-gray-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
         {/* ── Image ── */}
         <div className="relative overflow-hidden rounded-[16px] h-[220px] md:h-[270px] mb-4">
           <img

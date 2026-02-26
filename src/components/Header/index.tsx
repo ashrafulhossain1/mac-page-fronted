@@ -2,16 +2,9 @@ import { useState, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router";
 import { Button } from "../ui/button";
 import useModal from "../Modal/useModal";
-import { Bell, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import UserNav from "./_components/UserNav";
-import NotificationModal from "./_components/NotificationModal";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
+import NotificationDropdown from "@/pages/Dashboard/_components/NotificationDropdown";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 
@@ -23,8 +16,6 @@ export default function Header() {
   const isHost = role === "host";
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openNotification, setOpenNotification] = useState(false);
-  const isMobile = useIsMobile();
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -125,35 +116,7 @@ export default function Header() {
           {isUser ? (
             <>
               {/* Notification Bell */}
-              {isMobile ? (
-                <Drawer open={openNotification} onOpenChange={setOpenNotification}>
-                  <DrawerTrigger asChild>
-                    <div className="relative cursor-pointer">
-                      <Bell className="h-5 w-5 text-gray-700" />
-                      <span className="absolute top-0 right-0 h-2 w-2"></span>
-                    </div>
-                  </DrawerTrigger>
-                  <DrawerContent className="p-0 border-none bg-transparent">
-                    <NotificationModal />
-                  </DrawerContent>
-                </Drawer>
-              ) : (
-                <Popover open={openNotification} onOpenChange={setOpenNotification}>
-                  <PopoverTrigger asChild>
-                    <div className="relative cursor-pointer">
-                      <Bell className="h-5 w-5 lg:h-6 lg:w-6 text-gray-700" />
-                      <span className="absolute top-0 right-0 h-2 w-2 lg:h-2.5 lg:w-2.5"></span>
-                    </div>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    className="w-80 p-0 rounded-lg"
-                    align="end"
-                    sideOffset={5}
-                  >
-                    <NotificationModal />
-                  </PopoverContent>
-                </Popover>
-              )}
+              <NotificationDropdown />
               <UserNav />
             </>
           ) : (

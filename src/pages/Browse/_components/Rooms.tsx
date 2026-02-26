@@ -128,9 +128,8 @@ export default function Rooms() {
           {Array.from({ length: totalPages }).map((_, index) => (
             <div
               key={index}
-              className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                currentPage === index + 1 ? "bg-[#F97316] w-6" : "bg-gray-400"
-              }`}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${currentPage === index + 1 ? "bg-[#F97316] w-6" : "bg-gray-400"
+                }`}
             />
           ))}
         </div>

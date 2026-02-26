@@ -38,6 +38,7 @@ export default function AddressInfo({
   authData: TAuthDataType;
   setAuthData: React.Dispatch<React.SetStateAction<TAuthDataType>>;
 }) {
+
   const form = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
@@ -63,7 +64,6 @@ export default function AddressInfo({
         isLegalResidenceConfirmed: values.isLegalResidence,
       },
     });
-
     setStep((prev) => prev + 1);
   }
 

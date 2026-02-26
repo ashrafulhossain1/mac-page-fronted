@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { decentHover, fastCardVariants } from "@/lib/animations";
 
 const rooms = [
   {
@@ -71,18 +72,10 @@ export default function FeaturedRooms() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room, idx) => (
           <motion.div
-            key={room.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{
-              ...appleSpring,
-              delay: idx * 0.12,
-            }}
-            whileHover={{
-              y: -3,
-              transition: { type: "spring", stiffness: 300, damping: 25 },
-            }}
+            key={idx}
+            variants={fastCardVariants}
+            whileHover={decentHover}
+            className="w-full"
           >
             <RoomCard
               id={room.id}
