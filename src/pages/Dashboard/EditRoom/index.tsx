@@ -1,7 +1,7 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Plus, Minus, Upload, X } from "lucide-react";
+import { Plus, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -43,12 +43,13 @@ const roomSchema = z.object({
 
 import { useParams } from "react-router";
 import { listings } from "@/data/dashboard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type RoomFormValues = z.infer<typeof roomSchema>;
 
 const EditRoom = () => {
   const navigate = useNavigate();
+  const [images, setImages] = useState<string[]>([room1, room2, room3]);
   const { id } = useParams();
   const listing = listings.find((l) => l.id === Number(id));
 
@@ -105,6 +106,26 @@ const EditRoom = () => {
     control: form.control,
     name: "houseRules",
   });
+
+
+  // for images
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    console.log("before Array convert", files)
+
+    if (files) {
+      const newImages = Array.from(files).map(file => {
+        return URL.createObjectURL(file)
+      });
+      setImages((prev) => [...prev, ...newImages]);
+    }
+  }
+
+  // remove rooms
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
 
   const onSubmit = (data: RoomFormValues) => {
     // In a real app, you would make an API call here to update the room
@@ -325,8 +346,12 @@ const EditRoom = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => removeAmenity(index)}
-                      className="h-12 w-12 rounded-full border border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50 bg-white flex items-center justify-center transition-colors"
+                      onClick={() => amenityFields.length > 1 && removeAmenity(index)}
+                      disabled={amenityFields.length <= 1}
+                      className={`h-12 w-12 rounded-full border bg-white flex items-center justify-center transition-colors ${amenityFields.length <= 1
+                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -362,8 +387,12 @@ const EditRoom = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => removeRule(index)}
-                      className="h-12 w-12 rounded-full border border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50 bg-white flex items-center justify-center transition-colors"
+                      onClick={() => ruleFields.length > 1 && removeRule(index)}
+                      disabled={ruleFields.length <= 1}
+                      className={`h-12 w-12 rounded-full border bg-white flex items-center justify-center transition-colors ${ruleFields.length <= 1
+                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -378,23 +407,48 @@ const EditRoom = () => {
             <FormLabel className="text-gray-900 font-bold text-sm">Room Photos</FormLabel>
 
             <div className="flex flex-wrap gap-4">
-              {[room1, room2, room3, room2].map((img, idx) => (
+              {images.map((img, idx) => (
                 <div key={idx} className="relative w-28 h-24 rounded-2xl overflow-hidden group shadow-sm border border-gray-100">
                   <img src={img} className="w-full h-full object-cover" />
-                  <button type="button" className="absolute top-1 right-1 bg-white/60 hover:bg-white rounded-full p-1 transition-colors">
+                  <button
+                    onClick={() => removeImage(idx)}
+                    type="button" className="absolute top-1 right-1 bg-white/60 hover:bg-white rounded-full p-1 transition-colors">
                     <X className="w-3.5 h-3.5 text-gray-600" />
                   </button>
                 </div>
               ))}
             </div>
 
-            <div className="w-full h-[200px] rounded-[32px] border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-3 bg-white hover:bg-gray-50 transition-colors cursor-pointer group mt-6">
-              <div className="w-14 h-14 rounded-[20px] bg-gray-50 flex items-center justify-center text-gray-400 group-hover:scale-110 transition-transform">
-                <Upload className="w-7 h-7" />
-              </div>
-              <div className="text-center">
-                <p className="text-base font-medium text-gray-600">Click to upload or drag and drop</p>
-                <p className="text-xs text-gray-400 mt-1">PNG, JPG up to 10MB</p>
+            <div className="relative">
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+              />
+              <div className="border-2 border-dashed border-gray-200 rounded-[24px] sm:rounded-[32px] p-8 sm:p-16 flex flex-col items-center justify-center text-center bg-[#FDFDFD]">
+                <div className=" p-4 rounded-2xl mb-2 text-gray-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 51 40"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 29.125L13.8975 16.2275C14.4198 15.7052 15.0399 15.2908 15.7224 15.0081C16.4049 14.7254 17.1363 14.58 17.875 14.58C18.6137 14.58 19.3451 14.7254 20.0276 15.0081C20.7101 15.2908 21.3302 15.7052 21.8525 16.2275L34.75 29.125M31 25.375L34.5225 21.8525C35.0448 21.3302 35.6649 20.9158 36.3474 20.6331C37.0299 20.3504 37.7613 20.205 38.5 20.205C39.2387 20.205 39.9701 20.3504 40.6526 20.6331C41.3351 20.9158 41.9552 21.3302 42.4775 21.8525L49.75 29.125M4.75 38.5H46C46.9946 38.5 47.9484 38.1049 48.6516 37.4016C49.3549 36.6984 49.75 35.7446 49.75 34.75V4.75C49.75 3.75544 49.3549 2.80161 48.6516 2.09835C47.9484 1.39509 46.9946 1 46 1H4.75C3.75544 1 2.80161 1.39509 2.09835 2.09835C1.39509 2.80161 1 3.75544 1 4.75V34.75C1 35.7446 1.39509 36.6984 2.09835 37.4016C2.80161 38.1049 3.75544 38.5 4.75 38.5ZM31 10.375H31.02V10.395H31V10.375ZM31.9375 10.375C31.9375 10.6236 31.8387 10.8621 31.6629 11.0379C31.4871 11.2137 31.2486 11.3125 31 11.3125C30.7514 11.3125 30.5129 11.2137 30.3371 11.0379C30.1613 10.8621 30.0625 10.6236 30.0625 10.375C30.0625 10.1264 30.1613 9.8879 30.3371 9.71209C30.5129 9.53627 30.7514 9.4375 31 9.4375C31.2486 9.4375 31.4871 9.53627 31.6629 9.71209C31.8387 9.8879 31.9375 10.1264 31.9375 10.375Z"
+                      stroke="#707070"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <h4 className="text-lg sm:text-xl font-medium text-gray-400 mb-2">
+                  Click to upload or drag and drop
+                </h4>
+                <p className="text-sm text-gray-400">PNG, JPG up to 10MB</p>
               </div>
             </div>
           </div>

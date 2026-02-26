@@ -1,4 +1,4 @@
-import { Plus, Minus, Upload, X } from "lucide-react";
+import { Plus, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -34,8 +34,6 @@ const AddRoom = () => {
     removeImage,
     navigate,
   } = useAddRoom();
-
-
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] font-sans">
@@ -110,7 +108,8 @@ const AddRoom = () => {
                         Room Size
                       </FormLabel>
                       <p className="text-[12px] text-gray-400">
-                        Please specify or add the room size in square feet (sq ft).
+                        Please specify or add the room size in square feet (sq
+                        ft).
                       </p>
                     </div>
                     <FormControl>
@@ -308,8 +307,12 @@ const AddRoom = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => removeAmenity(index)}
-                      className="w-10 h-10 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500 transition-colors"
+                      onClick={() => amenityFields.length > 1 && removeAmenity(index)}
+                      disabled={amenityFields.length <= 1}
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${amenityFields.length <= 1
+                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -352,8 +355,12 @@ const AddRoom = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => removeRule(index)}
-                      className="w-10 h-10 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500 transition-colors"
+                      onClick={() => ruleFields.length > 1 && removeRule(index)}
+                      disabled={ruleFields.length <= 1}
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${ruleFields.length <= 1
+                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -411,10 +418,24 @@ const AddRoom = () => {
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
                 <div className="border-2 border-dashed border-gray-200 rounded-[24px] sm:rounded-[32px] p-8 sm:p-16 flex flex-col items-center justify-center text-center bg-[#FDFDFD]">
-                  <div className="bg-gray-50 p-4 rounded-2xl mb-4 text-gray-400">
-                    <Upload className="w-8 h-8 sm:w-10 h-10" />
+                  <div className=" p-4 rounded-2xl mb-2 text-gray-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40"
+                      height="40"
+                      viewBox="0 0 51 40"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 29.125L13.8975 16.2275C14.4198 15.7052 15.0399 15.2908 15.7224 15.0081C16.4049 14.7254 17.1363 14.58 17.875 14.58C18.6137 14.58 19.3451 14.7254 20.0276 15.0081C20.7101 15.2908 21.3302 15.7052 21.8525 16.2275L34.75 29.125M31 25.375L34.5225 21.8525C35.0448 21.3302 35.6649 20.9158 36.3474 20.6331C37.0299 20.3504 37.7613 20.205 38.5 20.205C39.2387 20.205 39.9701 20.3504 40.6526 20.6331C41.3351 20.9158 41.9552 21.3302 42.4775 21.8525L49.75 29.125M4.75 38.5H46C46.9946 38.5 47.9484 38.1049 48.6516 37.4016C49.3549 36.6984 49.75 35.7446 49.75 34.75V4.75C49.75 3.75544 49.3549 2.80161 48.6516 2.09835C47.9484 1.39509 46.9946 1 46 1H4.75C3.75544 1 2.80161 1.39509 2.09835 2.09835C1.39509 2.80161 1 3.75544 1 4.75V34.75C1 35.7446 1.39509 36.6984 2.09835 37.4016C2.80161 38.1049 3.75544 38.5 4.75 38.5ZM31 10.375H31.02V10.395H31V10.375ZM31.9375 10.375C31.9375 10.6236 31.8387 10.8621 31.6629 11.0379C31.4871 11.2137 31.2486 11.3125 31 11.3125C30.7514 11.3125 30.5129 11.2137 30.3371 11.0379C30.1613 10.8621 30.0625 10.6236 30.0625 10.375C30.0625 10.1264 30.1613 9.8879 30.3371 9.71209C30.5129 9.53627 30.7514 9.4375 31 9.4375C31.2486 9.4375 31.4871 9.53627 31.6629 9.71209C31.8387 9.8879 31.9375 10.1264 31.9375 10.375Z"
+                        stroke="#707070"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
                   </div>
-                  <h4 className="text-lg sm:text-xl font-medium text-gray-600 mb-2">
+                  <h4 className="text-lg sm:text-xl font-medium text-gray-400 mb-2">
                     Click to upload or drag and drop
                   </h4>
                   <p className="text-sm text-gray-400">PNG, JPG up to 10MB</p>

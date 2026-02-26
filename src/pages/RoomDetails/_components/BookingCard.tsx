@@ -19,7 +19,9 @@ interface BookingCardProps {
 }
 
 export default function BookingCard({ pricePerWeek }: BookingCardProps) {
+
     const { open } = useModal();
+
     const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
     const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
     const [checkInOpen, setCheckInOpen] = useState(false);

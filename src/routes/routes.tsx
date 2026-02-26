@@ -26,6 +26,11 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: (
+      <h1 className="text-5xl text-center my-52">
+        Don't Found this page, go back
+      </h1>
+    ),
     children: [
       {
         index: true,

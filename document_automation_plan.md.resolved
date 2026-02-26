@@ -1,0 +1,97 @@
+# 📄 ডকুমেন্ট অটোমেশন — কোথায় কি পরিবর্তন করতে হবে
+
+> [!NOTE]
+> এটা একটা **Frontend-only** প্রজেক্ট, তাই সত্যিকারের ইমেইল পাঠানো যাবে না। তবে **UI simulation** + **PDF ডাউনলোড (`window.print()`)** দিয়ে সব কাজ হবে।
+
+---
+
+## ১. 🏠 Rental Agreement (ভাড়া চুক্তিপত্র)
+
+**কি:** বুকিং হলে House Rules সহ একটা চুক্তিপত্র অটো-জেনারেট হবে।
+
+| করণীয় | ফাইল |
+|--------|------|
+| **[NEW]** চুক্তিপত্রের টেমপ্লেট কম্পোনেন্ট | `src/pages/RoomDetails/_components/RentalAgreement.tsx` |
+| **[MODIFY]** বুকিং সফল হলে Agreement দেখাবে + ডাউনলোড বাটন | [BookingModal.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/RoomDetails/_components/BookingModal.tsx) — Success সেকশনে (line ~176-196) |
+| **[MODIFY]** Booking form এ Emergency Contact ফিল্ড যোগ | [BookingModal.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/RoomDetails/_components/BookingModal.tsx) — formData তে (line ~21-32) |
+
+**কিভাবে কাজ করবে:** Room Add করার সময় Host যে House Rules দেয় → সেগুলো Rental Agreement টেমপ্লেটে অটো-ঢুকবে → বুকিং Success হলে Download করা যাবে
+
+---
+
+## ২. 🪪 Proof of Identity (ID দেখা)
+
+**কি:** Host এর আপলোড করা Government ID ও Selfie দেখার ব্যবস্থা।
+
+| করণীয় | ফাইল |
+|--------|------|
+| **[NEW]** ডকুমেন্টস পেজ (ID গুলো দেখাবে) | `src/pages/Dashboard/Documents/index.tsx` |
+| **[MODIFY]** Dashboard sidebar/menu তে "Documents" লিংক যোগ | [routes.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/routes/routes.tsx) — Dashboard children এ (line ~87-116) |
+
+**বর্তমান অবস্থা:** Host সাইন আপের সময় [VerifiedBadge.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/Auth/SignUpHost/VerifiedBadge.tsx) তে ID আপলোড হচ্ছে (`governmentIdFile`, `selfieWithIdFile`)। শুধু দেখানোর পেজ বানাতে হবে।
+
+---
+
+## ৩. 💰 Deposit & Rent Record (সাপ্তাহিক রিপোর্ট)
+
+**কি:** প্রতি সপ্তাহে Host কে A4 সাইজে ভাড়ার হিসাব রিপোর্ট দেখাবে + প্রিন্ট করা যাবে।
+
+| করণীয় | ফাইল |
+|--------|------|
+| **[NEW]** Financial Reports পেজ (A4 প্রিন্টযোগ্য) | `src/pages/Dashboard/FinancialReports/index.tsx` |
+| **[NEW]** প্রিন্ট-ফ্রেন্ডলি CSS (`@media print`) | `src/pages/Dashboard/FinancialReports/print.css` |
+| **[MODIFY]** Route যোগ | [routes.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/routes/routes.tsx) |
+| **[MODIFY]** Dashboard এ Quick Action যোগ | [QuickAction.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/Dashboard/_components/QuickAction.tsx) |
+
+**A4 ফর্ম্যাট:** CSS `@media print` ব্যবহার করে `width: 210mm; min-height: 297mm` সেট করলেই A4 হবে
+
+---
+
+## ৪. 📧 Automated Booking Email (বুকিং ইমেইল)
+
+**কি:** বুকিং হলে Guest + Host দুজনের তথ্য সহ ইমেইল পাঠানো হবে (UI তে দেখাবে)।
+
+| করণীয় | ফাইল |
+|--------|------|
+| **[MODIFY]** Success সেকশনে ইমেইল পাঠানোর UI দেখাবে | [BookingModal.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/RoomDetails/_components/BookingModal.tsx) — line ~130-140 |
+| **[MODIFY]** formData তে `emergencyContact` ফিল্ড যোগ | [BookingModal.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/RoomDetails/_components/BookingModal.tsx) — line ~21-32 |
+| **[NEW]** ইমেইল প্রিভিউ কম্পোনেন্ট | `src/pages/RoomDetails/_components/EmailPreview.tsx` |
+
+**Guest এর Emergency Contact:** BookingModal এর ফর্মে একটা নতুন ফিল্ড যোগ হবে — "Emergency Contact Name" ও "Emergency Contact Number"
+
+---
+
+## ৫. 📖 Welcome Guide Booklet (স্বাগতম গাইড)
+
+**কি:** Host একটা গাইড পূরণ করবে (WiFi, Welcome Note, House Rules, Transport, Amenities, Emergency Numbers) → Guest কে পাঠানো যাবে।
+
+| করণীয় | ফাইল |
+|--------|------|
+| **[NEW]** Welcome Guide এডিটর পেজ | `src/pages/Dashboard/WelcomeGuide/index.tsx` |
+| **[NEW]** Welcome Guide প্রিভিউ/প্রিন্ট পেজ | `src/pages/Dashboard/WelcomeGuide/Preview.tsx` |
+| **[MODIFY]** Route যোগ | [routes.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/routes/routes.tsx) |
+| **[MODIFY]** Dashboard Quick Actions এ লিংক যোগ | [QuickAction.tsx](file:///a:/Ashraful/office/mac-page-fronted/src/pages/Dashboard/_components/QuickAction.tsx) |
+
+**গাইডে যা থাকবে:** WiFi Name/Password, Welcome Note, House Rule সারসংক্ষেপ, Local Transport তথ্য, Amenities, Emergency Numbers — সব Host এডিট করতে পারবে
+
+---
+
+## সারসংক্ষেপ — নতুন ও পরিবর্তিত ফাইলের তালিকা
+
+### নতুন ফাইল (৬টি):
+```
+src/pages/RoomDetails/_components/RentalAgreement.tsx
+src/pages/RoomDetails/_components/EmailPreview.tsx
+src/pages/Dashboard/Documents/index.tsx
+src/pages/Dashboard/FinancialReports/index.tsx
+src/pages/Dashboard/FinancialReports/print.css
+src/pages/Dashboard/WelcomeGuide/index.tsx
+src/pages/Dashboard/WelcomeGuide/Preview.tsx
+```
+
+### পরিবর্তিত ফাইল (৩টি):
+```
+src/pages/RoomDetails/_components/BookingModal.tsx   ← Emergency Contact + Agreement + Email UI
+src/routes/routes.tsx                                ← ৩টি নতুন route যোগ
+src/pages/Dashboard/_components/QuickAction.tsx      ← নতুন Action buttons যোগ
+```
