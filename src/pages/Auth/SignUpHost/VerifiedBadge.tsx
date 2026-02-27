@@ -4,45 +4,45 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 
 export default function VerifiedBadge({
-    setStep,
-    authData,
-    setAuthData
+  setStep,
+  authData,
+  setAuthData
 }: {
-      setStep: React.Dispatch<React.SetStateAction<number>>;
-      authData: TAuthDataType;
-      setAuthData: React.Dispatch<React.SetStateAction<TAuthDataType>>;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+  authData: TAuthDataType;
+  setAuthData: React.Dispatch<React.SetStateAction<TAuthDataType>>;
 }) {
 
 
-    const handleFileSetup = (file: File | null, forWhich: string) => {
+  const handleFileSetup = (file: File | null, forWhich: string) => {
     setAuthData((prev) => ({
-        ...prev,
-        hostData: {
+      ...prev,
+      hostData: {
         ...prev.hostData,
         [forWhich]: file,
-        },
+      },
     }));
+  };
+
+
+  const handeNext = () => {
+
+    if (!authData.hostData.governmentIdFile) {
+      toast.warning("Government ID is required.");
+      return
     };
 
+    if (!authData.hostData.selfieWithIdFile) {
+      toast.warning("Selfie with ID is required.");
+      return
+    };
 
-      const handeNext = () => {
- 
-        if (!authData.hostData.governmentIdFile ) { 
-            toast.warning("Government ID is required.");
-            return
-        };
-        
-        if (!authData.hostData.selfieWithIdFile ) { 
-            toast.warning("Selfie with ID is required.");
-            return
-        };
-
-        setStep((prev) => prev + 1);
-      };
+    setStep((prev) => prev + 1);
+  };
 
 
   return (
-    <div className="w-full   bg-white rounded-2xl p-6 relative ">
+    <div className="w-full    rounded-2xl p-6 relative ">
       {/* Title */}
       <h2 className="text-2xl font-bold text-center mb-6">
         Get Verified Host <br /> Badge
@@ -51,12 +51,12 @@ export default function VerifiedBadge({
       {/* Upload Field */}
       <div className="space-y-5">
         <ImageUploadBox
-        label="Government ID"
-        sub="Passport / National ID / Driving License"
-        onFileSelect={(file) => handleFileSetup(file ,"governmentIdFile" )}
+          label="Government ID"
+          sub="Passport / National ID / Driving License"
+          onFileSelect={(file) => handleFileSetup(file, "governmentIdFile")}
         />
 
-        <ImageUploadBox label="Upload Selfie with ID" onFileSelect={(file) => handleFileSetup(file ,"selfieWithIdFile" )} />
+        <ImageUploadBox label="Upload Selfie with ID" onFileSelect={(file) => handleFileSetup(file, "selfieWithIdFile")} />
       </div>
 
       {/* Note */}

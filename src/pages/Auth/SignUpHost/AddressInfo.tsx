@@ -68,7 +68,7 @@ export default function AddressInfo({
   }
 
   return (
-    <div className="bg-white rounded-[32px] w-full relative ">
+    <div className=" rounded-[32px] w-full relative ">
       <h2 className="text-[30px] font-semibold text-center mb-10 tracking-tight">
         Address & Residency Info
       </h2>

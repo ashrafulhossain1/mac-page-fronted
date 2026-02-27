@@ -8,7 +8,7 @@ type Option = { value: string; label: string };
 
 function SearchCard() {
 
-  console.log("console city", City)
+  // console.log("console city", City)
   const [searchParams, setSearchParams] = useState({
     maxPrice: "",
     minPrice: "",

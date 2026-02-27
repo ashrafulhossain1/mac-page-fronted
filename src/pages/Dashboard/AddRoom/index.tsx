@@ -274,7 +274,7 @@ const AddRoom = () => {
             />
 
             {/* Amenities */}
-            <div className="space-y-4">
+            <div className="space-y-4 w-full md:w-1/2">
               <div className="flex flex-col gap-1">
                 <FormLabel className="text-sm font-bold text-gray-900">
                   Amenities
@@ -307,12 +307,15 @@ const AddRoom = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => amenityFields.length > 1 && removeAmenity(index)}
+                      onClick={() =>
+                        amenityFields.length > 1 && removeAmenity(index)
+                      }
                       disabled={amenityFields.length <= 1}
-                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${amenityFields.length <= 1
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${
+                        amenityFields.length <= 1
                           ? "border-gray-100 text-gray-200 cursor-not-allowed"
                           : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
-                        }`}
+                      }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -322,7 +325,7 @@ const AddRoom = () => {
             </div>
 
             {/* House Rules */}
-            <div className="space-y-4">
+            <div className="space-y-4 w-full md:w-1/2">
               <div className="flex flex-col gap-1">
                 <FormLabel className="text-sm font-bold text-gray-900">
                   House Rules
@@ -357,10 +360,11 @@ const AddRoom = () => {
                       type="button"
                       onClick={() => ruleFields.length > 1 && removeRule(index)}
                       disabled={ruleFields.length <= 1}
-                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${ruleFields.length <= 1
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${
+                        ruleFields.length <= 1
                           ? "border-gray-100 text-gray-200 cursor-not-allowed"
                           : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
-                        }`}
+                      }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>

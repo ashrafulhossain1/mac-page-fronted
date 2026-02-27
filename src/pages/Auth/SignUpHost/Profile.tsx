@@ -73,7 +73,7 @@ export default function HostProfileSet({
   }
 
   return (
-    <div className="bg-white rounded-3xl w-full  relative ">
+    <div className="rounded-3xl w-full  relative ">
 
       <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
 

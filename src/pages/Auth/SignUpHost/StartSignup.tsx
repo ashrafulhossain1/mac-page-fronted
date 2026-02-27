@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff } from "lucide-react";
 
-import type { TAuthDataType } from "@/types/auth"; 
+import type { TAuthDataType } from "@/types/auth";
 
 const formSchema = z
   .object({
@@ -57,10 +57,10 @@ export default function StartSignup({
     // mode: "onChange",
   });
 
- 
+
 
   const onSubmit = (data: FormValues) => {
- 
+
     if (data.email && data.password && data.confirmPassword) {
       setAuthData((prev) => ({
         ...prev,
@@ -78,7 +78,7 @@ export default function StartSignup({
   };
 
   return (
-    <div className="w-full bg-white rounded-2xl p-6">
+    <div className="w-fullrounded-2xl p-6">
       <h2 className="text-3xl font-bold text-center mb-6">
         Let’s get started
       </h2>
@@ -175,26 +175,26 @@ export default function StartSignup({
           />
 
           {/* Terms */}
-            <FormField
+          <FormField
             control={form.control}
             name="isTermsAccepted"
             render={({ field }) => (
-                <FormItem className="flex items-center space-x-2">
+              <FormItem className="flex items-center space-x-2">
                 <FormControl>
-                    <Checkbox
+                  <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
-                    />
+                  />
                 </FormControl>
-                <div className="flex flex-col "> 
-                    <p className="text-sm text-muted-foreground">
-                        I agree to the terms and conditions and privacy policy.
-                    </p>
-                    <FormMessage />
+                <div className="flex flex-col ">
+                  <p className="text-sm text-muted-foreground">
+                    I agree to the terms and conditions and privacy policy.
+                  </p>
+                  <FormMessage />
                 </div>
-                </FormItem>
+              </FormItem>
             )}
-            />
+          />
 
           {/* <FormMessage /> */}
 

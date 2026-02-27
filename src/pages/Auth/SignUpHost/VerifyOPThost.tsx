@@ -1,6 +1,6 @@
- 
 
-import {  useRef } from "react";
+
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -61,26 +61,26 @@ export default function VerifyOPThost({
   };
 
   const handlePaste = (e: React.ClipboardEvent) => {
-  e.preventDefault();
-  const pasteData = e.clipboardData.getData("text").trim();
-  if (!/^\d{1,6}$/.test(pasteData)) return;
+    e.preventDefault();
+    const pasteData = e.clipboardData.getData("text").trim();
+    if (!/^\d{1,6}$/.test(pasteData)) return;
 
-  const codeArray = pasteData.split("").slice(0, 6);
-  form.setValue("code", codeArray.join("").padEnd(6, ""));
+    const codeArray = pasteData.split("").slice(0, 6);
+    form.setValue("code", codeArray.join("").padEnd(6, ""));
 
-  // fill inputs and focus last pasted
-  codeArray.forEach((digit, i) => {
-    if (inputRefs.current[i]) {
-      inputRefs.current[i]!.value = digit;
-    }
-  });
-  const lastIndex = codeArray.length - 1;
-  inputRefs.current[lastIndex]?.focus();
-};
+    // fill inputs and focus last pasted
+    codeArray.forEach((digit, i) => {
+      if (inputRefs.current[i]) {
+        inputRefs.current[i]!.value = digit;
+      }
+    });
+    const lastIndex = codeArray.length - 1;
+    inputRefs.current[lastIndex]?.focus();
+  };
 
 
   return (
-    <div className="max-w-110 mx-auto  bg-white p-6 rounded-2xl  ">
+    <div className="max-w-110 mx-auto   p-6 rounded-2xl  ">
       <h2 className="text-3xl font-bold text-center mb-2">
         Enter 6 digit code
       </h2>

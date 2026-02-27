@@ -79,7 +79,7 @@ export default function VerifyOTPGuest({
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white p-2 rounded-3xl">
+        <div className="max-w-md mx-auto  p-2 rounded-3xl">
             <h2 className="text-[32px] md:text-[40px] font-bold text-center mb-2 text-black leading-tight">
                 Enter 6 digit code
             </h2>

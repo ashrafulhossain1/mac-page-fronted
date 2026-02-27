@@ -77,7 +77,7 @@ export default function NumberEmailPassword({
   }
 
   return (
-    <div className="bg-white rounded-3xl w-full max-w-md mx-auto relative">
+    <div className=" rounded-3xl w-full max-w-md mx-auto relative">
       <h2 className="text-[28px] md:text-[32px] font-bold text-center mb-6 mt-2 text-black leading-tight">
         Let's get started
       </h2>

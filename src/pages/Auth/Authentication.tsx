@@ -67,7 +67,7 @@ export default function Authentication() {
 
   return (
     <div className="bg-white rounded-4xl py-4 md:py-6 px-6 md:px-8 w-full  relative">
-      <DialogClose className="absolute top-2 right-2 md:right-2">
+      <DialogClose className="absolute top-4 right-4 md:right-4">
         <X className=" w-10 text-orange-500  " />
       </DialogClose>
 
