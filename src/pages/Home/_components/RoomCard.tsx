@@ -79,12 +79,12 @@ const RoomCard = ({
           <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
           {/* Price badge */}
-          <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-black text-sm font-bold px-3.5 py-1.5 rounded-full shadow-md">
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-black text-sm font-medium px-3.5 py-1.5 rounded-full shadow-md">
             {price}
           </div>
 
           {/* Arrow icon top-right on hover */}
-          <div className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
+          <div className="absolute bottom-3 left-3 bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
             <ArrowUpRight size={16} className="text-gray-800" />
           </div>
         </div>

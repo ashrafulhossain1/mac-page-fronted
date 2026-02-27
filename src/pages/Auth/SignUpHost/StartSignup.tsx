@@ -78,7 +78,7 @@ export default function StartSignup({
   };
 
   return (
-    <div className="w-fullrounded-2xl p-6">
+    <div className="w-full rounded-2xl p-6">
       <h2 className="text-3xl font-bold text-center mb-6">
         Let’s get started
       </h2>

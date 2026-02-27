@@ -117,6 +117,7 @@ const AddRoom = () => {
                         <Input
                           {...field}
                           type="number"
+                          min="0"
                           placeholder="0"
                           className="h-14 rounded-xl border-gray-200 bg-white pr-16"
                         />
@@ -175,6 +176,7 @@ const AddRoom = () => {
                         <Input
                           {...field}
                           type="number"
+                          min="0"
                           placeholder="0.00"
                           className="h-14 rounded-xl border-gray-200 bg-white pl-12"
                         />
@@ -201,7 +203,7 @@ const AddRoom = () => {
                   <FormControl>
                     <Textarea
                       {...field}
-                      className="min-h-[160px] rounded-xl border-gray-200 bg-white resize-none p-6 leading-relaxed"
+                      className="h-[120px] rounded-xl border-gray-200 bg-white resize-none overflow-y-auto p-6 leading-relaxed"
                     />
                   </FormControl>
                   <FormMessage />
@@ -265,7 +267,7 @@ const AddRoom = () => {
                   <FormControl>
                     <Textarea
                       {...field}
-                      className="min-h-[160px] rounded-xl border-gray-200 bg-white resize-none p-6 leading-relaxed"
+                      className="h-[120px] rounded-xl border-gray-200 bg-white resize-none overflow-y-auto p-6 leading-relaxed"
                     />
                   </FormControl>
                   <FormMessage />
@@ -311,11 +313,10 @@ const AddRoom = () => {
                         amenityFields.length > 1 && removeAmenity(index)
                       }
                       disabled={amenityFields.length <= 1}
-                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${
-                        amenityFields.length <= 1
-                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
-                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
-                      }`}
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${amenityFields.length <= 1
+                        ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                        : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>
@@ -360,11 +361,10 @@ const AddRoom = () => {
                       type="button"
                       onClick={() => ruleFields.length > 1 && removeRule(index)}
                       disabled={ruleFields.length <= 1}
-                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${
-                        ruleFields.length <= 1
-                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
-                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
-                      }`}
+                      className={`w-10 h-10 border rounded-full flex items-center justify-center transition-colors ${ruleFields.length <= 1
+                        ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                        : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500"
+                        }`}
                     >
                       <Minus className="w-5 h-5" />
                     </button>

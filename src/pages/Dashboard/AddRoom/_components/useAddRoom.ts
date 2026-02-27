@@ -21,12 +21,14 @@ export const roomSchema = z.object({
   roomSize: z
     .string()
     .min(1, "Please enter room size")
-    .regex(/^\d+$/, "Size must be a valid number"),
+    .regex(/^\d+$/, "Size must be a valid number")
+    .refine((val) => Number(val) > 0, "Size must be greater than 0"),
   minStay: z.string().min(1, "Please select minimum stay"),
   weeklyPrice: z
     .string()
     .min(1, "Please enter weekly price")
-    .regex(/^\d+$/, "Price must be a valid number"),
+    .regex(/^\d+$/, "Price must be a valid number")
+    .refine((val) => Number(val) > 0, "Price must be greater than 0"),
   aboutRoom: z.string().min(20, "Description must be at least 20 characters"),
   locationName: z.string().min(5, "Town and County is required"),
   mapLink: z.string().url("Please enter a valid URL").or(z.literal("")),

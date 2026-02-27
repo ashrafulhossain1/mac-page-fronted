@@ -30,9 +30,9 @@ import BookingStatusWidget from "./_components/BookingStatusWidget";
 const roomSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   type: z.string().min(1, "Please select a room type"),
-  size: z.string().min(1, "Please enter room size"),
+  size: z.string().min(1, "Please enter room size").refine((val) => Number(val) >= 0, "Size cannot be negative"),
   minStay: z.string().min(1, "Please enter minimum stay"),
-  price: z.string().min(1, "Please enter weekly price"),
+  price: z.string().min(1, "Please enter weekly price").refine((val) => { const num = parseFloat(val.replace(/[^0-9.]/g, '')); return !isNaN(num) && num >= 0; }, "Price cannot be negative"),
   about: z.string().min(20, "Please provide a more detailed description"),
   locationName: z.string().min(3, "Location name is required"),
   locationMap: z.string().url("Please enter a valid Google Maps URL"),
@@ -213,7 +213,7 @@ const EditRoom = () => {
                   <FormItem>
                     <FormLabel className="text-gray-900 font-bold text-sm">Room Size</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="sq ft" className="h-12 px-4 rounded-xl bg-white border-gray-200 text-gray-900 shadow-sm" />
+                      <Input {...field} type="number" min="0" placeholder="sq ft" className="h-12 px-4 rounded-xl bg-white border-gray-200 text-gray-900 shadow-sm" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -243,7 +243,7 @@ const EditRoom = () => {
                   <FormItem>
                     <FormLabel className="text-gray-900 font-bold text-sm">Weekly Price</FormLabel>
                     <FormControl>
-                      <Input {...field} className="h-12 px-4 rounded-xl bg-white border-gray-200 text-gray-900 font-bold shadow-sm" />
+                      <Input {...field} type="number" min="0" className="h-12 px-4 rounded-xl bg-white border-gray-200 text-gray-900 font-bold shadow-sm" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -258,7 +258,7 @@ const EditRoom = () => {
                 <FormItem>
                   <FormLabel className="text-gray-900 font-bold text-sm">About This Room</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="min-h-[140px] p-4 rounded-xl bg-white border-gray-200 text-gray-500 leading-relaxed resize-none shadow-sm" />
+                    <Textarea {...field} className="h-[120px] p-4 rounded-xl bg-white border-gray-200 text-gray-500 leading-relaxed resize-none overflow-y-auto shadow-sm" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -307,7 +307,7 @@ const EditRoom = () => {
                 <FormItem>
                   <FormLabel className="text-gray-900 font-bold text-sm">About The Location</FormLabel>
                   <FormControl>
-                    <Textarea {...field} className="min-h-[140px] p-4 rounded-xl bg-white border-gray-200 text-gray-500 leading-relaxed resize-none shadow-sm" />
+                    <Textarea {...field} className="h-[120px] p-4 rounded-xl bg-white border-gray-200 text-gray-500 leading-relaxed resize-none overflow-y-auto shadow-sm" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -349,8 +349,8 @@ const EditRoom = () => {
                       onClick={() => amenityFields.length > 1 && removeAmenity(index)}
                       disabled={amenityFields.length <= 1}
                       className={`h-12 w-12 rounded-full border bg-white flex items-center justify-center transition-colors ${amenityFields.length <= 1
-                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
-                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                        : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
                         }`}
                     >
                       <Minus className="w-5 h-5" />
@@ -390,8 +390,8 @@ const EditRoom = () => {
                       onClick={() => ruleFields.length > 1 && removeRule(index)}
                       disabled={ruleFields.length <= 1}
                       className={`h-12 w-12 rounded-full border bg-white flex items-center justify-center transition-colors ${ruleFields.length <= 1
-                          ? "border-gray-100 text-gray-200 cursor-not-allowed"
-                          : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        ? "border-gray-100 text-gray-200 cursor-not-allowed"
+                        : "border-gray-200 text-gray-400 hover:text-red-500 hover:bg-red-50"
                         }`}
                     >
                       <Minus className="w-5 h-5" />

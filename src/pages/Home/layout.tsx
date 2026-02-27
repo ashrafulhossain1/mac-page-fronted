@@ -8,8 +8,9 @@ import { Toaster } from "sonner";
 export default function HomeLayout() {
   return (
     <div>
-      <Toaster position="top-right" />
       <ScrollToTop />
+      <Toaster position="top-right" />
+
       <Header />
       <Modals />
 
