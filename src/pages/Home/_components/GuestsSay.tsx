@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ReviewCard } from "@/components/ReviewCard";
-import avatarImg from "@/assets/home/Ellipse 1.png";
+import avatar1 from "@/assets/home/Ellipse 1.png";
+import avatar2 from "@/assets/home/Ellipse 01.png";
+import avatar3 from "@/assets/home/Ellipse 2.svg";
 import {
   headingViewport,
   sequentialStaggerVariants,
@@ -26,7 +28,7 @@ const testimonials: Testimonial[] = [
     text: "A cozy room in a quiet residential area. 10 mins walk to city center, Includes high-speed WiFi and a study desk...",
     author: "Atif Islam",
     role: "Student in Ireland",
-    avatar: avatarImg,
+    avatar: avatar1,
   },
   {
     id: 2,
@@ -34,7 +36,7 @@ const testimonials: Testimonial[] = [
     text: "A cozy room in a quiet residential area. 10 mins walk to city center, Includes high-speed WiFi and a study desk...",
     author: "Sanjay M.",
     role: "Student in Ireland",
-    avatar: avatarImg,
+    avatar: avatar2,
   },
   {
     id: 3,
@@ -42,13 +44,13 @@ const testimonials: Testimonial[] = [
     text: "A cozy room in a quiet residential area. 10 mins walk to city center, Includes high-speed WiFi and a study desk...",
     author: "Emma L.",
     role: "Student in Ireland",
-    avatar: avatarImg,
+    avatar: avatar3,
   },
 ];
 
 export function GuestsSay() {
   return (
-    <section className="w-full py-24">
+    <section className="w-full py-10 md:py-16 lg:py-24 xl:py-[120px]">
       <div className="w-full max-w-[1280px] mx-auto px-4">
         {/* Title */}
         <motion.div
@@ -56,14 +58,11 @@ export function GuestsSay() {
           initial="hidden"
           whileInView="visible"
           viewport={headingViewport}
-          className="text-center mb-16"
+          className="text-center mb-[20px] md:mb-[24px] lg:mb-[34px]"
         >
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className=" text-3xl md:text-4xl lg:text-[48px] font-semibold">
             What Our <span className="text-orange-500">Guests</span> Say
           </h2>
-          <p className="text-gray-500 mt-4 text-lg">
-            Hear directly from our guests who stayed with us
-          </p>
         </motion.div>
 
         {/* Review cards — one by one */}
@@ -78,7 +77,6 @@ export function GuestsSay() {
             <motion.div
               key={testimonial.id}
               variants={fastCardVariants}
-              whileHover={decentHover}
             >
               <ReviewCard
                 rating={testimonial.rating}

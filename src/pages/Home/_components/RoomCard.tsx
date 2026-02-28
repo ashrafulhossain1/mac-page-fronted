@@ -67,7 +67,7 @@ const RoomCard = ({
 }: RoomCardProps) => {
   return (
     <Link to={`/browse/${id}`} className="block group">
-      <div className="relative w-full overflow-hidden rounded-[28px] bg-[#fbfbfb] border p-4 border-gray-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.13)] transition-shadow duration-500">
+      <div className="relative w-full overflow-hidden rounded-[28px] bg-[#fbfbfb] border p-4 border-gray-300 hover:shadow-sm transition-shadow duration-500">
         {/* ── Image ── */}
         <div className="relative overflow-hidden rounded-[16px] h-[220px] md:h-[270px] mb-4">
           <img
@@ -100,10 +100,10 @@ const RoomCard = ({
           {/* Location */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center gap-1.5 text-primary"
+            className="flex items-center gap-1.5 text-black"
           >
-            <MapPin size={13} className="shrink-0" />
-            <span className="text-xs font-semibold uppercase tracking-widest">
+            <MapPin size={20} className="shrink-0" />
+            <span className="text-xs md:text-base font-medium text-secondary-foreground uppercase tracking-widest">
               {location}
             </span>
           </motion.div>
@@ -111,7 +111,7 @@ const RoomCard = ({
           {/* Title */}
           <motion.h3
             variants={itemVariants}
-            className="text-[17px] font-bold text-gray-900 leading-snug line-clamp-1 group-hover:text-primary transition-colors duration-300"
+            className="text-[17px] font-medium text-gray-900 leading-snug line-clamp-1 group-hover:text-primary transition-colors duration-300"
           >
             {title}
           </motion.h3>
@@ -119,7 +119,7 @@ const RoomCard = ({
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-sm text-gray-500 leading-relaxed line-clamp-2"
+            className="text-sm md:text-base text-gray-500 leading-relaxed line-clamp-2"
           >
             {description}
           </motion.p>
@@ -141,20 +141,21 @@ const RoomCard = ({
           </motion.div>
 
           {/* Divider */}
-          <div className="border-b mb-3 md:mb-5 mt-3 md:mt-5" />
+          <div className="border-b  mt-1 md:mt-2" />
 
           {/* Footer */}
           <motion.div
             variants={itemVariants}
             className="flex items-center justify-between pt-0.5"
           >
-            <div className="flex items-center gap-1.5">
-              <Star size={15} className="fill-[#F97316] text-[#F97316]" />
-              <span className="font-bold text-sm text-gray-800">{rating}</span>
-              <span className="text-gray-400 text-sm">({reviews} reviews)</span>
+            <div className="flex items-center gap-1.5 md:gap-2.5">
+              <Star size={20} className="fill-[#F97316] text-[#F97316]" />
+              <span className="font-bold text-sm md:text-lg text-gray-800">
+                {rating}
+              </span>
             </div>
-            <span className="text-xs font-semibold text-primary bg-primary/8 px-3 py-1 rounded-full">
-              View Room →
+            <span className="text-xs md:text-base  text-secondary-foreground  px-3 py-1 rounded-full">
+              {reviews} reviews
             </span>
           </motion.div>
         </motion.div>

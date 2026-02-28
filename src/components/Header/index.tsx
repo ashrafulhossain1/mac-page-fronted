@@ -59,22 +59,24 @@ export default function Header() {
     { name: "Home", path: "/" },
     isHost
       ? { name: "Dashboard", path: "/dashboard" }
-      : { name: "Browse", path: "/browse" },
+      : { name: "Rooms", path: "/rooms" },
     { name: "Our Story", path: "/our-story" },
     { name: "How it works", path: "/#how-it-works" },
-    { name: "Support", path: "/support" },
+    { name: "Contact Us", path: "/contact-us" },
   ];
 
   return (
     <header className="w-full bg-white border-gray-100 sticky top-0 z-40">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-1 py-5 md:py-6">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-2 py-5 md:py-6">
         {/* Logo */}
         <div className="shrink-0">
           <Link to="/" className="cursor-pointer">
             <h1 className="text-[18px] lg:text-[24px] xl:text-[26px] font-bold tracking-tight leading-tight">
-              <span className="text-primary">Warm</span>
-              <br className=" md:block lg:hidden" />
-              <span className="text-primary-foreground">Welcome</span>
+              <img
+                className="w-[170px] md:w-[150px] lg:w-[200px]"
+                src="./WarmWelcome Loog.svg"
+                alt=""
+              />
             </h1>
           </Link>
         </div>
@@ -133,8 +135,8 @@ export default function Header() {
                 className="hidden md:inline-flex text-[14px] lg:text-[16px] xl:text-[18px] font-semibold rounded-[16px] px-3 lg:px-4 xl:px-6 py-2 lg:py-3"
                 onClick={() => openModal("host")}
               >
-                Become a Host{" "}
-                <span className="hidden xl:inline-block ml-1">Partner</span>
+                Become a Host{""}
+                <span className="hidden xl:inline-block">Partner</span>
               </Button>
             </>
           )}

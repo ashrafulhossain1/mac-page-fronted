@@ -30,11 +30,13 @@ const initialFaqs: FAQItem[] = [
 const extraFaqs: FAQItem[] = [
   {
     question: "Are there any service fees?",
-    answer: "We maintain a transparent fee structure for both hosts and guests...",
+    answer:
+      "We maintain a transparent fee structure for both hosts and guests...",
   },
   {
     question: "How does the verification process work?",
-    answer: "Every host undergoes a strict identity check and property verification...",
+    answer:
+      "Every host undergoes a strict identity check and property verification...",
   },
 ];
 
@@ -53,9 +55,15 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-20 px-6 font-sans">
+    <section className="bg-white py-10 md:py-16 lg:py-20 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
-        <motion.h2 variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport} className="text-center text-4xl md:text-5xl font-bold mb-12 text-primary-foreground">
+        <motion.h2
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={headingViewport}
+          className="text-center text-3xl md:text-4xl lg:text-[48px] font-semibold mb-6 sm:mb-8 md:mb-12 text-primary-foreground"
+        >
           <span className="text-primary">Frequently</span> Asked Questions
         </motion.h2>
 
@@ -63,21 +71,24 @@ const FAQ: React.FC = () => {
           {faqs.map((faq, index) => (
             <motion.div
               key={faq.question}
-              variants={headingVariants} initial="hidden" whileInView="visible" viewport={headingViewport}
-              className="bg-[#EDEDED] rounded-[20px] overflow-hidden cursor-pointer"
+              variants={headingVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={headingViewport}
+              className="bg-gray-100 rounded-[16px] md:rounded-[20px] lg:rounded-[24px] overflow-hidden cursor-pointer px-4  lg:px-6 py-3 md:py-4 lg:py-6"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 md:p-8 text-left group"
+                className="w-full flex justify-between items-center   text-left group"
               >
-                <span className="text-xl md:text-2xl font-semibold text-black transition-colors duration-300 group-hover:text-primary">
+                <span className="text-[18px] md:text-[22px] lg:text-[26px] font-semibold text-black transition-colors duration-300 group-hover:text-primary mb-2">
                   {faq.question}
                 </span>
                 <div className="shrink-0 ml-4 transition-transform duration-500">
                   {openIndex === index ? (
-                    <Minus className="w-6 h-6 border-2 rounded-full p-0.5 text-primary border-primary" />
+                    <Minus className="w-6 md:w-8 h-6 md:h-8 border-2 rounded-full p-0.5 text-black border-black" />
                   ) : (
-                    <Plus className="w-6 h-6 border-2 border-black rounded-full p-0.5" />
+                    <Plus className="w-6 md:w-8 h-6 md:h-8 border-2 border-black rounded-full p-0.5" />
                   )}
                 </div>
               </button>
@@ -92,8 +103,8 @@ const FAQ: React.FC = () => {
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 md:px-8 pb-8">
-                      <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+                    <div className="">
+                      <p className="text-secondary-foreground leading-relaxed text-sm md:text-base">
                         {faq.answer}
                       </p>
                     </div>

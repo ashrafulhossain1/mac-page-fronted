@@ -38,10 +38,10 @@ export default function SignInForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-bold text-center pt-4 md:pt-6">
+        <h1 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center pt-4 md:pt-6">
           Welcome back!
         </h1>
-        <p className="text-sm text-gray-400 text-center mt-1 mb-6 md:mb-8">
+        <p className="text-sm md:text-base lg:text-lg text-gray-400 text-center mt-1 lg:mt-2 mb-3 md:mb-4 lg:mb-6">
           Please enter your email & password
         </p>
 
@@ -55,7 +55,7 @@ export default function SignInForm() {
                 <Input
                   type="email"
                   placeholder="Email"
-                  className="h-[50px] md:h-[55px] rounded-[16px] border border-border px-5 placeholder:text-ring"
+                  className="h-[50px]  md:h-[55px] rounded-[16px]  border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                   {...field}
                 />
               </FormControl>
@@ -75,7 +75,7 @@ export default function SignInForm() {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className="h-[50px] md:h-[55px] rounded-[16px] border border-border px-5 placeholder:text-ring pr-12"
+                    className="h-[50px] md:h-[54px] border-none bg-gray-100 rounded-[16px]  px-3 md:px-5 pr-12 placeholder:text-gray-500"
                     {...field}
                   />
                   <button
@@ -133,4 +133,3 @@ export default function SignInForm() {
     </Form>
   );
 }
-

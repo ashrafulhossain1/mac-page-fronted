@@ -1,5 +1,11 @@
 import React from "react";
-import { Instagram, Facebook, Twitter, ArrowRight, Youtube } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  ArrowRight,
+  Youtube,
+} from "lucide-react";
 import RoleToggle from "./RoleToggle";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
@@ -7,8 +13,8 @@ import { headingViewport, innerItemVariants } from "@/lib/animations";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white py-16 px-6 md:px-12 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-black text-white px-6 md:px-12 font-sans overflow-hidden">
+      <div className="max-w-7xl mx-auto py-10 md:pt-16 lg:pt-[120px]">
         {/* Main Grid Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Section */}
@@ -89,9 +95,21 @@ const Footer: React.FC = () => {
             </motion.h3>
             <ul className="space-y-4">
               {[
-                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/warmwelcome_listings/" },
-                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/WarmWelcome.ie/" },
-                { icon: Youtube, label: "Youtube", href: "https://www.youtube.com/@WarmWelcomeIE" },
+                {
+                  icon: Instagram,
+                  label: "Instagram",
+                  href: "https://www.instagram.com/warmwelcome_listings/",
+                },
+                {
+                  icon: Facebook,
+                  label: "Facebook",
+                  href: "https://www.facebook.com/WarmWelcome.ie/",
+                },
+                {
+                  icon: Youtube,
+                  label: "Youtube",
+                  href: "https://www.youtube.com/@WarmWelcomeIE",
+                },
                 { icon: Twitter, label: "X", href: "#" },
               ].map((social, i) => (
                 <motion.li
@@ -155,7 +173,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-8">
             <p>hello@warmwelcome.ie</p>
             <Link
-              to="/support#contact-us"
+              to="/contact-us#contact-us"
               className="text-[#F97316] hover:text-[#ea580c] font-medium transition"
             >
               Contact Us

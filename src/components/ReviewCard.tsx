@@ -16,16 +16,16 @@ export function ReviewCard({
   avatar,
 }: ReviewCardProps) {
   return (
-    <div className="bg-gray-100 rounded-xl shadow-md p-6 flex flex-col transition transform hover:-translate-y-2 hover:shadow-xl duration-300 h-[327px]">
+    <div className="bg-gray-100 rounded-xl hover:shadow-sm p-5 lg:p-6 flex flex-col transition transform hover:-translate-y-2 duration-300">
       {/* Stars */}
-      <div className="flex gap-1 mb-4">
+      <div className="flex gap-1 mb-2 md:mb-3 lg:mb-4">
         {[...Array(rating)].map((_, i) => (
-          <Star key={i} size={20} className="fill-[#FF9807] text-[#FF9807]" />
+          <Star key={i} size={16} className="fill-[#FF9807] text-[#FF9807]" />
         ))}
       </div>
 
       {/* Review text */}
-      <p className="text-gray-700 italic text-lg my-5 grow">{text}</p>
+      <p className="text-gray-700 italic text-base lg:text-lg  grow">{text}</p>
 
       {/* Guest Profile */}
       <div className="flex items-center gap-4 mt-4">
@@ -35,8 +35,8 @@ export function ReviewCard({
           className="w-12 h-12 rounded-full object-cover border-2 border-orange-500"
         />
         <div>
-          <p className="font-semibold text-gray-900 text-[18px]">{author}</p>
-          <p className="text-gray-600 text-[16px]">{role}</p>
+          <p className="font-medium text-gray-900  text-base md:text-[18px]">{author}</p>
+          <p className="text-secondary-foreground text-sm md:text-[16px]">{role}</p>
         </div>
       </div>
     </div>

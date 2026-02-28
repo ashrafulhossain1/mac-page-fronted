@@ -54,7 +54,7 @@ const appleSpring = {
 
 export default function FeaturedRooms() {
   return (
-    <div className="max-w-[1280px] mx-auto py-[120px] px-4 md:px-6 lg:px-0">
+    <div className="max-w-[1280px] mx-auto py-10 md:py-16 lg:py-[120px] px-4 md:px-6 lg:px-2 xl:px-0">
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 70 }}
@@ -64,19 +64,14 @@ export default function FeaturedRooms() {
         className="flex flex-col md:flex-row justify-between items-end mb-[38px]"
       >
         <h2 className="text-[32px] md:text-4xl lg:text-[48px] font-semibold leading-[48px] text-left text-black">
-          Featured <span className="text-primary">Student</span> Accommodations
+          Featured <span className="text-primary">Guest</span> Accommodations
         </h2>
       </motion.div>
 
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {rooms.map((room, idx) => (
-          <motion.div
-            key={idx}
-            variants={fastCardVariants}
-            whileHover={decentHover}
-            className="w-full"
-          >
+          <motion.div key={idx} className="w-full">
             <RoomCard
               id={room.id}
               image={room.image}
@@ -104,7 +99,7 @@ export default function FeaturedRooms() {
           className="px-8 py-3 text-[18px] w-[247px] h-[60px] font-semibold rounded-[16px] flex items-center gap-2 bg-primary text-white hover:bg-primary/80 transition-colors mt-6 md:mt-0"
           asChild
         >
-          <Link to="/browse">
+          <Link to="/rooms">
             <span> View All Rooms</span>
             <FaArrowRightLong />
           </Link>

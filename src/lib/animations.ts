@@ -64,7 +64,7 @@ export const staggerContainerVariants: Variants = {
 //  Fast card variant — max 400ms, drifts up
 // ─────────────────────────────────────────────
 export const fastCardVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,

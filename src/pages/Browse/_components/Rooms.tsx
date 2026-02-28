@@ -13,7 +13,6 @@ import {
 import {
   sequentialStaggerVariants,
   fastCardVariants,
-  decentHover,
 } from "@/lib/animations";
 
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -104,7 +103,6 @@ export default function Rooms() {
           <motion.div
             key={room.id}
             variants={fastCardVariants}
-            whileHover={decentHover}
             className="w-full"
           >
             <RoomCard
@@ -122,7 +120,7 @@ export default function Rooms() {
       </motion.div>
 
       {/* Pagination */}
-      <div className="relative flex items-center justify-center mt-12 mb-8">
+      <div className="relative flex flex-col md:flex-row items-center justify-center mt-12 mb-8 gap-4">
         {/* Dot Indicators */}
         <div className="flex gap-2">
           {Array.from({ length: totalPages }).map((_, index) => (
@@ -135,9 +133,9 @@ export default function Rooms() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="absolute right-0 flex items-center gap-4">
+        <div className="absolute not-sm:top-10 sm:right-0 not-sm:left-1/2 not-sm:-translate-x-1/2   flex items-center gap-4">
           <button
-            className="rounded-[16px] px-6 py-2.5 text-base md:text-lg border-2 border-gray-300 text-gray-600 bg-white flex items-center justify-center transition-all duration-300 ease-in-out hover:text-black hover:border-black hover:scale-105 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 shadow-sm"
+            className="w-[150px] lg:w-[175px] rounded-[16px] px-4 lg:px-6 py-2.5 text-base md:text-lg border-2 border-gray-300 text-gray-600 bg-white flex items-center justify-center transition-all duration-300 ease-in-out hover:text-black hover:border-black hover:scale-105 active:scale-95 disabled:opacity-30 disabled:hover:scale-100 "
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -146,7 +144,7 @@ export default function Rooms() {
           </button>
 
           <button
-            className="bg-[#F97316] text-base md:text-lg text-white rounded-[16px] px-6 py-2.5 flex items-center gap-1 transition-all duration-300 ease-in-out hover:bg-[#ea580c] hover:scale-105 hover:shadow-[0_10px_20px_rgba(249,115,22,0.3)] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+            className="w-[150px] lg:w-[175px] bg-[#F97316] text-base md:text-lg text-white rounded-[16px] px-6 py-2.5 flex items-center gap-1 transition-all duration-300 ease-in-out hover:bg-[#ea580c] hover:scale-105 hover:shadow-[0_10px_20px_rgba(249,115,22,0.3)] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >

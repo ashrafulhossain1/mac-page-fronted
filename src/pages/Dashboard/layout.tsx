@@ -2,6 +2,7 @@ import Modals from "@/components/Modal";
 import ScrollToTop from "@/components/Shared/ScrollToTop";
 import { Outlet } from "react-router";
 import DashboardHeader from "./_components/DashboardHeader";
+import Footer from "@/components/Footer";
 
 export default function DashboardLayout() {
   return (
@@ -12,6 +13,7 @@ export default function DashboardLayout() {
       <main>
         <Outlet />
       </main>
+      <Footer></Footer>
     </div>
   );
 }

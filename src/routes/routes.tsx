@@ -1,4 +1,5 @@
 import Home from "@/pages/Home";
+import ErrorPage from "@/pages/ErrorPage";
 import HomeLayout from "@/pages/Home/layout";
 import Browse from "@/pages/Browse";
 import RoomDetails from "@/pages/RoomDetails";
@@ -26,18 +27,14 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    errorElement: (
-      <h1 className="text-5xl text-center my-52">
-        Don't Found this page, go back
-      </h1>
-    ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <Home />,
       },
       {
-        path: "browse",
+        path: "rooms",
         element: <Browse />,
       },
       {
@@ -49,7 +46,7 @@ export const routes = createBrowserRouter([
         element: <OurStory />,
       },
       {
-        path: "support",
+        path: "/contact-us",
         element: <Support />,
       },
       {
@@ -89,6 +86,7 @@ export const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

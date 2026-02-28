@@ -20,16 +20,6 @@ export default function Hero() {
           alt="Browse Hero background"
           className="gsap-image absolute inset-0 w-full h-full object-cover"
         />
-
-        {/* Overlay text — same GSAP classes as home hero */}
-        <div className="absolute inset-0 bg-black/20 rounded-[32px] flex flex-col items-center justify-center px-6 text-center">
-          <h1 className="gsap-title text-white text-2xl md:text-4xl lg:text-5xl font-bold drop-shadow-md leading-tight">
-            Find Your Perfect <span className="text-[#F97316]">Room</span> in Ireland
-          </h1>
-          <p className="gsap-subtitle text-white/90 mt-3 text-sm md:text-lg font-medium max-w-xl drop-shadow-sm">
-            Browse verified, affordable student & professional accommodation.
-          </p>
-        </div>
       </div>
 
       {/* SearchCard — same GSAP class as home hero search card */}

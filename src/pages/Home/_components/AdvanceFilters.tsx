@@ -56,7 +56,7 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
 
         {/* Header */}
         <div className="flex justify-between items-center mb-5">
-          <h2 className="text-lg font-bold text-gray-900 tracking-tight">
+          <h2 className="text-sm md:text-lg font-bold text-gray-900 tracking-tight">
             Advance Filters
           </h2>
           <button
@@ -71,7 +71,7 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
         <div className="space-y-5 overflow-y-auto max-h-[55vh] pr-1 custom-scrollbar">
           {/* Room Types Section */}
           <div className="space-y-3">
-            <p className="text-[13px] font-bold text-gray-900 uppercase tracking-wide">
+            <p className="text-[13px] md:text-sm font-bold text-gray-900 uppercase tracking-wide">
               Room Types
             </p>
             <div className="grid grid-cols-2 gap-2.5">
@@ -173,9 +173,9 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
 
   // ─── Desktop Layout (Popover Card) ────────────────────────────────────
   return (
-    <div className="w-[340px] bg-white rounded-[24px] p-7 shadow-2xl font-sans relative border border-gray-100">
+    <div className="w-[450px] bg-gray-50 border border-gray-200 rounded-[30px] p-4 md:p-5 hover:shadow-md font-sans ">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-start">
         <h2 className="text-[26px] font-bold text-gray-900 tracking-tight">
           Advance Filters
         </h2>
@@ -183,33 +183,33 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
           onClick={onClose}
           className="p-1 hover:bg-red-50 rounded-full transition-colors group"
         >
-          <X className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform" />
+          <X className="w-6 h-6 text-red-600 group-hover:scale-110 transition-transform" />
         </button>
       </div>
 
-      <div className="space-y-6 overflow-y-auto max-h-[70vh] pr-2 custom-scrollbar">
+      <div className="space-y-4 overflow-y-auto max-h-[70vh] pr-2 custom-scrollbar">
         {/* Room Types Section */}
         <div className="space-y-4">
-          <p className="text-[15px] font-bold text-gray-900">
+          <p className="text-[16px] font-medium text-gray-900">
             Room Types
           </p>
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-1 md:gap-2">
             {roomTypes.map((room) => (
               <div
                 key={room.id}
-                className="flex items-center space-x-3 cursor-pointer group"
+                className="flex items-center gap-2 cursor-pointer group"
                 onClick={() => setSelectedRoom(room.id)}
               >
                 <Checkbox
                   id={room.id}
                   checked={selectedRoom === room.id}
                   onCheckedChange={() => setSelectedRoom(room.id)}
-                  className="w-5 h-5 rounded-[4px] border-none bg-gray-200 data-[state=checked]:bg-black data-[state=checked]:text-white transition-colors"
+                  className="w-4 h-4 rounded-[4px] border-none bg-gray-200 data-[state=checked]:bg-black data-[state=checked]:text-white transition-colors"
                 />
                 <Label
                   htmlFor={room.id}
                   className={cn(
-                    "text-[16px] font-medium transition-colors cursor-pointer",
+                    "text-[14px] font-medium transition-colors cursor-pointer",
                     selectedRoom === room.id
                       ? "text-gray-900"
                       : "text-gray-500",
@@ -224,10 +224,10 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
 
         {/* Amenities Section */}
         <div className="space-y-4">
-          <p className="text-[15px] font-bold text-gray-900">
+          <p className="text-[16px] font-medium text-gray-900">
             Amenities
           </p>
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-1 md:gap-2">
             {amenitiesList.map((amenity) => (
               <div
                 key={amenity.id}
@@ -238,12 +238,12 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
                   id={amenity.id}
                   checked={selectedAmenities.includes(amenity.id)}
                   onCheckedChange={() => toggleAmenity(amenity.id)}
-                  className="w-5 h-5 rounded-[4px] border-none bg-gray-200 data-[state=checked]:bg-black data-[state=checked]:text-white transition-colors"
+                  className="w-4 h-4 rounded-[4px] border-none bg-gray-200 data-[state=checked]:bg-black data-[state=checked]:text-white transition-colors"
                 />
                 <Label
                   htmlFor={amenity.id}
                   className={cn(
-                    "text-[16px] font-medium transition-colors cursor-pointer",
+                    "text-[14px] font-medium transition-colors cursor-pointer",
                     selectedAmenities.includes(amenity.id)
                       ? "text-gray-900"
                       : "text-gray-500",

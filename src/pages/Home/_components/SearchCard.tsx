@@ -71,7 +71,7 @@ function SearchCard() {
             type="number"
             min={0}
             placeholder="Max price"
-            className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
+            className="h-10 md:h-12 bg-white border-none rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
             value={searchParams.maxPrice}
             onChange={(e) =>
               setSearchParams((prev) => ({
@@ -88,7 +88,7 @@ function SearchCard() {
             type="number"
             min={0}
             placeholder="Min price"
-            className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
+            className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
             value={searchParams.minPrice}
             onChange={(e) =>
               setSearchParams((prev) => ({

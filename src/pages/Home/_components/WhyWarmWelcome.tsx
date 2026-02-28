@@ -47,8 +47,8 @@ const cardVariants = {
 
 const WhyWarmWelcome = () => {
   return (
-    <div className="bg-secondary min-h-screen font-sans text-[#1A1A1A]">
-      <section className="py-20 px-6 max-w-7xl mx-auto">
+    <div className="bg-secondary  font-sans text-[#1A1A1A]">
+      <section className="py-10 md:py-16 lg:py-20 px-4 lg:px-6 max-w-7xl mx-auto">
         {/* Title Animation */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -57,10 +57,9 @@ const WhyWarmWelcome = () => {
           transition={{ ...appleSpring, delay: 0.05 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Why <span className="text-primary">Students</span> and{" "}
-            <span className="text-primary">Professionals</span> <br />
-            Choose Warm Welcome?
+          <h2 className="text-3xl md:text-4xl lg:text-[48px] font-bold mb-6 leading-tight">
+            Why <span className="text-primary">Guests</span> Choose Warm
+            Welcome?
           </h2>
           <p className="text-gray-500 text-lg max-w-3xl mx-auto font-medium">
             Trusted by students, young professionals, and mid-term guests
@@ -80,14 +79,11 @@ const WhyWarmWelcome = () => {
             <motion.div
               key={idx}
               variants={cardVariants}
-              whileHover={{
-                y: -3,
-                transition: { type: "spring", stiffness: 150, damping: 25 },
-              }}
-              className="bg-white md:h-[303px] p-4 md:p-6 rounded-[24px] border border-gray-100  hover:shadow-lg transition-shadow duration-500"
+              className="bg-white lg:h-[320px] xl:h-[303px] p-5 md:p-6 rounded-[24px] border-none border-gray-100  hover:shadow-md transition-shadow duration-500"
             >
               <motion.div
                 variants={innerStaggerVariants}
+
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -95,13 +91,13 @@ const WhyWarmWelcome = () => {
               >
                 <motion.div
                   variants={innerItemVariants}
-                  className={` w-14 h-14 border p-2 bg-gray-200 rounded-2xl flex items-center justify-center mb-6`}
+                  className={`w-14 h-14 lg:h-[70px] lg:w-[70px] border p-2 bg-gray-200 rounded-2xl flex items-center justify-center mb-3 md:mb-4 xl:mb-6`}
                 >
                   {item.icon}
                 </motion.div>
                 <motion.h3
                   variants={innerItemVariants}
-                  className="text-xl md:text-[22px] font-bold mb-3 md:mb-4"
+                  className="text-lg md:text-xl lg:text-[22px] font-bold mb-2 md:mb-3 lg:mb-4"
                 >
                   {item.title}
                 </motion.h3>
@@ -215,18 +211,14 @@ const features: Feature[] = [
     title: "Cultural Sensitivity & Diversity Friendly",
     description:
       "Homes that respect different cultures, religions, and lifestyles — something international guests deeply value.",
-    icon: (
-      <GiThreeFriends className="w-full h-full text-emerald-600" />
-    ),
+    icon: <GiThreeFriends className="w-full h-full text-emerald-600" />,
     iconBg: "bg-emerald-50",
   },
   {
     title: "Clear Expectations From Day One",
     description:
       "Transparent house rules and communication standards to avoid misunderstandings.",
-    icon: (
-      <ClipboardCheck className="w-full h-full text-indigo-600" />
-    ),
+    icon: <ClipboardCheck className="w-full h-full text-indigo-600" />,
     iconBg: "bg-indigo-50",
   },
 ];

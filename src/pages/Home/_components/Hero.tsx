@@ -59,7 +59,7 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col items-center pt-32 px-6 md:px-16 max-w-[1000px] mx-auto text-center">
-        <h1 className="gsap-title text-3xl sm:text-[42px] md:text-[56px] lg:text-[70px] font-bold text-white leading-[1.1] md:leading-[78px] drop-shadow-md">
+        <h1 className="gsap-title text-3xl sm:text-[42px] md:text-[56px] lg:text-[60px] xl:text-[70px] font-bold text-white leading-[1.1] md:leading-[78px] drop-shadow-md">
           Affordable Mid-Term Room Rentals in Ireland You Can Trust
         </h1>
 
@@ -74,7 +74,7 @@ const Hero = () => {
             className="px-6 py-3 text-sm sm:text-[16px] md:text-[18px] font-semibold rounded-[12px] md:rounded-[16px] flex items-center gap-2 bg-[#8A9A5B]/95 hover:bg-[#5F6B3E] hover:opacity-100 text-white transition-all duration-300"
             asChild
           >
-            <Link to="/browse">
+            <Link to="/rooms">
               <Search className="w-5 h-5" />
               I’m a Guest → Find a Room
             </Link>
