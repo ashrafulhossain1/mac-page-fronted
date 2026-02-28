@@ -80,10 +80,10 @@ export default function VerifyOTPGuest({
 
     return (
         <div className="max-w-md mx-auto  p-2 rounded-3xl">
-            <h2 className="text-[32px] md:text-[40px] font-bold text-center mb-2 text-black leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-2 text-black leading-tight">
                 Enter 6 digit code
             </h2>
-            <p className="text-base md:text-lg text-center text-[#7E7E7E] mb-10">
+            <p className="text-sm md:text-base lg:text-lg text-gray-400 text-center mt-1 lg:mt-2 mb-6 md:mb-10">
                 We've sent verification your email
             </p>
 
@@ -101,7 +101,7 @@ export default function VerifyOTPGuest({
                                                 key={i}
                                                 type="text"
                                                 maxLength={1}
-                                                className="w-12 h-16 md:w-14 md:h-16 text-center text-xl font-medium rounded-2xl border-gray-200 focus:border-[#FF7A1A] focus:ring-[#FF7A1A] transition-all text-[#ADADAD]"
+                                                className="w-12 h-16 md:w-14 md:h-16 text-center text-xl font-medium rounded-[16px] border-none bg-gray-100 focus:ring-[#FF7A1A] transition-all text-gray-500"
                                                 value={field.value[i] || ""}
                                                 onChange={(e) => handleChange(i, e.target.value)}
                                                 onKeyDown={(e) => handleKeyDown(i, e)}

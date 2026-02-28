@@ -55,7 +55,7 @@ export default function SignInForm() {
                 <Input
                   type="email"
                   placeholder="Email"
-                  className="h-[50px]  md:h-[55px] rounded-[16px]  border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
+                  className="h-[50px]  md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500  md:placeholder:text-base"
                   {...field}
                 />
               </FormControl>
@@ -75,7 +75,7 @@ export default function SignInForm() {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className="h-[50px] md:h-[54px] border-none bg-gray-100 rounded-[16px]  px-3 md:px-5 pr-12 placeholder:text-gray-500"
+                    className="h-[50px] md:h-[54px] border-none bg-gray-100 rounded-[16px]  px-3 md:px-5 pr-12 placeholder:text-gray-500 md:placeholder:text-base"
                     {...field}
                   />
                   <button

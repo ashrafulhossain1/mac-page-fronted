@@ -93,11 +93,11 @@ export default function GuestProfileSet({
   }
 
   return (
-    <div className="rounded-3xl w-full relative p-2 md:p-6 overflow-auto">
-      <h2 className=" text-xl md:text-3xl font-bold text-center mb-4 md:mb-6">Profile</h2>
+    <div className="rounded-3xl w-full md:w-[600px] lg:w-[668px] relative p-2 md:p-6 max-h-[calc(100vh-100px)] overflow-y-auto">
+      <h2 className="text-xl md:text-3xl lg:text-[38px] font-semibold text-center mb-2 md:mb-4">Profile</h2>
 
       {/* Avatar Upload */}
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-4 md:mb-6">
         <label className="w-16 h-16 md:w-24 md:h-24 bg-gray-100 rounded-full flex items-center justify-center  border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors ">
           {avatar ? (
             <img
@@ -119,19 +119,19 @@ export default function GuestProfileSet({
 
       {/* Form */}
       <Form {...form} >
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3  md:space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 md:space-y-3">
           {/* Full Name */}
           <FormField
             control={form.control}
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Full Name</FormLabel>
+                <FormLabel className="text-xs md:text-sm font-semibold">Full Name</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Enter your full name"
                     {...field}
-                    className="h-9 md:h-12 rounded-[16px]"
+                    className="h-9 md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 text-sm md:text-base placeholder:text-gray-500 placeholder:text-xs md:placeholder:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-[10px] md:text-sm" />
@@ -145,12 +145,12 @@ export default function GuestProfileSet({
             name="university"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">University</FormLabel>
+                <FormLabel className="text-xs md:text-sm font-semibold">University</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Enter your university"
                     {...field}
-                    className="h-9 md:h-12 rounded-[16px]"
+                    className="h-9 md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 text-sm md:text-base placeholder:text-gray-500 placeholder:text-xs md:placeholder:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-[10px] md:text-sm" />
@@ -164,12 +164,12 @@ export default function GuestProfileSet({
             name="dateOfBirth"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Date of Birth</FormLabel>
+                <FormLabel className="text-xs md:text-sm font-semibold">Date of Birth</FormLabel>
                 <FormControl>
                   <Input
                     type="date"
                     {...field}
-                    className="h-9 md:h-12 rounded-[16px]"
+                    className="h-9 md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 text-sm md:text-base placeholder:text-gray-500 placeholder:text-xs md:placeholder:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-[10px] md:text-sm" />
@@ -183,12 +183,12 @@ export default function GuestProfileSet({
             name="nationality"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Nationality</FormLabel>
+                <FormLabel className="text-xs md:text-sm font-semibold">Nationality</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Enter your nationality"
                     {...field}
-                    className="h-9 md:h-12 rounded-[16px]"
+                    className="h-9 md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 text-sm md:text-base placeholder:text-gray-500 placeholder:text-xs md:placeholder:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-[10px] md:text-sm" />
@@ -202,14 +202,14 @@ export default function GuestProfileSet({
             name="bio"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">
+                <FormLabel className="text-xs md:text-sm font-semibold">
                   Self Description
                 </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Tell us about yourself"
                     {...field}
-                    className="max-h-[120px] rounded-[16px] resize-none "
+                    className="max-h-[80px] md:max-h-[100px] rounded-[16px] resize-none border-none bg-gray-100 px-3 md:px-5 text-sm md:text-base placeholder:text-gray-500 placeholder:text-xs md:placeholder:text-sm"
                   />
                 </FormControl>
                 <FormMessage className="text-[10px] md:text-sm" />

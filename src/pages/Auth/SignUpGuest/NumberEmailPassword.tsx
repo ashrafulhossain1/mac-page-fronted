@@ -77,8 +77,8 @@ export default function NumberEmailPassword({
   }
 
   return (
-    <div className=" rounded-3xl w-full max-w-md mx-auto relative">
-      <h2 className="text-[28px] md:text-[32px] font-bold text-center mb-6 mt-2 text-black leading-tight">
+    <div className=" rounded-3xl  max-w-md mx-auto relative">
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-6 mt-2 text-black leading-tight">
         Let's get started
       </h2>
 
@@ -95,7 +95,7 @@ export default function NumberEmailPassword({
                   <Input
                     placeholder="Email"
                     {...field}
-                    className="h-12 rounded-xl border-gray-200 text-base px-5 placeholder:text-[#ADADAD]"
+                    className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                   />
                 </FormControl>
                 <FormMessage />
@@ -120,10 +120,10 @@ export default function NumberEmailPassword({
                         })
                       }
                       placeholder="Enter your phone number"
-                      inputClass="!h-12 !w-full !rounded-xl !border-gray-200 !pl-[85px] !text-base !placeholder:text-[#ADADAD] !font-normal"
-                      buttonClass="!h-12 !rounded-l-xl !border-gray-200 !bg-[#F4F4F4] !w-[75px] !border-r-0"
-                      containerClass="!h-12"
-                      dropdownClass="!rounded-xl"
+                      inputClass="!h-[50px] md:!h-[55px] !w-full !rounded-[16px] !border-none !bg-gray-100 !pl-[85px] !text-base !placeholder:text-gray-500 !font-normal"
+                      buttonClass="!h-[50px] md:!h-[55px] !rounded-l-[16px] !border-none !bg-gray-200 !w-[75px]"
+                      containerClass="!h-[50px] md:!h-[55px]"
+                      dropdownClass="!rounded-[16px]"
                     />
                   </div>
                 </FormControl>
@@ -144,7 +144,7 @@ export default function NumberEmailPassword({
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       {...field}
-                      className="h-12 rounded-xl border-gray-200 text-base px-5 pr-12 placeholder:text-[#ADADAD]"
+                      className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 pr-12 placeholder:text-gray-500"
                     />
                     <button
                       type="button"
@@ -172,7 +172,7 @@ export default function NumberEmailPassword({
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirm Password"
                       {...field}
-                      className="h-12 rounded-xl border-gray-200 text-base px-5 pr-12 placeholder:text-[#ADADAD]"
+                      className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 pr-12 placeholder:text-gray-500"
                     />
                     <button
                       type="button"

@@ -75,7 +75,7 @@ export default function HostProfileSet({
   return (
     <div className="rounded-3xl w-full  relative ">
 
-      <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-6">Profile</h2>
 
       {/* Avatar Upload */}
       <div className="flex justify-center mb-8">
@@ -112,7 +112,7 @@ export default function HostProfileSet({
                   <Input
                     placeholder="Enter your full name"
                     {...field}
-                    className="h-12 rounded-xl"
+                    className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                   />
                 </FormControl>
                 <FormMessage />
@@ -136,7 +136,10 @@ export default function HostProfileSet({
                         shouldValidate: true,
                       })
                     }
-                    inputClass="h-11! rounded-2xl! w-full! overflow-hidden "
+                    inputClass="!h-[50px] md:!h-[55px] !w-full !rounded-[16px] !border-none !bg-gray-100 !pl-[85px] !text-base !placeholder:text-gray-500 !font-normal"
+                    buttonClass="!h-[50px] md:!h-[55px] !rounded-l-[16px] !border-none !bg-gray-200 !w-[75px]"
+                    containerClass="!h-[50px] md:!h-[55px]"
+                    dropdownClass="!rounded-[16px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -154,7 +157,7 @@ export default function HostProfileSet({
                 <FormControl>
                   <Textarea
                     placeholder="Guests trust hosts who share a little about themselves"
-                    className="resize-none rounded-xl min-h-25"
+                    className="resize-none rounded-[16px] min-h-25 border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                     {...field}
                   />
                 </FormControl>

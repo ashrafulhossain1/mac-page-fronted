@@ -44,7 +44,7 @@ export default function VerifiedBadge({
   return (
     <div className="w-full    rounded-2xl p-6 relative ">
       {/* Title */}
-      <h2 className="text-2xl font-bold text-center mb-6">
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-6">
         Get Verified Host <br /> Badge
       </h2>
 

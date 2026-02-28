@@ -79,8 +79,8 @@ export default function StartSignup({
 
   return (
     <div className="w-full rounded-2xl p-6">
-      <h2 className="text-3xl font-bold text-center mb-6">
-        Let’s get started
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-6">
+        Let's get started
       </h2>
 
       <Form {...form}>
@@ -97,7 +97,7 @@ export default function StartSignup({
                 <FormControl>
                   <Input
                     placeholder="Email"
-                    className="h-12 rounded-xl"
+                    className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                     {...field}
                   />
                 </FormControl>
@@ -117,7 +117,7 @@ export default function StartSignup({
                     <Input
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
-                      className="h-12 rounded-xl pr-10"
+                      className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 pr-12 placeholder:text-gray-500"
                       {...field}
                     />
                     <button
@@ -125,7 +125,7 @@ export default function StartSignup({
                       onClick={() =>
                         setShowPassword((prev) => !prev)
                       }
-                      className="absolute right-3 top-3 text-muted-foreground"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     >
                       {showPassword ? (
                         <EyeOff size={18} />
@@ -151,7 +151,7 @@ export default function StartSignup({
                     <Input
                       type={showConfirm ? "text" : "password"}
                       placeholder="Confirm Password"
-                      className="h-12 rounded-xl pr-10"
+                      className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 pr-12 placeholder:text-gray-500"
                       {...field}
                     />
                     <button
@@ -159,7 +159,7 @@ export default function StartSignup({
                       onClick={() =>
                         setShowConfirm((prev) => !prev)
                       }
-                      className="absolute right-3 top-3 text-muted-foreground"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     >
                       {showConfirm ? (
                         <EyeOff size={18} />

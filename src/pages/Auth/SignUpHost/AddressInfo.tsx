@@ -69,7 +69,7 @@ export default function AddressInfo({
 
   return (
     <div className=" rounded-[32px] w-full relative ">
-      <h2 className="text-[30px] font-semibold text-center mb-10 tracking-tight">
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-10 tracking-tight">
         Address & Residency Info
       </h2>
 
@@ -96,7 +96,7 @@ export default function AddressInfo({
                   <Input
                     placeholder="Enter full address"
                     {...field}
-                    className="h-12 md:h-14 rounded-2xl border-gray-200"
+                    className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                   />
                 </FormControl>
                 <FormMessage />
@@ -117,7 +117,7 @@ export default function AddressInfo({
                   <Input
                     placeholder="Enter postal code"
                     {...field}
-                    className="h-12 md:h-14 rounded-2xl border-gray-200"
+                    className="h-[50px] md:h-[55px] rounded-[16px] border-none bg-gray-100 px-3 md:px-5 placeholder:text-gray-500"
                   />
                 </FormControl>
                 <FormMessage />

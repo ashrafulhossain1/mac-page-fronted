@@ -81,11 +81,11 @@ export default function VerifyOPThost({
 
   return (
     <div className="max-w-110 mx-auto   p-6 rounded-2xl  ">
-      <h2 className="text-3xl font-bold text-center mb-2">
+      <h2 className="text-2xl md:text-3xl lg:text-[38px] font-semibold text-center mb-2">
         Enter 6 digit code
       </h2>
-      <p className="text-sm text-center text-muted-foreground mb-6">
-        We’ve sent verification code to your email
+      <p className="text-sm md:text-base lg:text-lg text-gray-400 text-center mt-1 lg:mt-2 mb-6">
+        We've sent verification code to your email
       </p>
 
       <Form {...form}>
@@ -102,7 +102,7 @@ export default function VerifyOPThost({
                         key={i}
                         type="text"
                         maxLength={1}
-                        className="w-12 h-12 text-center text-lg rounded-xl border border-muted-foreground"
+                        className="w-12 h-16 md:w-14 md:h-16 text-center text-xl font-medium rounded-[16px] border-none bg-gray-100 focus:ring-[#FF7A1A] transition-all text-gray-500"
                         value={field.value[i] || ""}
                         onChange={(e) => handleChange(i, e.target.value)}
                         onKeyDown={(e) => handleKeyDown(i, e)}

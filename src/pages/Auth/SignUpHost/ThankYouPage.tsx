@@ -8,7 +8,7 @@ export default function ThankYouPage() {
 
 
       {/* Heading */}
-      <h1 className="text-2xl sm:text-3xl font-bold mb-4">
+      <h1 className="text-2xl md:text-3xl lg:text-[38px] font-semibold mb-4">
         Thank you for submitting your details.
       </h1>
 
