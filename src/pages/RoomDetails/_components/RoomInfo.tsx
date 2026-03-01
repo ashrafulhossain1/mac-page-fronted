@@ -190,7 +190,7 @@ export default function RoomInfo({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="px-6 py-[14px] rounded-xl bg-gray-100 text-sm text-primary-foreground font-medium hover:bg-gray-200 transition-colors"
+                className="px-6   w-full mdw-[60%] lg:w-[50%] py-[14px] rounded-xl bg-gray-100 text-sm text-primary-foreground font-medium hover:bg-gray-200 transition-colors"
               >
                 {amenity}
               </motion.div>
@@ -198,8 +198,9 @@ export default function RoomInfo({
           </div>
         </div>
 
+        <div className="border w-full h-[1px] border-gray-200 my-6" />
         {/* House Rules */}
-        <div className="mt-8">
+        <div className="">
           <motion.h2
             variants={innerItemVariants}
             initial="hidden"
@@ -220,7 +221,7 @@ export default function RoomInfo({
                 className="flex items-center gap-3"
               >
                 <ExcIcon className="w-6 h-6 shrink-0" />
-                <span className="text-lg text-secondary-foreground">
+                <span className="text-xs md:text-base text-secondary-foreground">
                   {rule}
                 </span>
               </motion.div>
