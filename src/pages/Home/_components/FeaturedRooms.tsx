@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { decentHover, fastCardVariants } from "@/lib/animations";
 
 const rooms = [
   {

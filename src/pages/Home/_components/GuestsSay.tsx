@@ -8,7 +8,6 @@ import {
   sequentialStaggerVariants,
   fastCardVariants,
   defaultViewport,
-  decentHover,
   headingVariants,
 } from "@/lib/animations";
 
