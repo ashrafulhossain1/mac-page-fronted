@@ -63,7 +63,7 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
             onClick={onClose}
             className="p-1.5 hover:bg-red-50 rounded-full transition-colors group"
           >
-            <X className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform" />
+            <X className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
           </button>
         </div>
 
@@ -176,14 +176,14 @@ export default function AdvanceFilters({ onClose }: AdvanceFiltersProps) {
     <div className="w-[450px] bg-gray-50 border border-gray-200 rounded-[30px] p-4 md:p-5 hover:shadow-md font-sans ">
       {/* Header */}
       <div className="flex justify-between items-start">
-        <h2 className="text-[26px] font-bold text-gray-900 tracking-tight">
+        <h2 className="md:text-[22px] lg:text-[26px] font-bold text-gray-900 tracking-tight">
           Advance Filters
         </h2>
         <button
           onClick={onClose}
           className="p-1 hover:bg-red-50 rounded-full transition-colors group"
         >
-          <X className="w-6 h-6 text-red-600 group-hover:scale-110 transition-transform" />
+          <X className="w-5 h-5 lg:w-6 md:h-6 text-primary group-hover:scale-110 transition-transform" />
         </button>
       </div>
 

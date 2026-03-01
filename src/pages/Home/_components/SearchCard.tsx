@@ -1,66 +1,53 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Select, { type StylesConfig } from "react-select";
 import { City } from "country-state-city";
-import { useState, useMemo } from "react";
-
-type Option = { value: string; label: string };
+import { useState, useMemo, useRef, useEffect } from "react";
 
 function SearchCard() {
-
-  // console.log("console city", City)
   const [searchParams, setSearchParams] = useState({
     maxPrice: "",
     minPrice: "",
     city: "",
   });
+  const [isCityOpen, setIsCityOpen] = useState(false);
+  const cityRef = useRef<HTMLDivElement>(null);
 
-  // Load English cities (GB is UK, ENG is state code for England)
+  // Load Irish cities (IE is the country code for Ireland)
   const cityOptions = useMemo(() => {
-    return City.getCitiesOfState("GB", "ENG").map((city) => ({
-      value: city.name,
-      label: city.name,
-    }));
+    return (
+      City.getCitiesOfCountry("IE")?.map((city) => ({
+        value: city.name,
+        label: city.name,
+      })) || []
+    );
+  }, []);
+
+  // Filter cities based on typed input
+  const filteredCities = useMemo(() => {
+    if (!searchParams.city) return cityOptions;
+    return cityOptions.filter((c) =>
+      c.label.toLowerCase().includes(searchParams.city.toLowerCase())
+    );
+  }, [searchParams.city, cityOptions]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (cityRef.current && !cityRef.current.contains(e.target as Node)) {
+        setIsCityOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSearch = () => {
     console.log("Search Parameters:", searchParams);
   };
 
-  const customStyles: StylesConfig<Option, false> = {
-    control: (provided) => ({
-      ...provided,
-      height: "3rem", // Match h-12
-      borderRadius: "0.75rem", // Match rounded-xl
-      border: "none",
-      backgroundColor: "white",
-      boxShadow: "0 1px 2px 0 rgb(0 0 0 / 0.05)", // Match shadow-sm
-      fontSize: "16px",
-      "&:hover": {
-        borderColor: "transparent",
-      },
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: "#9ca3af", // text-muted-foreground
-    }),
-    valueContainer: (provided) => ({
-      ...provided,
-      paddingLeft: "1rem",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#F97316" : state.isFocused ? "#fff6f0" : "transparent",
-      color: state.isSelected ? "white" : "#333",
-      "&:active": {
-        backgroundColor: "#F97316",
-      },
-    }),
-  };
-
   return (
     <div className="bg-[#eff1f3] backdrop-blur-sm p-8 rounded-[32px] w-full max-w-[1050px] ">
-      <h2 className="text-2xl font-semibold text-gray-900 mb-4 ml-1">
+      <h2 className="text-lg md:text-xl lg:text-2xl  font-semibold text-gray-900 mb-4 ml-1">
         Find Your Perfect Room (Ireland)
       </h2>
 
@@ -71,7 +58,7 @@ function SearchCard() {
             type="number"
             min={0}
             placeholder="Max price"
-            className="h-10 md:h-12 bg-white border-none rounded-xl text-sm sm:text-[16px] md:text-[18px] px-4 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
+            className="h-10 md:h-12 bg-white border-none rounded-xl text-sm sm:text-[16px] md:text-[16px] px-4 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316]"
             value={searchParams.maxPrice}
             onChange={(e) =>
               setSearchParams((prev) => ({
@@ -99,16 +86,42 @@ function SearchCard() {
           />
         </div>
 
-        {/* City Select (England Only) */}
-        <div className="space-y-1">
-          <Select<Option>
-            options={cityOptions}
-            placeholder="City"
-            styles={customStyles}
-            className="w-full"
-            value={cityOptions.find(opt => opt.value === searchParams.city) || null}
-            onChange={(opt) => setSearchParams(prev => ({ ...prev, city: opt?.value || "" }))}
+        {/* City Input with Dropdown Suggestions */}
+        <div className="space-y-1 relative" ref={cityRef}>
+          <Input
+            type="text"
+            placeholder="Type city..."
+            className="h-10 md:h-12 bg-white border-0 rounded-xl text-sm sm:text-[16px] md:text-[16px] px-4 hover:shadow-sm focus-visible:ring-1 focus-visible:ring-[#F97316] w-full"
+            value={searchParams.city}
+            onChange={(e) => {
+              setSearchParams((prev) => ({
+                ...prev,
+                city: e.target.value,
+              }));
+              setIsCityOpen(true);
+            }}
+            onFocus={() => setIsCityOpen(true)}
+            autoComplete="off"
           />
+          {isCityOpen && filteredCities.length > 0 && (
+            <ul className="absolute z-50 top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-lg max-h-52 overflow-y-auto border border-gray-100">
+              {filteredCities.map((city) => (
+                <li
+                  key={city.value}
+                  className="px-4 py-2.5 text-sm text-gray-700 cursor-pointer hover:bg-orange-50 hover:text-[#F97316] transition-colors first:rounded-t-xl last:rounded-b-xl"
+                  onMouseDown={() => {
+                    setSearchParams((prev) => ({
+                      ...prev,
+                      city: city.value,
+                    }));
+                    setIsCityOpen(false);
+                  }}
+                >
+                  {city.label}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* Search Button */}
@@ -124,3 +137,4 @@ function SearchCard() {
 }
 
 export default SearchCard;
+

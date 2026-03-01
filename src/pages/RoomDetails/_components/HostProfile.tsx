@@ -30,7 +30,7 @@ export default function HostProfile() {
             <div className="flex-shrink-0">
               <Avatar className="h-24 w-24 border-none">
                 <AvatarImage
-                  src="/path-to-max-image.jpg"
+                  src="/profile.jpg"
                   alt="Max Van Der Berg"
                   className="object-cover"
                 />
