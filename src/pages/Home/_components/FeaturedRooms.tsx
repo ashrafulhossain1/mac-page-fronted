@@ -43,7 +43,7 @@ const rooms = [
   },
 ];
 
-// Apple-style spring config — slow, heavy, premium feel
+// Apple-style spring config — slow, heavy, premium fee => ok
 const appleSpring = {
   type: "spring",
   stiffness: 38,
