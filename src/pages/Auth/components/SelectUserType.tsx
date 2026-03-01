@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router";
 
 import Line1 from "@/assets/auth/Line 1.png";
 import Line2 from "@/assets/auth/Line 2.png";
-import line4 from "@/assets/auth/Line 4.png";
+import line4 from "@/assets/auth/line 4.png";
 import line3 from "@/assets/auth/Line 3.png";
 
 const SelectUserType = ({
